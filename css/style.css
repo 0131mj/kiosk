@@ -1,0 +1,194 @@
+@font-face {
+    font-family: 'GongGothicMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GongGothicBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+.title-header{
+    text-align: center;
+    background: #002;
+    padding: 2vw;
+    width: 100%;
+}
+
+body {
+    font-size: 2.5vw;
+    background: rebeccapurple;
+    color: white;
+    font-family: 'GongGothicMedium', serif;
+    display: flex;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+}
+
+* {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.global-menu-bg {
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.global-menu-panel {
+    background: black;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 80vw;
+    border-radius: 1vw;
+    overflow: hidden;
+    opacity: 0.9;
+    font-size: 1.1rem;
+}
+
+.global-menus {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+.global-menu-header {
+    padding: 0.8em;
+    text-align: center;
+}
+
+.global-menu {
+    width: 25%;
+    background: #333;
+    border: 1px solid black;
+    box-sizing: border-box;
+    font-size: 1.3rem;
+    word-break: keep-all;
+    height: 16vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+.global-menu-close-btn {
+    background: black;
+    padding: 0.8rem;
+    text-align: center;
+}
+
+a, button {
+    background: transparent;
+    border: none;
+}
+
+a {
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
+
+.control-menus {
+    background: #000;
+    color: #cef;
+    top: 0;
+    width: 8vw;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.5rem;
+    /*box-shadow: 2vw 2vw 2vw rgba(0,0,0, 0.3);*/
+}
+
+.control-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+/** 사진촬영**/
+.photo-steps{
+    display: flex;
+    justify-content: center;
+}
+
+.photo-step{
+    margin: 1rem;
+}
+
+.photo-description{
+    font-weight: normal;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.photo-bgs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-bg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+    height: 16vw;
+    background: darkgrey;
+    margin: 2rem;
+}
+
+.photo-preview{
+    width: 60vw;
+    height: 48vw;
+    background: gray;
+}
+
+.dial{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 12vw;
+}
+
+.dial button{
+    width: 4vw;
+    height: 4vw;
+}
