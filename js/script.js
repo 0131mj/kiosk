@@ -51,7 +51,7 @@ const globalMenus = `
         </header>
         <div class="global-menus">
             ${Object.entries(globalMenuObj).reduce((rows, [link, text]) => {
-    const linkUrl = link === "photo" ? `/${link}.html` : "";
+    const linkUrl = link === "photo" ? `./${link}.html` : "";
     rows += `<a href="${linkUrl}" class="global-menu">${text}</a>`
     return rows;
 }, "")}
