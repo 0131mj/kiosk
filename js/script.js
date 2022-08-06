@@ -44,7 +44,7 @@ const globalMenuObj = {
 }
 
 const globalMenus = `
-<div class="global-menu-bg hide">
+<div class="global-menu-bg dimmed hide">
     <div class="global-menu-panel">  
         <header class="global-menu-header">
             전체 메뉴

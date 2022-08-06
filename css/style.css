@@ -17,22 +17,43 @@ html, body {
     margin: 0;
 }
 
-.title-header{
+.title-header {
     text-align: center;
-    background: #002;
-    padding: 2vw;
+    background: #1a1a25;
+    padding: 3.5vw;
     width: 100%;
+    font-size: 2.5rem;
+}
+
+html {
+    font-size: 2vw;
 }
 
 body {
-    font-size: 2.5vw;
-    background: rebeccapurple;
+    background: #444;
     color: white;
     font-family: 'GongGothicMedium', serif;
     display: flex;
 }
 
-main{
+
+.flex-row {
+    display: flex;
+    align-items: center;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+main {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -47,8 +68,7 @@ main{
     box-sizing: border-box;
 }
 
-.global-menu-bg {
-    margin: auto;
+.dimmed {
     width: 100%;
     height: 100%;
     position: absolute;
@@ -60,6 +80,12 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
+    padding-right: 8vw;
+}
+
+.global-menu-bg {
+    margin: auto;
     z-index: 1;
 }
 
@@ -117,7 +143,7 @@ a {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .control-menus {
@@ -139,56 +165,6 @@ a {
     justify-content: center;
     align-items: center;
     padding: 0.5rem 0;
-    font-size: 1rem;
     margin: 0.5rem 0;
-}
-
-/** 사진촬영**/
-.photo-steps{
-    display: flex;
-    justify-content: center;
-}
-
-.photo-step{
-    margin: 1rem;
-}
-
-.photo-description{
-    font-weight: normal;
-    text-align: center;
-    font-size: 1.3rem;
-}
-
-.photo-bgs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.photo-bg{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20vw;
-    height: 16vw;
-    background: darkgrey;
-    margin: 2rem;
-}
-
-.photo-preview{
-    width: 60vw;
-    height: 48vw;
-    background: gray;
-}
-
-.dial{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    width: 12vw;
-}
-
-.dial button{
-    width: 4vw;
-    height: 4vw;
+    font-size: 0.6rem;
 }

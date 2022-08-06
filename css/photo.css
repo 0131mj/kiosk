@@ -1,0 +1,263 @@
+/** 사진촬영**/
+
+body {
+    background: #282828;
+}
+
+body.on {
+    background: #050505;
+}
+
+main {
+    position: relative;
+}
+
+.photo-take-box {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30vw;
+    border-radius: 2vw;
+}
+
+.photo-description {
+    font-weight: normal;
+    text-align: center;
+    font-size: 1rem;
+    margin: 2rem;
+}
+
+.photo-bgs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12vw;
+    height: 8vw;
+    background: darkgrey;
+    margin: 0.5rem;
+    border: 0.5vw solid transparent;
+    background-size: contain;
+    word-break: keep-all;
+}
+
+.photo-preview {
+    width: calc(56vw * 1.5);
+    height: 56vw;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-preview.shut::after{
+    content: "";
+    position: absolute;
+    z-index: 1;
+    background: #fff;
+    opacity: 0.2;
+    width: 100%;
+    height: 100%;
+}
+
+
+.photo-setting-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sample-human {
+    width: 60%;
+    left: 20%;
+    bottom: 0;
+    position: absolute;
+}
+
+#photo-countdown {
+    color: rgba(255, 255, 255, 0.8);
+    z-index: 1;
+    font-size: 5rem;
+    width: 100%;
+    padding: 5rem;
+    text-align: center;
+}
+
+/** 배경 선택 **/
+
+.bg-01 {
+    background: url("/img/01.jpg") no-repeat;
+    background-size: cover;
+}
+
+.bg-02 {
+    background: url("/img/02.jpg") no-repeat;
+    background-size: cover;
+}
+
+.photo-bg.on {
+    border-color: white;
+}
+
+.bg-select-box {
+    padding: 1vw 2vw;
+    flex-grow: 1;
+    align-items: center;
+    display: flex;
+    background: #151515;
+    width: 100%;
+}
+
+.shutter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    background: #eaeaea;
+    border-radius: 50%;
+    color: black;
+    width: 15vw;
+    height: 15vw;
+    margin-top: 5vw;
+    border: 0.5vw solid #bbb;
+}
+
+.shutter span {
+    font-size: 0.9rem;
+}
+
+
+/** 사진 확인 **/
+.photo-confirm-modal-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent !important;
+    padding: 0;
+}
+
+.photo-confirm-modal {
+    background: #eee;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vw;
+    text-align: center;
+    color: #555;
+    border-radius: 1vw;
+}
+
+.photo-confirm-title{
+    font-size: 2rem;
+    padding: 4vw;
+}
+
+.photo-confirm-description {
+    line-height: 2em;
+    padding: 3rem;
+}
+
+.photo {
+    width: 75vw;
+    height: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2vw solid #fff;
+    position: relative;
+}
+
+
+.phone-input-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.phone-num {
+    background: transparent;
+    padding: 1vw;
+    width: 26vw;
+    border-radius: 0.5vw;
+    margin-bottom: 2vw;
+    border: none;
+    border-bottom: 0.15vw solid #ccc;
+    font-size: 2.8vw;
+    color: #000;
+}
+.phone-num::placeholder{
+    color: #ddd;
+    font-family: 'GongGothicMedium', serif;
+}
+
+.place-holder {
+    opacity: 0.1;
+    display: none;
+}
+
+.dial {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 15vw;
+    color: #777;
+}
+
+.dial button {
+    width: 5vw;
+    height: 5vw;
+}
+
+
+#photo-cancel-btn{
+    padding: 4vw;
+    margin: 2vw;
+}
+
+.auto-cancel-description{
+    font-size: 0.8rem;
+    color: #777;
+}
+
+#send-btn {
+    background: #151515;
+    padding: 2vw 4vw;
+    margin: 2vw;
+    color: #fff;
+}
+
+#clear-key {
+    font-size: 0.5rem;
+    word-break: keep-all;
+    text-align: center;
+}
+
+/* 전송 결과 */
+
+.photo-send-result-modal {
+    background: #000;
+    padding: 4vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.auto-close {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+}
+
+#result-title {
+    margin-bottom: 2rem;
+    font-size: 0.8rem;
+}
+
+#result-msg {
+    line-height: 2em;
+}

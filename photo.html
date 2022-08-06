@@ -7,27 +7,257 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Kiosk</title>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/photo.css">
 </head>
 <body>
 <main>
     <header class="title-header">
         기념 촬영
     </header>
-    <div class="photo-steps">
-        <div class="photo-step">1. 배경 선택</div>
-        <div class="photo-step">2. 사진 촬영</div>
-        <div class="photo-step">3. 확인 및 전송</div>
+    <div class="photo-take-box">
+        <div class="photo-preview bg-01">
+            <img src="/img/user.png" alt="샘플" class="sample-human">
+        </div>
+        <section class="photo-setting-box">
+            <div class="bg-select-box">
+                <div>배경 선택
+                </div>
+                <div class="photo-bgs">
+                    <button data-bg="01" class="photo-bg bg-01 on">한전본사</button>
+                    <button data-bg="02" class="photo-bg bg-02">로망스 다리</button>
+                </div>
+            </div>
+            <button id="shutter-btn" class="shutter">📷<span>사진찍기</span></button>
+            <div class="photo-description">
+                📷 사진찍기 버튼을 누르면 촬영을 시작합니다.
+            </div>
+        </section>
     </div>
-    <h2 class="photo-description">
-        배경을 선택해주세요.
-    </h2>
-    <div class="photo-bgs">
-        <a href="./photo_02.html" class="photo-bg bg-01">01</a>
-        <a href="./photo_02.html" class="photo-bg bg-02">02</a>
+    <div id="photo-countdown"></div>
+
+
+    <div class="photo-confirm-modal-bg dimmed hide">
+        <div class="photo-confirm-modal">
+            <div class="photo-confirm-title">촬영 완료</div>
+            <div class="photo bg-01">
+                <img src="/img/user.png" alt="샘플" class="sample-human">
+            </div>
+            <div class="photo-confirm-description">
+                촬영이 완료되었습니다.<br/>
+                사진을 받으실 휴대폰 번호를 입력해주세요.
+            </div>
+            <input id="phone-num-input-field" class="phone-num" value="010" placeholder="휴대폰 번호 입력"/>
+            <div class="dial">
+                <button class="num-key">1</button>
+                <button class="num-key">2</button>
+                <button class="num-key">3</button>
+                <button class="num-key">4</button>
+                <button class="num-key">5</button>
+                <button class="num-key">6</button>
+                <button class="num-key">7</button>
+                <button class="num-key">8</button>
+                <button class="num-key">9</button>
+                <button id="clear-key">모두<br/>지우기</button>
+                <button class="num-key">0</button>
+                <button id="back-key"><-</button>
+            </div>
+            <button id="send-btn">
+                전송하기
+            </button>
+            <button id="photo-cancel-btn">
+                취소
+            </button>
+            <div class="auto-cancel-description">
+                10초간 입력이 없으면 HOME 화면으로 돌아갑니다.
+            </div>
+        </div>
     </div>
 </main>
+<div class="photo-send-result-modal-bg dimmed hide">
+    <div class="photo-send-result-modal">
+        <div id="result-title"></div>
+        <div id="result-msg"></div>
+        <div class="auto-close"><span id="remain_sec">5</span>초 후에 자동으로 창이 닫힙니다.</div>
+    </div>
+</div>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
+<script>
+    const photoBgBtn = document.querySelectorAll(".photo-bg");
+    const shutterBtn = document.getElementById("shutter-btn");
+    const photoConfirmModal = document.querySelector(".photo-confirm-modal-bg");
+    const photoSendResultModal = document.querySelector(".photo-send-result-modal-bg");
+    const photoCancelBtn = document.getElementById("photo-cancel-btn");
+    const phoneNum = document.getElementById("phone-num-input-field");
+    const preview = document.querySelector(".photo-preview");
+
+    const numKeys = document.querySelectorAll(".num-key");
+    const clearKey = document.getElementById("clear-key");
+    const backKey = document.getElementById("back-key");
+
+    const sendBtn = document.getElementById("send-btn");
+
+    const photoSettingBox = document.querySelector(".photo-setting-box");
+
+
+    const resetNumber = () => {
+        phoneNum.value = "010";
+    }
+
+    const openPhotoConfirmModal = () => {
+        photoConfirmModal.classList.remove("hide");
+    }
+
+    const closePhotoConfirmModal = () => {
+        photoConfirmModal.classList.add("hide");
+        resetNumber();
+    }
+
+    const closeResultModal = () => {
+        photoSendResultModal.classList.add("hide");
+    }
+
+    const takePhoto = () => {
+        photoSettingBox.classList.add("hide");
+        document.body.classList.add("on");
+        const shut = setTimeout(() => {
+            let cnt = 5;
+            document.getElementById("photo-countdown").innerText = `${cnt}`;
+            const countDown = setInterval(() => {
+                cnt -= 1;
+                document.getElementById("photo-countdown").innerText = `${cnt}`;
+                if (cnt === 0) {
+                    preview.classList.add("shut");
+                    document.getElementById("photo-countdown").innerText = "";
+                    setTimeout(() => {
+                        preview.classList.remove("shut");
+                        setTimeout(() => {
+                            openPhotoConfirmModal();
+                            clearInterval(countDown);
+                            clearTimeout(shut);
+                            photoSettingBox.classList.remove("hide");
+                            document.body.classList.remove("on");
+                        }, 100)
+                    }, 100)
+                }
+            }, 1000)
+        }, 400)
+    }
+    shutterBtn.addEventListener("click", takePhoto)
+
+    const selectBg = (target) => {
+        /** 버튼 변화 **/
+        photoBgBtn.forEach(btn => {
+            btn.classList.remove("on");
+        });
+        target.classList.add("on");
+
+        /** 미리보기 변화 **/
+        const photoNum = target.dataset.bg;
+        preview.classList.remove(`bg-01`);
+        preview.classList.remove(`bg-02`);
+        preview.classList.add(`bg-${photoNum}`);
+    }
+
+    photoBgBtn.forEach(btn => {
+        btn.addEventListener("click", () => {
+            selectBg(btn);
+        })
+    });
+
+    const getResult = (type) => {
+        const resultInfo = {
+            success: {
+                title: "전송 성공",
+                msg: `아래 번호로 사진을 전송했습니다.\n ${phoneNum.value} \n 이용해 주셔서 감사합니다.`
+            },
+            invalid: {
+                title: "유효하지 않은 휴대폰 번호",
+                msg: "휴대폰 번호가 올바르지 않습니다. \n 다시 입력해주세요."
+            },
+            error: {
+                title: "에러 발생",
+                msg: `전송 도중 문제가 발생했습니다.\n 관리자에게 문의해주세요.`
+            }
+        }
+        return resultInfo[type];
+    }
+
+    const autoClose = (isSuccess = false) => {
+        let cnt = 5;
+        const countDown = setInterval(() => {
+            cnt -= 1;
+            document.getElementById("remain_sec").innerText = cnt;
+            if (cnt === 0) {
+                clearInterval(countDown);
+                closeResultModal();
+                document.getElementById("remain_sec").innerText = "5";
+                if (isSuccess) {
+                    closePhotoConfirmModal();
+                }
+            }
+        }, 1000)
+    }
+
+    const showResult = () => {
+
+        let RESULT = "success";
+        if (phoneNum.value.startsWith("1")) {
+            RESULT = "invalid";
+        }
+        if (phoneNum.value.startsWith("2")) {
+            RESULT = "error";
+        }
+        /**
+         * 서버에서 결과값 받이와서 표시 및 후처리
+         * success : 전송 성공
+         * invalid : 번호 유효성 오류
+         * error : 기타 전송 장애
+         * */
+
+
+        const {title, msg} = getResult(RESULT);
+        document.getElementById("result-title").innerText = title;
+        document.getElementById("result-msg").innerText = msg;
+        photoSendResultModal.classList.remove("hide");
+        // 5초후 자동으로 닫히도록 처리
+        autoClose(RESULT === "success");
+    }
+
+
+    /* 다이얼 조작 */
+    numKeys.forEach(btn => {
+        btn.addEventListener("click", () => {
+            if (phoneNum.value.length < 13) {
+                if ([3, 8].includes(phoneNum.value.length)) {
+                    phoneNum.value += " ";
+                }
+                phoneNum.value += btn.textContent;
+            }
+        })
+    });
+
+    clearKey.addEventListener("click", () => {
+        phoneNum.value = "";
+    })
+
+    backKey.addEventListener("click", () => {
+        if (phoneNum.value.endsWith(" ")) {
+            phoneNum.value = phoneNum.value.slice(0, -1);
+        }
+        phoneNum.value = phoneNum.value.slice(0, -1);
+    });
+
+    photoCancelBtn.addEventListener("click", closePhotoConfirmModal)
+
+    sendBtn.addEventListener("click", showResult)
+
+    window.addEventListener("beforeunload", () => {
+        closePhotoConfirmModal();
+        resetNumber();
+    });
+
+</script>
 </body>
 </html>
