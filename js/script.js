@@ -1,6 +1,6 @@
 const controlMenus = `
 <div class="control-menus">
-    <a class="control-menu" href="/index.html">HOME</a>
+    <a class="control-menu" href="./index.html">HOME</a>
     <button class="control-menu" id="back-btn">뒤로 가기</button>
     <button class="control-menu global-menu-open-btn">메뉴</button>
 </div>

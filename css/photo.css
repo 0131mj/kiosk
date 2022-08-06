@@ -90,12 +90,12 @@ main {
 /** 배경 선택 **/
 
 .bg-01 {
-    background: url("/img/01.jpg") no-repeat;
+    background: url("../img/01.jpg") no-repeat;
     background-size: cover;
 }
 
 .bg-02 {
-    background: url("/img/02.jpg") no-repeat;
+    background: url("../img/02.jpg") no-repeat;
     background-size: cover;
 }
 
