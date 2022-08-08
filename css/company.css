@@ -1,0 +1,32 @@
+.company-nav {
+    padding: 2vw;
+    font-size: 2rem;
+}
+
+.company-nav .menus{
+    padding: 2vw;
+    color: #777777;
+    justify-content: center;
+}
+
+.company-nav .menu{
+    padding: 2vw;
+}
+
+.company-nav .menu.on{
+    color: #fff;
+}
+
+.company-nav .sub-menus{
+    padding: 2vw;
+    color: #777777;
+}
+
+
+.company-nav .sub-menu{
+    padding: 4vw;
+}
+
+.company-nav .sub-menu.on{
+    color: orange;
+}
