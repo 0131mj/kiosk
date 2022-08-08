@@ -1,13 +1,20 @@
 @font-face {
-    font-family: 'GongGothicMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicMedium.woff') format('woff');
+    font-family: 'LeferiPoint-WhiteA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteA.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'GongGothicBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.0/GongGothicBold.woff') format('woff');
+    font-family: 'LeferiBaseType-RegularA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'LeferiBaseType-BoldA';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-BoldA.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -17,22 +24,27 @@ html, body {
     margin: 0;
 }
 
+em {
+    font-style: normal;
+}
+
 .title-header {
     text-align: center;
     background: #1a1a25;
     padding: 3.5vw;
     width: 100%;
     font-size: 2.5rem;
+    font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
 
 html {
     font-size: 2vw;
+    font-family: 'LeferiPoint-WhiteA', sans-serif;
 }
 
 body {
     background: #444;
     color: white;
-    font-family: 'GongGothicMedium', serif;
     display: flex;
 }
 
@@ -111,6 +123,7 @@ main {
 .global-menu-header {
     padding: 0.8em;
     text-align: center;
+    font-size: 1.6rem;
 }
 
 .global-menu {
@@ -157,7 +170,8 @@ a {
     flex-direction: column;
     justify-content: center;
     font-size: 0.5rem;
-    /*box-shadow: 2vw 2vw 2vw rgba(0,0,0, 0.3);*/
+    flex-shrink: 0;
+    font-family: 'LeferiBaseType-BoldA', sans-serif;
 }
 
 .control-menu {
@@ -167,4 +181,8 @@ a {
     padding: 0.5rem 0;
     margin: 0.5rem 0;
     font-size: 0.6rem;
+}
+
+ol.hq-history li {
+    display: flex;
 }

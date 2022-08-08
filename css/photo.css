@@ -129,6 +129,7 @@ main {
 
 .shutter span {
     font-size: 0.9rem;
+    font-family: 'LeferiBaseType-BoldA', sans-serif;
 }
 
 
@@ -189,10 +190,10 @@ main {
     border-bottom: 0.15vw solid #ccc;
     font-size: 2.8vw;
     color: #000;
+    outline: none;
 }
 .phone-num::placeholder{
     color: #ddd;
-    font-family: 'GongGothicMedium', serif;
 }
 
 .place-holder {
@@ -255,7 +256,8 @@ main {
 
 #result-title {
     margin-bottom: 2rem;
-    font-size: 0.8rem;
+    font-size: 1.2rem;
+    font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
 
 #result-msg {

@@ -20,7 +20,7 @@ const companyMenu = {
     new: {
         text: "신기술",
         subMenu: {
-            tech: "",
+            tech: "신기술 소개",
         }
     }
 }

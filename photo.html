@@ -46,7 +46,7 @@
                 촬영이 완료되었습니다.<br/>
                 사진을 받으실 휴대폰 번호를 입력해주세요.
             </div>
-            <input id="phone-num-input-field" class="phone-num" value="010" placeholder="휴대폰 번호 입력"/>
+            <input id="phone-num-input-field" class="phone-num" value="010" placeholder="휴대폰 번호 입력" readonly />
             <div class="dial">
                 <button class="num-key">1</button>
                 <button class="num-key">2</button>
@@ -169,8 +169,8 @@
     const getResult = (type) => {
         const resultInfo = {
             success: {
-                title: "전송 성공",
-                msg: `아래 번호로 사진을 전송했습니다.\n ${phoneNum.value} \n 이용해 주셔서 감사합니다.`
+                title: "사진전송 예약완료",
+                msg: `아래 번호로 사진을 전송해 드리겠습니다.\n ${phoneNum.value} \n 이용해 주셔서 감사합니다.`
             },
             invalid: {
                 title: "유효하지 않은 휴대폰 번호",
