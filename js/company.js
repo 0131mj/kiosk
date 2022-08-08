@@ -47,3 +47,11 @@ companyNav.outerHTML = `
     </div>
 </div>
 `;
+
+function loadHTML(){
+    fetch('./company_content/ho_introduce.html')
+        .then(response=> response.text())
+        .then(text=> document.getElementById('company-content').outerHTML = text);
+}
+
+loadHTML();
