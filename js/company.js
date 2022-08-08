@@ -67,7 +67,7 @@ if (curMenu === "hq" && curSubMenu === "history") {
                         <div class="hq-history-date">${date}</div>
                         <div class="hq-history-content">
                             ${text}
-                            ${file ? `<img src="../img/hq_history_${file}.png" alt="${text}">`: ""}                            
+                            ${file ? `<img src="./img/hq_history_${file}.png" alt="${text}">`: ""}                            
                         </div>
                     </li>`;
             return acc;
