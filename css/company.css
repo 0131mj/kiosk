@@ -7,24 +7,24 @@ body {
     margin-top: 4vw;
 }
 
-.company-nav .menus{
+.company-nav .menus {
     padding: 0 2vw;
     color: #7999;
     justify-content: center;
     font-size: 1.8rem;
 }
 
-.company-nav .menu{
+.company-nav .menu {
     padding: 2vw;
 }
 
-.company-nav .menu.on{
+.company-nav .menu.on {
     color: #000;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
 
-.company-nav .sub-menus{
-    font-size: 2rem;
+.company-nav .sub-menus {
+    font-size: 1.5rem;
     padding: 0 2vw;
     color: #777777;
     justify-content: center;
@@ -32,22 +32,25 @@ body {
 }
 
 
-.company-nav .sub-menu{
+.company-nav .sub-menu {
     padding: 2vw;
 }
 
-.company-nav .sub-menu.on{
+.company-nav .sub-menu.on {
     color: black;
     font-family: 'LeferiBaseType-BoldA', sans-serif;
 }
 
-#company-content{
+#company-content {
     color: black;
     padding: 10vw;
     background: #fff;
     width: calc(100% - 20vw);
     border-radius: 1vw;
+    flex-grow: 1;
+    margin-bottom: 10vw;
 }
+
 /** 본사 - 소개 **/
 #ho-introduce {
     word-break: keep-all;
@@ -57,16 +60,18 @@ body {
     color: #3985a5;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
-/** 본사 비전 **/
+
+/** 본부 비전 **/
 
 .hq-vision-concept-list {
     justify-content: space-between;
-    font-size: 0.6rem;
 }
 
 .hq-vision-concept-list .item {
-    width: 30%;
+    display: flex;
     border: 0.1vw solid #ccc;
+    margin-bottom: 2vw;
+    min-height: 15vw;
 }
 
 .hq-vision-concept-list .item .title {
@@ -77,13 +82,83 @@ body {
     justify-content: center;
     padding: 2vw;
     color: white;
+    width: 20vw;
+    font-family: 'LeferiBaseType-RegularA', sans-serif;
+}
+
+.hq-vision-concept-list .item .title span {
+    color: red;
 }
 
 .hq-vision-concept-list .item .content {
     padding: 2vw;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
-img.hq-slogan{
+img.hq-slogan {
     max-width: 100%;
+}
+
+/** 본부 연혁 */
+.hq-history {
+    margin: 0;
+    border-left: 0.5vw solid #2F86ED;
+    padding: 1rem;
+}
+
+.hq-history li {
+    display: flex;
+    margin-bottom: 4.5vw;
+}
+
+.hq-history-date {
+    color: #2F86ED;
+    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    width: 13vw;
+}
+
+.hq-history-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.hq-history-content img {
+    width: 10vw;
+}
+
+/* 사업소 소개*/
+.office-introduce {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#office-map {
+    width: 100%;
+}
+
+.office-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 3rem;
+    font-family: 'LeferiBaseType-RegularA', sans-serif;
+}
+
+.office-subtitle {
+    font-size: 1rem;
+}
+
+.office-introduce .basic-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.office-introduce .basic-info dt {
+    width: 20%
+}
+
+.office-introduce .basic-info dd {
+    width: 70%;
 }

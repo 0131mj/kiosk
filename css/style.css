@@ -19,6 +19,10 @@
     font-style: normal;
 }
 
+ol {
+    list-style: none;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -181,8 +185,4 @@ a {
     padding: 0.5rem 0;
     margin: 0.5rem 0;
     font-size: 0.6rem;
-}
-
-ol.hq-history li {
-    display: flex;
 }
