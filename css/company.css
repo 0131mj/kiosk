@@ -1,3 +1,7 @@
+body {
+    background: #fff;
+}
+
 .company-nav {
     padding: 2vw;
     font-size: 2rem;
@@ -5,7 +9,7 @@
 
 .company-nav .menus{
     padding: 2vw;
-    color: #777777;
+    color: #7999;
     justify-content: center;
 }
 
@@ -14,7 +18,7 @@
 }
 
 .company-nav .menu.on{
-    color: #fff;
+    color: #000;
 }
 
 .company-nav .sub-menus{
@@ -30,3 +34,17 @@
 .company-nav .sub-menu.on{
     color: orange;
 }
+
+#company-content{
+    color: black;
+}
+/** 본사 - 소개 **/
+#ho-introduce {
+    padding: 10vw;
+    word-break: keep-all;
+}
+
+.txt2 span {
+    color: #3985a5;
+}
+/** 소개 **/

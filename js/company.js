@@ -17,9 +17,11 @@ const companyMenu = {
             beauty: "아름다운 경남",
         }
     },
-    tech: {
+    new: {
         text: "신기술",
-        subMenu: {}
+        subMenu: {
+            tech: "",
+        }
     }
 }
 
@@ -49,9 +51,9 @@ companyNav.outerHTML = `
 `;
 
 function loadHTML(){
-    fetch('./company_content/ho_introduce.html')
+    fetch(`./company_content/${curMenu}_${curSubMenu}.html`)
         .then(response=> response.text())
-        .then(text=> document.getElementById('company-content').outerHTML = text);
+        .then(text=> document.getElementById('company-content').innerHTML = text);
 }
 
 loadHTML();
