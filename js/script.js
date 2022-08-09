@@ -50,11 +50,13 @@ const globalMenus = `
             전체 메뉴
         </header>
         <div class="global-menus">
-            ${Object.entries(globalMenuObj).reduce((rows, [link, text]) => {
-    const linkUrl = ["company", "photo"].includes(link) ? `./${link}.html` : "";
-    rows += `<a href="${linkUrl}" class="global-menu">${text}</a>`
-    return rows;
-}, "")}
+            ${Object.entries(globalMenuObj).reduce(
+                (rows, [link, text]) => rows + `
+                    <a href="${link}.html" class="global-menu">
+                        ${text}
+                    </a>`, ""
+                )
+            }
         </div>    
         <footer class="global-menu-close-btn">닫기</footer>    
     </div>
