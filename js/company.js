@@ -37,7 +37,7 @@ const curSubMenu = submenu || Object.keys(companyMenu[curMenu].subMenu)[0];
 
 /** 현재 메뉴 표시 **/
 companyNav.outerHTML = `
-<div class="company-nav">
+<div class="content-nav">
     <div class="flex-row menus">   
         ${Object.entries(companyMenu).reduce((acc, [key, {text}]) => {
     return acc + `<a href="./company.html?menu=${key}" class="menu${key === curMenu ? ' on' : ''}">${text}</a>`;

@@ -2,45 +2,6 @@ body {
     background: #eee;
 }
 
-.company-nav {
-    font-size: 2rem;
-    margin-top: 4vw;
-}
-
-.company-nav .menus {
-    padding: 0 2vw;
-    color: #7999;
-    justify-content: center;
-    font-size: 1.8rem;
-}
-
-.company-nav .menu {
-    padding: 2vw;
-}
-
-.company-nav .menu.on {
-    color: #000;
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
-}
-
-.company-nav .sub-menus {
-    font-size: 1.5rem;
-    padding: 0 2vw;
-    color: #777777;
-    justify-content: center;
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
-}
-
-
-.company-nav .sub-menu {
-    padding: 2vw;
-}
-
-.company-nav .sub-menu.on {
-    color: black;
-    font-family: 'LeferiBaseType-BoldA', sans-serif;
-}
-
 /** 본사 - 소개 **/
 #ho-introduce {
     word-break: keep-all;
