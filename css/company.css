@@ -56,6 +56,11 @@ body {
     word-break: keep-all;
 }
 
+.ceo-pic{
+    max-width: 15vw;
+    margin-right: 2vw;
+}
+
 #ho-introduce span {
     color: #3985a5;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
