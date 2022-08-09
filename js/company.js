@@ -17,10 +17,11 @@ const companyMenu = {
             beauty: "아름다운 경남",
         }
     },
-    new: {
+    tech: {
         text: "신기술",
         subMenu: {
-            tech: "신기술 소개",
+            new: "신기술 소개",
+            ocean: "해상 풍력정보",
         }
     }
 }

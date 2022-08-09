@@ -41,22 +41,12 @@ body {
     font-family: 'LeferiBaseType-BoldA', sans-serif;
 }
 
-#company-content {
-    color: black;
-    padding: 10vw;
-    background: #fff;
-    width: calc(100% - 20vw);
-    border-radius: 1vw;
-    flex-grow: 1;
-    margin-bottom: 10vw;
-}
-
 /** 본사 - 소개 **/
 #ho-introduce {
     word-break: keep-all;
 }
 
-.ceo-pic{
+.ceo-pic {
     max-width: 15vw;
     margin-right: 2vw;
 }
@@ -138,6 +128,10 @@ img.hq-slogan {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.office-introduce img {
+    max-width: 100%;
 }
 
 #office-map {

@@ -7,13 +7,38 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>부서소개</title>
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .content-area img {
+            width: 100%;
+        }
+        .content-area .title {
+            font-family: 'LeferiBaseType-BoldA', sans-serif;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-top: 5vw;
+        }
+        .content-area .subtitle {
+            font-family: 'LeferiBaseType-BoldA', sans-serif;
+        }
+    </style>
 </head>
 <body>
 <main>
-    <header class="title-header">
-        부서 소개
-    </header>
-    <template id="company-nav"></template>
+    <header class="title-header">부서 소개</header>
+    <div style="height: 10vw; width: 10vw"></div>
+    <section class="content-area">
+
+        <p style="text-align: center">아래 조직도에서 부서를 선택하시면 <br/>부서의 조직도 및 위치를 확인하실 수 있습니다.</p>
+        <img src="./img/department_map.png" alt="조직 현황">
+
+        <h3 class="title">변전 운영부</h3>
+
+        <h4 class="subtitle">부서 조직도</h4>
+        <img src="./img/department_org.png" alt="부서 조직도">
+
+        <h4 class="subtitle">위치</h4>
+        본 건물 4층 변전운영부
+    </section>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
