@@ -8,17 +8,24 @@
     <title>Kiosk</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-        .main-content {
+        .main-content{
             width: 100%;
             height: 100%;
-            background: url("./img/main_bg.png") no-repeat;
-            background-size: contain;
+            padding: 10vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .main-content img{
+            width: 100%;
         }
     </style>
 </head>
 <body>
 <main>
-    <article class="main-content"></article>
+    <article class="main-content">
+        <img src="./img/main_bg.png" alt="메인 이미지">
+    </article>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
