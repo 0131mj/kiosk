@@ -60,7 +60,6 @@
         slides.forEach(slide => {
             slide.classList.add("hide");
         })
-        console.log("active", active)
         slides[active].classList.remove("hide")
     }, 1000 * TIMING)
     window.addEventListener("beforeunload", () => {
