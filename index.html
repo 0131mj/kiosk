@@ -18,13 +18,15 @@
             position: relative;
         }
 
-        .slide:nth-child(1) {
-            height: 100%;
-        }
-
-        .slide:nth-child(2) {
+        .slide {
             width: 100%;
         }
+
+        .slide:nth-child(1) {
+            height: 100%;
+            width: auto;
+        }
+
 
     </style>
 </head>
@@ -33,12 +35,22 @@
     <article class="main-content">
         <img class="slide" src="./img/slide_01.png" alt="점심시간 휴무안내">
         <img class="slide hide" src="./img/slide_02.jpg" alt="종이 청구서를 줄입시다">
+        <img class="slide hide" src="./img/slide_03.jpg" alt="새로운 에너지 세상">
+        <img class="slide hide" src="./img/slide_04.JPG" alt="한전 고객센터 연결 장애">
+        <img class="slide hide" src="./img/slide_05.jpg" alt="한걸은 천천히 가겠습니다">
+        <img class="slide hide" src="./img/slide_06.jpg" alt="에너지 효율 1등급 대한민국을 위해">
+        <img class="slide hide" src="./img/slide_07.jpg" alt="실행의 2022년">
+        <img class="slide hide" src="./img/slide_08.jpg" alt="정보보안 생활화 SEVEN UP 운동">
+        <img class="slide hide" src="./img/slide_09.jpg" alt="직장 에티켓 알고 지키기">
     </article>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
 <script>
+
+    const TIMING = 10 // 슬라이드 1장 지속시간 (초)
+
     const slides = document.querySelectorAll(".slide");
     const cnt = slides.length;
     let seq = cnt;
@@ -48,8 +60,9 @@
         slides.forEach(slide => {
             slide.classList.add("hide");
         })
+        console.log("active", active)
         slides[active].classList.remove("hide")
-    }, 10000)
+    }, 1000 * TIMING)
     window.addEventListener("beforeunload", () => {
         clearInterval(slide);
     });
