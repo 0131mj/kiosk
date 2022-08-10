@@ -8,27 +8,51 @@
     <title>Kiosk</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-        .main-content{
+        .main-content {
             width: 100%;
             height: 100%;
             padding: 10vw;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
         }
-        .main-content img{
+
+        .slide:nth-child(1) {
+            height: 100%;
+        }
+
+        .slide:nth-child(2) {
             width: 100%;
         }
+
     </style>
 </head>
 <body>
 <main>
     <article class="main-content">
-        <img src="./img/main_bg.png" alt="메인 이미지">
+        <img class="slide" src="./img/slide_01.png" alt="점심시간 휴무안내">
+        <img class="slide hide" src="./img/slide_02.jpg" alt="종이 청구서를 줄입시다">
     </article>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
+<script>
+    const slides = document.querySelectorAll(".slide");
+    const cnt = slides.length;
+    let seq = cnt;
+    const slide = setInterval(() => {
+        seq++;
+        const active = seq % cnt;
+        slides.forEach(slide => {
+            slide.classList.add("hide");
+        })
+        slides[active].classList.remove("hide")
+    }, 10000)
+    window.addEventListener("beforeunload", () => {
+        clearInterval(slide);
+    });
+</script>
 </body>
 </html>
