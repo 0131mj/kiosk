@@ -11,14 +11,40 @@
         .content-area img {
             width: 100%;
         }
+
         .content-area .title {
             font-family: 'LeferiBaseType-BoldA', sans-serif;
             font-size: 1.5rem;
             text-align: center;
             margin-top: 5vw;
         }
+
         .content-area .subtitle {
             font-family: 'LeferiBaseType-BoldA', sans-serif;
+        }
+
+        .department-org {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .department {
+            width: 30%;
+            padding: 1vw 3vw;
+            word-break: keep-all;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            height: 8vw;
+            margin-bottom: 2vw;
+            background: gray;
+        }
+
+        .department.on {
+            background: #3985a5;
         }
     </style>
 </head>
@@ -29,19 +55,40 @@
     <section class="content-area">
 
         <p style="text-align: center">아래 조직도에서 부서를 선택하시면 <br/>부서 조직도 및 위치를 확인하실 수 있습니다.</p>
-        <img src="./img/department_map.png" alt="조직 현황" style="margin-bottom: 5vw">
-
-        <h3 class="title">변전 운영부</h3>
+        <div class="department-org">
+            <div class="department on" data-depart="01">안전재난부</div>
+            <div class="department" data-depart="02">미래전략부</div>
+            <div class="department" data-depart="03">HR소통부</div>
+            <div class="department" data-depart="04">재무자재부</div>
+            <div class="department" data-depart="05">탄소중립사업부 (에너지효율부)</div>
+            <div class="department" data-depart="07">전력공급부</div>
+            <div class="department" data-depart="09">배전운영부</div>
+            <div class="department" data-depart="10">배전건설부</div>
+            <div class="department" data-depart="11">ICT운영부</div>
+            <div class="department" data-depart="12">그리드지원부</div>
+            <div class="department" data-depart="13">계통운영부</div>
+            <div class="department" data-depart="14">송전운영부</div>
+            <div class="department" data-depart="15">변전운영부</div>
+            <div class="department" data-depart="16">시스템그리드부</div>
+            <div class="department" data-depart="17">토건운영부</div>
+        </div>
+        <h3 class="title">안전재난부</h3>
 
         <h4 class="subtitle">부서 조직도</h4>
         <img src="./img/department_org.png" alt="부서 조직도">
 
+
         <h4 class="subtitle">위치</h4>
         본 건물 4층 변전운영부
+
+
     </section>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
+<script>
+
+</script>
 </body>
 </html>
