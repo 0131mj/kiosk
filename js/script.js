@@ -1,7 +1,6 @@
 const controlMenus = `
 <div class="control-menus">
     <a class="control-menu" href="./index.html">홈</a>
-    <button class="control-menu" id="back-btn">뒤로<br/>가기</button>
     <button class="control-menu global-menu-open-btn">전체<br/>메뉴</button>
 </div>
 `;
@@ -17,6 +16,10 @@ const hideGlobalMenu = (e) => {
     globalMenuEl.classList.add("hide");
 };
 
+const moveBack = (e) => {
+    e.stopPropagation();
+    window.history.back();
+}
 
 const renderControlMenu = () => {
     const controlMenusEl = document.getElementById("control-menus");
@@ -35,9 +38,7 @@ const renderControlMenu = () => {
         const globalMenuOpenBtnEl = document.querySelector(".global-menu-open-btn");
         globalMenuOpenBtnEl.addEventListener("click", showGlobalMenu);
         const backBtnEl = document.getElementById("back-btn");
-        backBtnEl.addEventListener("click", () => {
-            window.history.back()
-        })
+        backBtnEl.addEventListener("click", moveBack);
     }
 }
 
@@ -83,3 +84,23 @@ const renderGlobalMenu = () => {
 
 window.addEventListener("DOMContentLoaded", renderGlobalMenu);
 window.addEventListener("click", showGlobalMenu);
+
+/* 헤더 버튼 추가 */
+const titleHeader = document.querySelector(".title-header");
+const headerHomeBtn = document.createElement("a");
+headerHomeBtn.innerText = "홈";
+headerHomeBtn.classList.add("header-control-btn");
+headerHomeBtn.classList.add("header-home-btn");
+headerHomeBtn.setAttribute("href", "./index.html")
+headerHomeBtn.addEventListener("click", (e)=>{
+    e.stopPropagation();
+})
+
+titleHeader.insertBefore(headerHomeBtn, titleHeader.firstChild);
+
+const headerBackBtn = document.createElement("button");
+headerBackBtn.innerText = "뒤로 가기";
+headerBackBtn.classList.add("header-control-btn");
+headerBackBtn.classList.add("header-back-btn");
+headerBackBtn.addEventListener("click", moveBack);
+titleHeader.appendChild(headerBackBtn);

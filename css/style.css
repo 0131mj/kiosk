@@ -37,8 +37,28 @@ em {
     background: #1a1a25;
     padding: 3.5vw;
     width: 100%;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
+    position: relative;
+}
+.header-control-btn {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    padding: 4vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    width: 18vw;
+    word-break: keep-all;
+}
+.header-home-btn {
+    left: 0;
+}
+
+.header-back-btn {
+    right: 0;
 }
 
 html {
@@ -161,10 +181,10 @@ a {
     position: absolute;
     background: #000;
     color: #cef;
-    top: 40%;
+    top: 45%;
     right: 0;
     width: 8vw;
-    height: 30vw;
+    height: 20vw;
     text-align: center;
     display: flex;
     flex-direction: column;
