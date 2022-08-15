@@ -6,12 +6,13 @@ const controlMenus = `
 </div>
 `;
 
-const showGlobalMenu = () => {
+const showGlobalMenu = (e) => {
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.remove("hide");
 };
 
-const hideGlobalMenu = () => {
+const hideGlobalMenu = (e) => {
+    e.stopPropagation();
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.add("hide");
 };
@@ -21,6 +22,16 @@ const renderControlMenu = () => {
     const controlMenusEl = document.getElementById("control-menus");
     if (controlMenusEl) {
         controlMenusEl.outerHTML = controlMenus;
+        document.querySelectorAll('a').forEach(a => {
+            a.addEventListener("click", (e)=>{
+                e.stopPropagation()
+            })
+        })
+        document.querySelectorAll('button').forEach(a => {
+            a.addEventListener("click", (e)=>{
+                e.stopPropagation()
+            })
+        })
         const globalMenuOpenBtnEl = document.querySelector(".global-menu-open-btn");
         globalMenuOpenBtnEl.addEventListener("click", showGlobalMenu);
         const backBtnEl = document.getElementById("back-btn");
@@ -71,3 +82,4 @@ const renderGlobalMenu = () => {
 }
 
 window.addEventListener("DOMContentLoaded", renderGlobalMenu);
+window.addEventListener("click", showGlobalMenu);

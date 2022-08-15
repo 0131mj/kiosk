@@ -51,6 +51,12 @@ companyNav.outerHTML = `
 </div>
 `;
 
+document.querySelectorAll('a').forEach(a => {
+    a.addEventListener("click", (e)=>{
+        e.stopPropagation()
+    })
+})
+
 if (curMenu === "hq" && curSubMenu === "history") {
     const hqHistory = [
         ["1910.6.9", "한일와사㈜ 마산지점", ""],
