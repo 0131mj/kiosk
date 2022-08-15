@@ -8,9 +8,6 @@
     <title>부서소개</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-        .content-area img {
-            width: 100%;
-        }
 
         .content-area .title {
             font-family: 'LeferiBaseType-BoldA', sans-serif;
@@ -46,6 +43,14 @@
         .department.on {
             background: #3985a5;
         }
+
+        #department-map img {
+            max-width: 100%;
+            max-height: 30vw;
+            display: block;
+            margin: 0 auto;
+        }
+
     </style>
 </head>
 <body>
@@ -72,14 +77,16 @@
             <div class="department" data-depart="16">시스템그리드부</div>
             <div class="department" data-depart="17">토건운영부</div>
         </div>
-        <h3 class="title">안전재난부</h3>
+        <h3 class="title" id="department-name">안전재난부</h3>
 
         <h4 class="subtitle">부서 조직도</h4>
-        <img src="./img/department_org.png" alt="부서 조직도">
+        <div id="department-map">
+            <img src="./img/department/01.jpg" alt="안전재난부"/>
+        </div>
 
 
         <h4 class="subtitle">위치</h4>
-        본 건물 4층 변전운영부
+        본 건물 4층
 
 
     </section>
@@ -88,7 +95,22 @@
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
 <script>
+    const departments = document.querySelectorAll(".department");
+    const departmentName = document.getElementById("department-name");
+    const departmentMap = document.getElementById("department-map")
 
+    departments.forEach(department => {
+        department.addEventListener("click", (dep)=> {
+            const code = department.dataset.depart;
+            const text = department.innerHTML;
+            departmentMap.innerHTML = `<img src = "./img/department/${code}.jpg" alt="${text} 조직도"/>`;
+            departmentName.innerHTML = text;
+            departments.forEach((d)=>{
+                d.classList.remove("on");
+                department.classList.add("on");
+            })
+        })
+    })
 </script>
 </body>
 </html>
