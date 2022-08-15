@@ -1,3 +1,7 @@
+:root{
+    --point-color: #ffd400
+}
+
 @font-face {
     font-family: 'LeferiPoint-WhiteA';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteA.woff') format('woff');
@@ -34,7 +38,7 @@ em {
 
 .title-header {
     text-align: center;
-    background: #1a1a25;
+    background: rgb(3,49,88);
     padding: 3.5vw;
     width: 100%;
     font-size: 2rem;
@@ -67,7 +71,10 @@ html {
 }
 
 body {
-    background: #444;
+    /*background: #444;*/
+    /*background: #113B63;*/
+    /*background: #0D3563;*/
+    background: linear-gradient(rgb(10,22,46), #0D3563);
     color: white;
     display: flex;
 }
@@ -227,13 +234,11 @@ a {
 }
 
 .content-area {
-    color: black;
     padding: 10vw;
-    background: #fff;
-    width: calc(100% - 20vw);
     border-radius: 1vw;
     flex-grow: 1;
     margin-bottom: 10vw;
+    font-size: 1.5rem;
 }
 
 
@@ -244,24 +249,23 @@ a {
 
 .content-nav .menus {
     padding: 0 2vw;
-    color: #7999;
     justify-content: center;
     font-size: 1.8rem;
 }
 
 .content-nav .menu {
     padding: 2vw;
+    opacity: 0.5;
 }
 
 .content-nav .menu.on {
-    color: #000;
+    opacity: 1;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
 
 .content-nav .sub-menus {
     font-size: 1.5rem;
     padding: 0 2vw;
-    color: #777777;
     justify-content: center;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
@@ -269,9 +273,10 @@ a {
 
 .content-nav .sub-menu {
     padding: 2vw;
+    opacity: 0.5;
 }
 
 .content-nav .sub-menu.on {
-    color: black;
     font-family: 'LeferiBaseType-BoldA', sans-serif;
+    opacity: 1;
 }

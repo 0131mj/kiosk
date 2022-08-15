@@ -1,7 +1,3 @@
-body {
-    background: #eee;
-}
-
 /** 본사 - 소개 **/
 #ho-introduce {
     word-break: keep-all;
@@ -12,8 +8,12 @@ body {
     margin-right: 2vw;
 }
 
+.ceo-title{
+    font-size: 1.8rem;
+}
+
 #ho-introduce span {
-    color: #3985a5;
+    color: var(--point-color);
     font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
 
@@ -60,7 +60,7 @@ img.hq-slogan {
 /** 본부 연혁 */
 .hq-history {
     margin: 0;
-    border-left: 0.5vw solid #2F86ED;
+    border-left: 0.5vw solid var(--point-color);
     padding: 1rem;
 }
 
@@ -70,9 +70,9 @@ img.hq-slogan {
 }
 
 .hq-history-date {
-    color: #2F86ED;
+    color: var(--point-color);
     font-family: 'LeferiBaseType-RegularA', sans-serif;
-    width: 13vw;
+    width: 20vw;
 }
 
 .hq-history-content {
