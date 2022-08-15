@@ -14,7 +14,7 @@
     <header class="title-header">
         기념 촬영
     </header>
-    <div class="photo-take-box">
+    <div class="photo-take-box" id="photo-take-box">
         <div class="photo-preview bg-01">
             <img src="./img/user.png" alt="샘플" class="sample-human">
         </div>
@@ -34,10 +34,7 @@
         </section>
     </div>
     <div id="photo-countdown"></div>
-
-
-    <div class="photo-confirm-modal-bg dimmed hide">
-        <div class="photo-confirm-modal">
+    <div class="photo-confirm-modal hide">
             <div class="photo-confirm-title">촬영 완료</div>
             <div class="photo bg-01">
                 <img src="./img/user.png" alt="샘플" class="sample-human">
@@ -71,7 +68,6 @@
                 10초간 입력이 없으면 HOME 화면으로 돌아갑니다.
             </div>
         </div>
-    </div>
 </main>
 <div class="photo-send-result-modal-bg dimmed hide">
     <div class="photo-send-result-modal">
@@ -86,7 +82,7 @@
 <script>
     const photoBgBtn = document.querySelectorAll(".photo-bg");
     const shutterBtn = document.getElementById("shutter-btn");
-    const photoConfirmModal = document.querySelector(".photo-confirm-modal-bg");
+    const photoConfirmModal = document.querySelector(".photo-confirm-modal");
     const photoSendResultModal = document.querySelector(".photo-send-result-modal-bg");
     const photoCancelBtn = document.getElementById("photo-cancel-btn");
     const phoneNum = document.getElementById("phone-num-input-field");
@@ -99,6 +95,9 @@
     const sendBtn = document.getElementById("send-btn");
 
     const photoSettingBox = document.querySelector(".photo-setting-box");
+    const photoTakeBox = document.getElementById("photo-take-box");
+
+    const photoCountdown = document.getElementById("photo-countdown");
 
 
     const resetNumber = () => {
@@ -111,6 +110,8 @@
 
     const closePhotoConfirmModal = () => {
         photoConfirmModal.classList.add("hide");
+        photoCountdown.classList.remove("hide");
+        photoTakeBox.classList.remove("hide");
         resetNumber();
     }
 
@@ -123,13 +124,13 @@
         document.body.classList.add("on");
         const shut = setTimeout(() => {
             let cnt = 5;
-            document.getElementById("photo-countdown").innerText = `${cnt}`;
+            photoCountdown.innerText = `${cnt}`;
             const countDown = setInterval(() => {
                 cnt -= 1;
-                document.getElementById("photo-countdown").innerText = `${cnt}`;
+                photoCountdown.innerText = `${cnt}`;
                 if (cnt === 0) {
                     preview.classList.add("shut");
-                    document.getElementById("photo-countdown").innerText = "";
+                    photoCountdown.innerText = "";
                     setTimeout(() => {
                         preview.classList.remove("shut");
                         setTimeout(() => {
@@ -138,6 +139,8 @@
                             clearTimeout(shut);
                             photoSettingBox.classList.remove("hide");
                             document.body.classList.remove("on");
+                            photoTakeBox.classList.add("hide");
+                            photoCountdown.classList.add("hide");
                         }, 100)
                     }, 100)
                 }
