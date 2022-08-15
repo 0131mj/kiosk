@@ -45,10 +45,7 @@ const globalMenuObj = {
 
 const globalMenus = `
 <div class="global-menu-bg dimmed hide">
-    <div class="global-menu-panel">  
-        <header class="global-menu-header">
-            전체 메뉴
-        </header>
+    <div class="global-menu-panel">          
         <div class="global-menus">
             ${Object.entries(globalMenuObj).reduce(
                 (rows, [link, text]) => rows + `

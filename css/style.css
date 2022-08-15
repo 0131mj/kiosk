@@ -124,12 +124,6 @@ main {
     width: 100%;
 }
 
-.global-menu-header {
-    padding: 0.8em;
-    text-align: center;
-    font-size: 1.6rem;
-}
-
 .global-menu {
     width: 25%;
     background: #333;
