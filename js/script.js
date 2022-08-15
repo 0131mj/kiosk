@@ -103,7 +103,7 @@ window.addEventListener("click", showGlobalMenu);
 /* 헤더 버튼 추가 */
 const titleHeader = document.querySelector(".title-header");
 const headerHomeBtn = document.createElement("a");
-headerHomeBtn.innerHTML = `<img src="./img/logo.png" alt="한전 로고" id="logo">`;
+headerHomeBtn.innerHTML = `<img src="./img/logo.png" alt="한전 로고 - 홈으로 이동" id="logo">`;
 headerHomeBtn.classList.add("header-control-btn");
 headerHomeBtn.classList.add("header-home-btn");
 headerHomeBtn.setAttribute("href", "./index.html")
