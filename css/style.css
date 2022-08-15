@@ -36,10 +36,14 @@ em {
     font-style: normal;
 }
 
+#logo{
+    width: 20vw;
+}
+
 .title-header {
     text-align: center;
     background: rgb(3,49,88);
-    padding: 3.5vw;
+    padding: 3.5vw 2.5vw 2.5vw 2.5vw;
     width: 100%;
     font-size: 2rem;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
@@ -49,20 +53,21 @@ em {
     position: absolute;
     top: 0;
     height: 100%;
-    padding: 4vw;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5rem;
-    width: 18vw;
     word-break: keep-all;
 }
 .header-home-btn {
     left: 0;
+    padding: 0 4vw;
 }
 
 .header-back-btn {
     right: 0;
+    width: 18vw;
+    padding: 2vw 1vw 1vw 1vw;
 }
 
 html {
@@ -167,7 +172,7 @@ main {
 
 .global-menu-close-btn {
     background: black;
-    padding: 0.8rem;
+    padding: 1rem;
     text-align: center;
 }
 
@@ -238,7 +243,7 @@ a {
 }
 
 .content-area {
-    padding: 10vw;
+    padding: 5vw 10vw;
     border-radius: 1vw;
     flex-grow: 1;
     margin-bottom: 10vw;

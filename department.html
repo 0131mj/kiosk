@@ -38,6 +38,8 @@
             height: 8vw;
             margin-bottom: 2vw;
             background: gray;
+            border-radius: 1vw;
+            font-size: 1.2rem;
         }
 
         .department.on {
@@ -100,7 +102,8 @@
     const departmentMap = document.getElementById("department-map")
 
     departments.forEach(department => {
-        department.addEventListener("click", (dep)=> {
+        department.addEventListener("click", (e)=> {
+            e.stopPropagation();
             const code = department.dataset.depart;
             const text = department.innerHTML;
             departmentMap.innerHTML = `<img src = "./img/department/${code}.jpg" alt="${text} 조직도"/>`;

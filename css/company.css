@@ -21,7 +21,7 @@
     margin-right: 2vw;
 }
 
-.ceo-title{
+.ceo-title {
     font-size: 1.8rem;
 }
 
@@ -30,10 +30,33 @@
     font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
 
+/** 본사 비전 **/
+.ho-slogan {
+    font-size: 2rem;
+    background-color: #2076bf;
+    text-align: center;
+    padding: 2.2vw 1.5vw 1.5vw 1.5vw;
+    border-radius: 5vw;
+    line-height: 3rem;
+    font-family: 'LeferiPoint-WhiteA', sans-serif;
+    margin-bottom: 2vw;
+}
+
+.ho-slogan-description {
+    margin-bottom: 8vw;
+    text-align: center;
+}
+
+.ho-vision-detail h4 {
+    margin-bottom: 1rem;
+    margin-top: 3rem;
+}
+
 /** 본부 비전 **/
 
-.vision p{
+.vision p {
     font-size: 1.2rem;
+    word-break: keep-all;
 }
 
 .hq-vision-concept-list {
@@ -42,25 +65,25 @@
 
 .hq-vision-concept-list .item {
     display: flex;
-    border: 0.1vw solid #ccc;
-    margin-bottom: 2vw;
-    min-height: 15vw;
+    background: rgba(255, 255, 255, 0.1);
+    margin-bottom: 3vw;
+    min-height: 20vw;
+    border-radius: 2vw;
 }
 
 .hq-vision-concept-list .item .title {
-    background: #2F86ED;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 2vw;
     color: white;
-    width: 20vw;
+    width: 30vw;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
 
 .hq-vision-concept-list .item .title span {
-    color: red;
+    color: var(--point-color);
 }
 
 .hq-vision-concept-list .item .content {
@@ -98,7 +121,7 @@ img.hq-slogan {
 }
 
 .hq-history-content img {
-    width: 10vw;
+    width: 14vw;
 }
 
 /* 사업소 소개*/
@@ -125,6 +148,10 @@ img.hq-slogan {
 
 .office-subtitle {
     font-size: 1rem;
+}
+
+.office-content {
+    border-radius: 2vw;
 }
 
 .office-introduce .basic-info {
