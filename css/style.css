@@ -177,6 +177,7 @@ a {
     display: none !important;
 }
 
+/** 우츨 컨트롤 메뉴 **/
 .control-menus {
     position: absolute;
     background: #000;
@@ -194,6 +195,27 @@ a {
     font-family: 'LeferiBaseType-BoldA', sans-serif;
     border-top-left-radius: 2vw;
     border-bottom-left-radius: 2vw;
+}
+#control-spread-btn{
+    display: none;
+}
+.control-menus.fold{
+    height: 6vw;
+    width: 6vw;
+    top: 50%;
+}
+
+.control-menus.fold #control-spread-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+.control-menus.fold .control-menu {
+    display: none;
+}
+#control-spread-btn{
+    font-size: 2rem;
 }
 
 .control-menu {
