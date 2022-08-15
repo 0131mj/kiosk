@@ -158,11 +158,13 @@ a {
 }
 
 .control-menus {
+    position: absolute;
     background: #000;
     color: #cef;
-    top: 0;
+    top: 40%;
+    right: 0;
     width: 8vw;
-    height: 100%;
+    height: 30vw;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -170,14 +172,15 @@ a {
     font-size: 0.5rem;
     flex-shrink: 0;
     font-family: 'LeferiBaseType-BoldA', sans-serif;
+    border-top-left-radius: 2vw;
+    border-bottom-left-radius: 2vw;
 }
 
 .control-menu {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.5rem 0;
-    margin: 0.5rem 0;
+    padding: 1rem 0;
     font-size: 1rem;
 }
 
