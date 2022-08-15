@@ -63,7 +63,9 @@ const renderGlobalMenu = () => {
     const globalMenusEl = document.getElementById("global-menu-panel");
     if (globalMenusEl) {
         globalMenusEl.outerHTML = globalMenus;
+        const globalMenuEl = document.querySelector(".global-menu-bg");
         const globalMenuCloseBtn = document.querySelector(".global-menu-close-btn");
+        globalMenuEl.addEventListener("click", hideGlobalMenu)
         globalMenuCloseBtn.addEventListener("click", hideGlobalMenu);
     }
 }
