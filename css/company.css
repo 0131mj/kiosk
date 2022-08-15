@@ -3,6 +3,19 @@
     word-break: keep-all;
 }
 
+.ceo-signature {
+    text-align: right;
+    margin-top: 8vw;
+}
+
+.ceo-signature span {
+    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1rem;
+    margin-left: 1rem;
+    color: white !important;
+}
+
 .ceo-pic {
     max-width: 15vw;
     margin-right: 2vw;
@@ -18,6 +31,10 @@
 }
 
 /** 본부 비전 **/
+
+.vision p{
+    font-size: 1.2rem;
+}
 
 .hq-vision-concept-list {
     justify-content: space-between;

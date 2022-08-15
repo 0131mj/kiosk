@@ -184,6 +184,10 @@ a {
     display: none !important;
 }
 
+.point-color {
+    color: var(--point-color)
+}
+
 /** 우츨 컨트롤 메뉴 **/
 .control-menus {
     position: absolute;
