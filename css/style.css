@@ -97,7 +97,6 @@ main {
     justify-content: center;
     align-items: center;
     z-index: 1;
-    padding-right: 8vw;
 }
 
 .global-menu-bg {
@@ -115,6 +114,7 @@ main {
     overflow: hidden;
     opacity: 0.9;
     font-size: 1.1rem;
+    margin-bottom: 20vw;
 }
 
 .global-menus {
