@@ -8,8 +8,13 @@
     <title>Kiosk</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-        .main-content {
-            width: 100%;
+        main {
+            position: relative;
+            width: 100vw;
+        }
+
+        .slider {
+            width: 100vw;
             height: 100%;
             display: flex;
             justify-content: center;
@@ -17,48 +22,150 @@
             position: relative;
         }
 
+        #slides {
+            position: absolute;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .sliding {
+            transition: 0.5s all;
+        }
+
         .slide {
-            width: 100%;
+            width: 100vw;
             height: 100%;
+        }
+
+        .slide-btn {
+            position: absolute;
+            top: 60%;
+            background-color: #000;
+            z-index: 1;
+            width: 6vw;
+            height: 12vw;
+        }
+
+        .slide-btn:first-child {
+            left: 5vw;
+        }
+
+        .slide-btn:last-child {
+            right: 0;
+        }
+
+        .x::after {
+            content: url(./img/slide_07.jpg); /* 필요한 이미지 소스들 다운 */
+        }
+
+        .ghost {
+            opacity: 0.9;
         }
 
     </style>
 </head>
 <body>
 <main>
-    <article class="main-content">
-        <img class="slide" src="./img/slide_01.png" alt="점심시간 휴무안내">
-        <img class="slide hide" src="./img/slide_02.jpg" alt="종이 청구서를 줄입시다">
-        <img class="slide hide" src="./img/slide_03.jpg" alt="새로운 에너지 세상">
-        <img class="slide hide" src="./img/slide_04.JPG" alt="한전 고객센터 연결 장애">
-        <img class="slide hide" src="./img/slide_05.jpg" alt="한걸은 천천히 가겠습니다">
-        <img class="slide hide" src="./img/slide_06.jpg" alt="에너지 효율 1등급 대한민국을 위해">
-        <img class="slide hide" src="./img/slide_07.jpg" alt="실행의 2022년">
-        <img class="slide hide" src="./img/slide_08.jpg" alt="정보보안 생활화 SEVEN UP 운동">
-        <img class="slide hide" src="./img/slide_09.jpg" alt="직장 에티켓 알고 지키기">
+    <button class="slide-btn" id="prev-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </button>
+    <article class="slider">
+        <div id="slides" class="sliding" style="left: -100vw">
+            <img class="slide ghost" src="./img/slide_09.jpg" alt="직장 에티켓 알고 지키기"/>
+            <img class="slide" src="./img/slide_01.png" alt="점심시간 휴무안내"/>
+            <img class="slide" src="./img/slide_02.jpg" alt="종이 청구서를 줄입시다"/>
+            <img class="slide" src="./img/slide_03.jpg" alt="새로운 에너지 세상"/>
+            <img class="slide" src="./img/slide_04.JPG" alt="한전 고객센터 연결 장애"/>
+            <img class="slide" src="./img/slide_05.jpg" alt="한걸은 천천히 가겠습니다"/>
+            <img class="slide" src="./img/slide_06.jpg" alt="에너지 효율 1등급 대한민국을 위해"/>
+            <img class="slide" src="./img/slide_07.jpg" alt="실행의 2022년"/>
+            <img class="slide" src="./img/slide_08.jpg" alt="정보보안 생활화 SEVEN UP 운동"/>
+            <img class="slide" src="./img/slide_09.jpg" alt="직장 에티켓 알고 지키기"/>
+            <img class="slide ghost" src="./img/slide_01.png" alt="점심시간 휴무안내"/>
+        </div>
     </article>
+    <button class="slide-btn" id="next-btn"> > </button>
 </main>
+<section id="x"></section>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
 <script>
 
-    const TIMING = 10 // 슬라이드 1장 지속시간 (초)
+    setTimeout(() => {
+        const x = document.getElementById("x");
+        x.classList.add("x");
+    }, 500)
 
-    const slides = document.querySelectorAll(".slide");
-    const cnt = slides.length;
-    let seq = cnt;
-    const slide = setInterval(() => {
-        seq++;
-        const active = seq % cnt;
-        slides.forEach(slide => {
-            slide.classList.add("hide");
-        })
-        slides[active].classList.remove("hide")
-    }, 1000 * TIMING)
-    window.addEventListener("beforeunload", () => {
-        clearInterval(slide);
+    const slides = document.getElementById("slides");
+
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+
+    const FIRST_IDX = 1;
+    const LAST_IDX = 9;
+
+    let idx = FIRST_IDX;
+
+    const move = () => {
+        slides.style.left = `calc(-${idx * 100}vw)`;
+        slides.dataset.idx = `${idx}`;
+    }
+
+    const TIMING = 10; // 슬라이드 1장 지속시간(초)
+    const autoSlide = setInterval(() => {
+        moveNext();
+    }, 1000 * TIMING);
+
+    const slidePrev = () => {
+        idx = idx === FIRST_IDX ? LAST_IDX : idx - 1;
+        move();
+    }
+
+    const slideNext = () => {
+        idx = idx === LAST_IDX ? FIRST_IDX : idx + 1;
+        move();
+    }
+
+    const moveNext = () => {
+        if (idx === LAST_IDX) {
+            slides.classList.remove("sliding");
+            slides.style.left = `-0vw`;
+            setTimeout(() => {
+                slides.classList.add("sliding");
+                slideNext();
+            }, 0)
+        } else {
+            slideNext();
+        }
+    }
+
+    prevBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (idx === FIRST_IDX) {
+            slides.classList.remove("sliding");
+            slides.style.left = `-${(LAST_IDX + 1) * 100}vw`;
+            setTimeout(() => {
+                slides.classList.add("sliding");
+                slidePrev();
+            }, 0)
+        } else {
+            slidePrev();
+        }
     });
+
+    nextBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        moveNext();
+    });
+
+
+
+
 </script>
 </body>
 </html>
