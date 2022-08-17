@@ -53,14 +53,18 @@ const renderControlMenu = () => {
 window.addEventListener("DOMContentLoaded", renderControlMenu);
 
 const globalMenuObj = {
-    company: "회사소개",
+    company: "본사소개",
+    quarter: "본부소개",
     department: "부서소개",
+    support: "지원사업",
     complains: "민원안내",
     photo: "기념촬영",
-    support: "지원사업",
     discuss: "회의내역",
     manager: "담당자 찾기",
+    tech: "신기술",
     quiz: "퀴즈",
+    beauty: "아름다운 경남",
+    home: "홈",
 }
 
 const globalMenus = `
