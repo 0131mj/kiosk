@@ -15,7 +15,6 @@ const controlMenus = `
 `;
 
 const showGlobalMenu = (e) => {
-    console.log(e.currentTarget)
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.remove("hide");
 };
@@ -64,7 +63,7 @@ const globalMenuObj = {
     tech: "신기술",
     quiz: "퀴즈",
     beauty: "아름다운 경남",
-    home: "홈",
+    index: "홈",
 }
 
 const globalMenus = `

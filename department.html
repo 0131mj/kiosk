@@ -20,14 +20,14 @@
             font-family: 'LeferiBaseType-BoldA', sans-serif;
         }
 
-        .department-org {
+        .dept-org {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
 
-        .department {
-            width: 30%;
+        .dept {
+            width: 24%;
             padding: 1vw 3vw;
             word-break: keep-all;
             display: flex;
@@ -35,18 +35,18 @@
             align-items: center;
             text-align: center;
             color: #fff;
-            height: 8vw;
-            margin-bottom: 2vw;
+            height: 6vw;
+            margin-bottom: 1vw;
             background: gray;
             border-radius: 1vw;
             font-size: 1.2rem;
         }
 
-        .department.on {
+        .dept.on {
             background: #3985a5;
         }
 
-        #department-map img {
+        #dept-map img {
             max-width: 100%;
             max-height: 30vw;
             display: block;
@@ -58,37 +58,22 @@
 <body>
 <main>
     <header class="title-header">부서 소개</header>
-    <div style="height: 10vw; width: 10vw"></div>
     <section class="content-area">
 
-        <p style="text-align: center">아래 조직도에서 부서를 선택하시면 <br/>부서 조직도 및 위치를 확인하실 수 있습니다.</p>
-        <div class="department-org">
-            <div class="department on" data-depart="01">안전재난부</div>
-            <div class="department" data-depart="02">미래전략부</div>
-            <div class="department" data-depart="03">HR소통부</div>
-            <div class="department" data-depart="04">재무자재부</div>
-            <div class="department" data-depart="05">탄소중립사업부 (에너지효율부)</div>
-            <div class="department" data-depart="07">전력공급부</div>
-            <div class="department" data-depart="09">배전운영부</div>
-            <div class="department" data-depart="10">배전건설부</div>
-            <div class="department" data-depart="11">ICT총괄부</div>
-            <div class="department" data-depart="12">그리드지원부</div>
-            <div class="department" data-depart="13">계통운영부</div>
-            <div class="department" data-depart="14">송전운영부</div>
-            <div class="department" data-depart="15">변전운영부</div>
-            <div class="department" data-depart="16">그리드시스템부</div>
-            <div class="department" data-depart="17">토건운영부</div>
+        <p style="text-align: center">부서를 선택하세요.</p>
+        <div class="dept-org">
+
         </div>
-        <h3 class="title" id="department-name">안전재난부</h3>
+        <h3 class="title" id="dept-name">안전재난부</h3>
+        <p id="dept-desc"></p>
 
         <h4 class="subtitle">부서 조직도</h4>
-        <div id="department-map">
-            <img src="./img/department/01.jpg" alt="안전재난부"/>
+        <div id="dept-map">
+            <img src="img/dept/1.jpg" alt="안전재난부"/>
         </div>
 
-
         <h4 class="subtitle">위치</h4>
-        본 건물 4층
+        <p id="dept-location"></p>
 
 
     </section>
@@ -97,23 +82,126 @@
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
 <script>
-    const departments = document.querySelectorAll(".department");
-    const departmentName = document.getElementById("department-name");
-    const departmentMap = document.getElementById("department-map")
+    const deptData = [
+        {
+            name: "안전재난부",
+            desc: "안전재난부는 사업소(부서)와 공사현장의 안전관리, 산재예방, 재난관리, 정보보안, 전력설비 정기검사업무를 지원하는 등 전 직원과 함께 안전한 경남본부를 만들어가고 있습니다.",
+            location: "4F"
+        },
+        {
+            name: "미래전략부",
+            desc: "미래전략부는 본부 기획, 예산, 홍보, 평가, 법무, 감사 업무를 총괄 운영하고 있으며 3S 경영(Simple, Speed, Smart) 고도화를 통해 B3ST 경남본부로 거듭 날 수 있도록 새로운 지향점을 제시하는 역할을 수행하고 있습니다.",
+            location: "4F"
+        },
+        {
+            name: "HR소통부",
+            desc: "HR소통부는 본부 비전 달성 및 지속가능 경영을 위하여 인사, 총무, 노무, 건축 등 경영 업무 전반에 전략적 지원 업무를 수행하고 있습니다.",
+            location: "3F"
+        },
+        {
+            name: "재무자재부",
+            desc: "재무자재부는 본부 관내 내부회계, 부동산 자산관리, 결산, 자금, 각종 세금 관리 등 회계업무를 담당하고 있으며, 계약총괄, 자재 통제관리 업무 등을 통하여 BEST(Simple, Speed, Smart) 경남본부를 만드는데에 기여하고 있습니다.",
+            location: "4F"
+        },
+        {
+            name: "탄소중립사업부",
+            desc: "탄소중립사업부는 태양광 등 신재생에너지 전력거래(PPA, 요금상계거래, 배전용전기설비이용, 단순병렬운전조작합의),  전력수요 관리를 위한 부하관리기기(최대전력관리장치, 건물냉난방기원격관리시스템 등) 설치지원과 에너지 효율향상기기(LED, 고효율변압기. 인버터, 고효율가전제품 등)의 보급활성화를 위한 각종 지원제도를 운영하고 있습니다.",
+            location: "6F"
+        },
+        {
+            name: "마케팅기획부",
+            desc: "마케팅기획부는 공급방안 검토, 전기사용신청 및 변경, 지장배전선로이설 업무로 전력공급 효율성을 향상시키고, 홍보채널 운영 및 고객만족도 조사, 고객응대방안 구축 등으로 서비스 품질 향상을 위해 노력하고 있습니다.",
+            location: "1F"
+        },
+        {
+            name: "전력공급부",
+            desc: "전력공급부는 배전설비 중장기 투자계획 수립, 배전공사 전문회사 및 감리협력회사 운영 및 관리, 에너지신사업, 전력량계 부설 및 운영 등의 업무를 총괄하고 있으며,  배전설비(가공, 지중) 공사설계 및 시공관리를 통한 경남본부의 안전한 전력공급에 최선을 다하고 있습니다.",
+            location: "1F"
+        },
+        {
+            name: "마케팅운영부",
+            desc: "마케팅운영부는 전기요금의 발행-청구-회수를 담당합니다. 용도에 맞는 올바른 전기사용을 관리하며 고객실명화,복지할인 수혜활동으로 고객친화적인 전력판매사업을 추구합니다.",
+            location: "1F"
+        },
+        {
+            name: "배전운영부",
+            desc: '"안전 최우선 정전예방활동 & 배전설비복구"에 앞장서는 배전운영부입니다.',
+            location: "5F"
+        },
+        {
+            name: "배전건설부",
+            desc: "배전건설부는 경남본부 관내 전지역 배전간선 건설 및 지자체요청, 그린뉴딜 지중화사업을 기획에서 준공까지 일련의 업무절차와 세부운영 사항을 관리하고 있으며, Smart하고 체계적인 공정관리로 무결점 시공관리와 안전한 건설업무를 수행하고 있습니다.",
+            location: "2F"
+        },
+        {
+            name: "ICT총괄부",
+            desc: "ex) ICT총괄부는 OA설비(PC, PRT, FAX 등), 전력자동화 통신설비, AMI 통신설비 신증설 및 운영을 관리하고 있으며, ICT기술을 활용하여 디지털 오피스 구축, 업무자동화 등 Smart한 경남본부를 만드는데에 기여하고 있습니다.",
+            location: "5F"
+        },
+        {
+            name: "그리드지원부",
+            desc: "그리드지원부는 송전선로 용지보상 및 관리•품질•환경•방호•민방위•소방 업무와 전력관리처 내 인사•기획•노무•안전 업무를 수행하고 있습니다. 안정적인 전력공급망 유지를 위하여 송변전분야 업무지원에 최선을 다하고 있습니다. ",
+            location: "3F"
+        },
+        {
+            name: "계통운영부",
+            desc: "계통운영부는 송변전설비계획, 계통 접속방안 기술검토, 전력계통 보호설비 검토 및 시험을 담당하고 있으며, 전력인프라 적기 구축으로 안정적인 경남지역 전력공급에 기여하고 있습니다.",
+            location: "3F"
+        },
+        {
+            name: "송전운영부",
+            desc: "송전운영부는 송전설비(가공선로, 지중선로) 운영을 담당하고 있으며, 송전설비 고장예방활동,송전선로 지중화, 송변전설비 주변지역 지원사업 등을 통해 안정적인 전력공급에 일조하고 있습니다.",
+            location: "5F"
+        },
+        {
+            name: "변전운영부",
+            desc: "변전운영부는 변전설비(GIS, 변압기 등)의 운영, 유지보수, 신설(증설)업무를 수행하고 있습니다. 변전소 디지털화와 과학화 장비를 통한 예방진단으로 안정적 전력공급에 최선을 다하고 있습니다.",
+            location: "4F"
+        },
+        {
+            name: "그리드시스템부",
+            desc: "그리드시스템부는 송변전분야 전력통신 ICT설비, SCADA설비 제어 업무 및 운영을 담당하고 있으며, Smart하고 신뢰도 높은 ICT 시스템관리로 안정적인 전력계통 운영을 위한 서비스제공에 기여하고 있습니다.",
+            location: "6F"
+        },
+        {
+            name: "토건운영부",
+            desc: "전력관리처 토목설비 유지관리 및 건축업무, 사옥 및 변전소 기전설비 보강업무를 담당하고 있습니다.",
+            location: "5F"
+        }
+    ]
 
-    departments.forEach(department => {
-        department.addEventListener("click", (e)=> {
+    const depOrg = document.querySelector(".dept-org");
+    depOrg.innerHTML = deptData.reduce((acc, cur, idx)=>{
+        return acc + `<div class="dept" data-depart="${idx+1}">${cur.name}</div>`;
+    }, '')
+    const depts = document.querySelectorAll(".dept");
+    const deptName = document.getElementById("dept-name");
+    const deptDesc = document.getElementById("dept-desc");
+    const deptMap = document.getElementById("dept-map");
+    const deptLocation = document.getElementById("dept-location");
+
+    const selectDept = (code) => {
+        const {name, desc, location} = deptData[Number(code) - 1];
+        deptMap.innerHTML = `<img src = "./img/dept/${code}.jpg" alt="${name} 조직도"/>`;
+        deptName.innerHTML = name;
+        deptDesc.innerHTML = desc;
+        deptLocation.innerHTML = `${name}(${location})`;
+        depts.forEach((d) => {
+            d.classList.remove("on");
+        })
+        const dept = document.querySelector(`[data-depart="${code}"]`)
+        dept.classList.add("on");
+    }
+
+    depts.forEach(dept => {
+        dept.addEventListener("click", (e) => {
             e.stopPropagation();
-            const code = department.dataset.depart;
-            const text = department.innerHTML;
-            departmentMap.innerHTML = `<img src = "./img/department/${code}.jpg" alt="${text} 조직도"/>`;
-            departmentName.innerHTML = text;
-            departments.forEach((d)=>{
-                d.classList.remove("on");
-                department.classList.add("on");
-            })
+            const code = dept.dataset.depart;
+            selectDept(code);
         })
     })
+
+    selectDept(1);
 </script>
 </body>
 </html>
