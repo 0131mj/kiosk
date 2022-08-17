@@ -5,33 +5,22 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>지원사업</title>
+    <title>지원 사업</title>
     <link rel="stylesheet" href="./css/style.css">
-    <style>
-        .content-area {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/company.css">
 </head>
 <body>
 <main>
-    <header class="title-header">지원사업</header>
-    <div class="content-nav">
-        <div class="flex-row menus">
-            <a href="" class="menu">뿌리기업</a>
-            <a href="" class="menu">효율화</a>
-            <a href="" class="menu on">파워체크</a>
-        </div>
-    </div>
-    <section class="content-area">
-        <img src="./img/power_check.png" alt="파워 체크" style="width: 100%">
-    </section>
+    <header class="title-header">
+        지원 사업
+    </header>
+    <template id="company-nav"></template>
+    <section id="company-content" class="content-area"></section>
+    <template id="hq-history"></template>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
+<script src="./js/support.js"></script>
 </body>
 </html>
