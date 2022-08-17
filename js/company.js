@@ -8,7 +8,6 @@ const companyMenu = {
 /** 현재 메뉴 결정 **/
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
-
 const {menu} = params || {};
 const curMenu = menu || Object.keys(companyMenu)[0];
 
@@ -55,7 +54,7 @@ if (curMenu === "history") {
     }</ol>`
 } else {
     function loadHTML() {
-        fetch(`./company_content/${curMenu}.html`)
+        fetch(`./content_company/${curMenu}.html`)
             .then(response => response.text())
             .then(text => document.getElementById('company-content').innerHTML = text);
     }
