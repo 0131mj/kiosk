@@ -89,6 +89,22 @@
         .x::after {
             content: url(./img/slide_07.jpg); /* 필요한 이미지 소스들 다운 */
         }
+
+        #touch-msg {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            font-size: 2rem;
+            position: absolute;
+            bottom: 30vh;
+            width: 70vw;
+            left: 15vw;
+            z-index: 1;
+            text-align: center;
+            padding: 5vw 0;
+            opacity: 1;
+            transition: opacity 0.5s;
+            border-radius: 20vw;
+        }
     </style>
 </head>
 
@@ -113,6 +129,8 @@
 </main>
 <!-- Swiper -->
 
+<div id="touch-msg">화면을 터치해 주세요.</div>
+
 <section id="x"></section>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
@@ -120,7 +138,6 @@
 
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-
 
 <!-- Initialize Swiper -->
 <script>
@@ -142,16 +159,30 @@
         },
     });
 </script>
+
+
 <script>
+
+    /** 화면을 터치해주세요 - 메시지 숨기기 **/
+    setTimeout(() => {
+        document.getElementById("touch-msg").style.opacity = "0";
+    }, 450)
+
+    /** 큰 이미지 미리 로드 **/
     setTimeout(() => {
         const x = document.getElementById("x");
         x.classList.add("x");
     }, 500)
+
+    /** 스와이프 버튼 클릭시, 팝업 오픈 금지 **/
     document.querySelectorAll(".swiper-button").forEach(btn => {
         btn.addEventListener("click", (e) => {
             e.stopPropagation();
         })
     })
+
+
+
 </script>
 
 </body>
