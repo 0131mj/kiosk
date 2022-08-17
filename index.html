@@ -1,171 +1,158 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kiosk</title>
+    <meta charset="utf-8"/>
+    <title>Swiper demo</title>
     <link rel="stylesheet" href="./css/style.css">
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
+    <!-- Link Swiper's CSS -->
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+
+    <!-- Demo styles -->
     <style>
         main {
             position: relative;
             width: 100vw;
         }
 
-        .slider {
-            width: 100vw;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        html,
+        body {
             position: relative;
-        }
-
-        #slides {
-            position: absolute;
-            top: 0;
-            height: 100vh;
-            display: flex;
-            flex-direction: row;
-        }
-
-        .sliding {
-            transition: 0.5s all;
-        }
-
-        .slide {
-            width: 100vw;
             height: 100%;
         }
 
-        .slide-btn {
-            position: absolute;
-            top: 60%;
-            background-color: #000;
-            z-index: 1;
-            width: 6vw;
-            height: 12vw;
+        body {
+            background: #eee;
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
-        .slide-btn:first-child {
-            left: 5vw;
+        .swiper {
+            width: 100%;
+            height: 100%;
         }
 
-        .slide-btn:last-child {
-            right: 0;
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .swiper {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /** override **/
+        .swiper-button {
+            background-color: rgba(0, 0, 0, 0.3);
+            width: 8vw;
+            height: 8vw;
+            font-size: 2rem;
+            top: 55vh;
+            border-radius: 50%;
+        }
+
+        .swiper-button::after {
+            color: #fff;
+            font-size: 2rem;
         }
 
         .x::after {
             content: url(./img/slide_07.jpg); /* 필요한 이미지 소스들 다운 */
         }
-
-        .ghost {
-            opacity: 0.9;
-        }
-
     </style>
 </head>
+
 <body>
 <main>
-    <button class="slide-btn" id="prev-btn">
-        <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" fill="currentColor" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-        </svg>
-    </button>
-    <article class="slider">
-        <div id="slides" class="sliding" style="left: -100vw">
-            <img class="slide ghost" src="./img/slide_09.jpg" alt="직장 에티켓 알고 지키기"/>
-            <img class="slide" src="./img/slide_01.png" alt="점심시간 휴무안내"/>
-            <img class="slide" src="./img/slide_02.jpg" alt="종이 청구서를 줄입시다"/>
-            <img class="slide" src="./img/slide_03.jpg" alt="새로운 에너지 세상"/>
-            <img class="slide" src="./img/slide_04.JPG" alt="한전 고객센터 연결 장애"/>
-            <img class="slide" src="./img/slide_05.jpg" alt="한걸은 천천히 가겠습니다"/>
-            <img class="slide" src="./img/slide_06.jpg" alt="에너지 효율 1등급 대한민국을 위해"/>
-            <img class="slide" src="./img/slide_07.jpg" alt="실행의 2022년"/>
-            <img class="slide" src="./img/slide_08.jpg" alt="정보보안 생활화 SEVEN UP 운동"/>
-            <img class="slide" src="./img/slide_09.jpg" alt="직장 에티켓 알고 지키기"/>
-            <img class="slide ghost" src="./img/slide_01.png" alt="점심시간 휴무안내"/>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <img class="swiper-slide" src="./img/slide_01.png" alt="점심시간 휴무안내"/>
+            <img class="swiper-slide" src="./img/slide_02.jpg" alt="종이 청구서를 줄입시다"/>
+            <img class="swiper-slide" src="./img/slide_03.jpg" alt="새로운 에너지 세상"/>
+            <img class="swiper-slide" src="./img/slide_04.JPG" alt="한전 고객센터 연결 장애"/>
+            <img class="swiper-slide" src="./img/slide_05.jpg" alt="한걸은 천천히 가겠습니다"/>
+            <img class="swiper-slide" src="./img/slide_06.jpg" alt="에너지 효율 1등급 대한민국을 위해"/>
+            <img class="swiper-slide" src="./img/slide_07.jpg" alt="실행의 2022년"/>
+            <img class="swiper-slide" src="./img/slide_08.jpg" alt="정보보안 생활화 SEVEN UP 운동"/>
+            <img class="swiper-slide" src="./img/slide_09.jpg" alt="직장 에티켓 알고 지키기"/>
         </div>
-    </article>
-    <button class="slide-btn" id="next-btn"> > </button>
+        <div class="swiper-button-next swiper-button"></div>
+        <div class="swiper-button-prev swiper-button"></div>
+        <div class="swiper-pagination"></div>
+    </div>
 </main>
+<!-- Swiper -->
+
 <section id="x"></section>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
-<script>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+
+<!-- Initialize Swiper -->
+<script>
+    const swiper = new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+<script>
     setTimeout(() => {
         const x = document.getElementById("x");
         x.classList.add("x");
     }, 500)
-
-    const slides = document.getElementById("slides");
-
-    const prevBtn = document.getElementById("prev-btn");
-    const nextBtn = document.getElementById("next-btn");
-
-    const FIRST_IDX = 1;
-    const LAST_IDX = 9;
-
-    let idx = FIRST_IDX;
-
-    const move = () => {
-        slides.style.left = `calc(-${idx * 100}vw)`;
-        slides.dataset.idx = `${idx}`;
-    }
-
-    const TIMING = 10; // 슬라이드 1장 지속시간(초)
-    const autoSlide = setInterval(() => {
-        moveNext();
-    }, 1000 * TIMING);
-
-    const slidePrev = () => {
-        idx = idx === FIRST_IDX ? LAST_IDX : idx - 1;
-        move();
-    }
-
-    const slideNext = () => {
-        idx = idx === LAST_IDX ? FIRST_IDX : idx + 1;
-        move();
-    }
-
-    const moveNext = () => {
-        if (idx === LAST_IDX) {
-            slides.classList.remove("sliding");
-            slides.style.left = `-0vw`;
-            setTimeout(() => {
-                slides.classList.add("sliding");
-                slideNext();
-            }, 0)
-        } else {
-            slideNext();
-        }
-    }
-
-    prevBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        if (idx === FIRST_IDX) {
-            slides.classList.remove("sliding");
-            slides.style.left = `-${(LAST_IDX + 1) * 100}vw`;
-            setTimeout(() => {
-                slides.classList.add("sliding");
-                slidePrev();
-            }, 0)
-        } else {
-            slidePrev();
-        }
-    });
-
-    nextBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        moveNext();
-    });
-
-
-
-
+    document.querySelectorAll(".swiper-button").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+        })
+    })
 </script>
+
 </body>
 </html>

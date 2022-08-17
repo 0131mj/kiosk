@@ -11,6 +11,7 @@ const controlMenus = `
 `;
 
 const showGlobalMenu = (e) => {
+    console.log(e.currentTarget)
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.remove("hide");
 };
