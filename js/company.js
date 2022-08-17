@@ -1,53 +1,26 @@
 const companyNav = document.getElementById("company-nav");
 const companyMenu = {
-    ho: {
-        text: "본사",
-        subMenu: {
-            introduce: "인사말",
-            vision: "비전",
-            history: "연혁",
-        }
-    },
-    hq: {
-        text: "본부",
-        subMenu: {
-            history: "연혁",
-            vision: "비전",
-            office: "사업소 소개",
-            beauty: "아름다운 경남",
-        }
-    },
-    tech: {
-        text: "신기술",
-        subMenu: {
-            new: "신기술 소개",
-            ocean: "해상 풍력정보",
-        }
-    }
+    introduce: "인사말",
+    vision: "비전",
+    history: "연혁",
 }
 
 /** 현재 메뉴 결정 **/
 const urlSearchParams = new URLSearchParams(window.location.search);
 const params = Object.fromEntries(urlSearchParams.entries());
 
-const {menu, submenu} = params || {};
+const {menu} = params || {};
 const curMenu = menu || Object.keys(companyMenu)[0];
-const curSubMenu = submenu || Object.keys(companyMenu[curMenu].subMenu)[0];
 
 
 /** 현재 메뉴 표시 **/
 companyNav.outerHTML = `
 <div class="content-nav">
     <div class="flex-row menus">   
-        ${Object.entries(companyMenu).reduce((acc, [key, {text}]) => {
+        ${Object.entries(companyMenu).reduce((acc, [key, text]) => {
     return acc + `<a href="./company.html?menu=${key}" class="menu${key === curMenu ? ' on' : ''}">${text}</a>`;
 }, "")}
-    </div>
-    <div class="flex-row sub-menus">
-        ${Object.entries(companyMenu[curMenu].subMenu).reduce((acc, [key, val]) => {
-    return acc + `<a href="./company.html?menu=${curMenu}&submenu=${key}" class="sub-menu${key === curSubMenu ? ' on' : ''}">${val}</a>`;
-}, "")}
-    </div>
+    </div>    
 </div>
 `;
 
@@ -57,7 +30,7 @@ document.querySelectorAll('a').forEach(a => {
     })
 })
 
-if (curMenu === "hq" && curSubMenu === "history") {
+if (curMenu === "history") {
     const hqHistory = [
         ["1910.6.9", "한일와사㈜ 마산지점", ""],
         ["1947.10.1", "남선전기㈜ 마산지점", "01"],
@@ -82,7 +55,7 @@ if (curMenu === "hq" && curSubMenu === "history") {
     }</ol>`
 } else {
     function loadHTML() {
-        fetch(`./company_content/${curMenu}_${curSubMenu}.html`)
+        fetch(`./company_content/${curMenu}.html`)
             .then(response => response.text())
             .then(text => document.getElementById('company-content').innerHTML = text);
     }
