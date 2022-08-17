@@ -1,12 +1,16 @@
 const controlMenus = `
-<div class="control-menus">
-    <button id="control-spread-btn">
-    <svg xmlns="http://www.w3.org/2000/svg" width="80%" height="80%" fill="currentColor" viewBox="0 0 16 16">
-      <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
-    </svg>
-</button>
-    <a class="control-menu" href="./index.html">홈</a>
-    <button class="control-menu global-menu-open-btn">전체<br/>메뉴</button>
+<div class="control-menus">    
+    <button class="control-menu global-menu-open-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 </div>
 `;
 
@@ -43,18 +47,6 @@ const renderControlMenu = () => {
         })
         const globalMenuOpenBtnEl = document.querySelector(".global-menu-open-btn");
         globalMenuOpenBtnEl.addEventListener("click", showGlobalMenu);
-
-        /** 홈 메뉴 아닐 때는 접어서 표시 **/
-        const isHome = window.location.href.endsWith('index.html');
-        if (!isHome) {
-            const controlSpreadBtn = document.getElementById("control-spread-btn");
-            const el = document.querySelector(".control-menus");
-            el.classList.add("fold")
-            controlSpreadBtn.addEventListener("click", (e) => {
-                e.stopPropagation();
-                el.classList.remove("fold")
-            })
-        }
     }
 }
 

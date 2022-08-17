@@ -196,16 +196,18 @@ a {
 /** 우츨 컨트롤 메뉴 **/
 .control-menus {
     position: absolute;
+    z-index: 2;
     background: #000;
     color: #cef;
     top: 45%;
     right: 0;
     width: 8vw;
-    height: 20vw;
+    height: 8vw;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
     font-size: 0.5rem;
     flex-shrink: 0;
     font-family: 'LeferiBaseType-BoldA', sans-serif;
@@ -236,11 +238,20 @@ a {
 }
 
 .control-menu {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     justify-content: center;
-    align-items: center;
-    padding: 1rem 0;
-    font-size: 1rem;
+    align-content: center;
+    height: 4vw;
+    width: 4vw;
+}
+.control-menu span {
+    width: 0.8vw;
+    height: 0.8vw;
+    background-color: currentColor;
+    align-self: center;
+    justify-self: center;
 }
 
 .content-area {
