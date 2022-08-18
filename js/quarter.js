@@ -68,6 +68,7 @@ const setOffice = () => {
     const nameEl = document.getElementById("office-name");
     const telEl = document.getElementById("office-tel");
     const addressEl = document.getElementById("office-address");
+    const orgEl = document.getElementById("office-org");
 
     officeMap.addEventListener("click", (e)=>{
         e.stopPropagation();
@@ -86,8 +87,7 @@ const setOffice = () => {
         telEl.innerText = tel;
         addressEl.innerText = address;
         officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.gif")`;
-
-        // officeMap.style.background = `no-repeat cover url("./img/hq_map/${idx}.gif")`
+        orgEl.setAttribute("src", `./img/hq_org/${idx}.jpg`)
     }
     const officeBtn = document.querySelectorAll(".office-btn");
     officeBtn.forEach(btn => {
@@ -96,6 +96,8 @@ const setOffice = () => {
             selectOffice(btn.dataset.code);
         })
     })
+
+    selectOffice(0);
 }
 
 function loadHTML() {
