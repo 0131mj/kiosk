@@ -51,18 +51,26 @@
             display: block;
             margin: 0 auto;
         }
-
+        #dept-desc.img {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #dept-desc.img img{
+            width: 47.5%;
+            margin-bottom: 3vw;
+        }
+        #dept-desc.img img:nth-child(odd){
+            margin-right: 3%;
+        }
     </style>
 </head>
 <body>
 <main>
-    <header class="title-header">민원 안내</header>
+    <header class="title-header">민원 및 시설 안내</header>
     <section class="content-area">
-
-        <p style="text-align: center">업무를 선택하세요.</p>
         <div class="dept-org"></div>
         <h3 class="title" id="dept-name"></h3>
-        <p id="dept-desc"></p>
+        <div id="dept-desc"></div>
 
         <h4 id="dept-location" class="subtitle">위치</h4>
         <div id="dept-map"></div>
@@ -113,11 +121,26 @@
                 " 다. 위치 : 고객지원실(1F)",
             location: "고객지원실(1F)"
         },
+        {
+            name: "매점",
+            img: ["1_1", "1_2"],
+            location: "매점(B1)"
+        },
+        {
+            name: "회의실",
+            img: ["2_1", "2_2", "2_3"],
+            location: "회의실(3F)"
+        },
+        {
+            name: "식당",
+            img: ["3_1", "3_2"],
+            location: "식당(2F)"
+        },
     ]
 
     const depOrg = document.querySelector(".dept-org");
-    depOrg.innerHTML = deptData.reduce((acc, cur, idx)=>{
-        return acc + `<div class="dept" data-depart="${idx+1}">${cur.name}</div>`;
+    depOrg.innerHTML = deptData.reduce((acc, cur, idx) => {
+        return acc + `<div class="dept" data-depart="${idx + 1}">${cur.name}</div>`;
     }, '')
     const depts = document.querySelectorAll(".dept");
     const deptName = document.getElementById("dept-name");
@@ -126,10 +149,21 @@
     const deptLocation = document.getElementById("dept-location");
 
     const selectDept = (code) => {
-        const {name, desc, location} = deptData[Number(code) - 1];
-        deptMap.innerHTML = `<img src = "./img/support/${code}.jpg" alt="${name} 조직도"/>`;
+        const {name, desc, location, img} = deptData[Number(code) - 1];
+        deptMap.innerHTML = `<img src = "./img/support/${code}.jpg" alt="${name} 위치 안내도"/>`;
         deptName.innerHTML = name;
-        deptDesc.innerText = desc;
+
+        const isSupport = Boolean(desc);
+        if (isSupport) {
+            deptDesc.classList.remove("img");
+            deptDesc.innerText = desc;
+        } else {
+            deptDesc.classList.add("img");
+            deptDesc.innerHTML = img.reduce((acc, cur) => {
+                acc += `<img src="./img/util/${cur}.jpg"/>`;
+                return acc;
+            }, "");
+        }
         deptLocation.innerHTML = `위치: ${location}`;
         depts.forEach((d) => {
             d.classList.remove("on");
