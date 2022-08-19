@@ -34,7 +34,6 @@ const setOffice = () => {
         {
             name: "경남본부 직할",
             address: " (51439) 경남 창원시 성산구 중앙대로210번길 13",
-            tel: "000-0000",
             coordinate: {
                 x: 62,
                 y: 45,
@@ -45,7 +44,6 @@ const setOffice = () => {
         {
             name: "진주지사",
             address: "(52782) 경남 진주시 동진로 279",
-            tel: "111-111",
             coordinate: {
                 x: 40,
                 y: 53,
@@ -56,7 +54,6 @@ const setOffice = () => {
         {
             name: "마산지사",
             address: "(51350) 경남 창원시 마산회원구3.15대로 966",
-            tel: "222-2222",
             coordinate: {
                 x: 54,
                 y: 58,
@@ -67,7 +64,6 @@ const setOffice = () => {
     ]
     const officeMap = document.getElementById("office-map");
     const nameEl = document.getElementById("office-name");
-    const telEl = document.getElementById("office-tel");
     const addressEl = document.getElementById("office-address");
     const orgEl = document.getElementById("office-org");
 
@@ -83,9 +79,8 @@ const setOffice = () => {
         return acc;
     }, "")
     const selectOffice = (idx) => {
-        const {name, address, tel} = data[Number(idx)];
+        const {name, address} = data[Number(idx)];
         nameEl.innerText = name;
-        telEl.innerText = tel;
         addressEl.innerText = address;
         officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.gif")`;
         orgEl.setAttribute("src", `./img/hq_org/${idx}.jpg`)
