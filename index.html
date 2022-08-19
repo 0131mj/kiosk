@@ -85,23 +85,42 @@
         }
 
         .x::after {
-            content: url(./img/slide_07.jpg); /* 필요한 이미지 소스들 다운 */
+            /*content: url(./img/slide_07.jpg); !* 필요한 이미지 소스들 다운 *!*/
+        }
+
+        @keyframes blink {
+            0% {
+                opacity: 0
+            }
+
+            20% {
+                opacity: 1
+            }
+
+            40% {
+                opacity: 0
+            }
+
+            100%{
+                opacity: 0;
+            }
         }
 
         #touch-msg {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.7);
             color: #fff;
-            font-size: 2rem;
+            font-size: 1.6rem;
             position: absolute;
             bottom: 30vh;
-            width: 70vw;
-            left: 15vw;
+            width: 50vw;
+            left: 25vw;
             z-index: 1;
             text-align: center;
-            padding: 5vw 0;
+            padding: 3vw 0;
             opacity: 1;
             transition: opacity 0.5s;
             border-radius: 20vw;
+            animation: blink 7s infinite;
         }
     </style>
 </head>
@@ -110,15 +129,19 @@
 <main>
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
-            <img class="swiper-slide" src="./img/slide_01.png" alt="점심시간 휴무안내"/>
-            <img class="swiper-slide" src="./img/slide_02.jpg" alt="종이 청구서를 줄입시다"/>
-            <img class="swiper-slide" src="./img/slide_03.jpg" alt="새로운 에너지 세상"/>
-            <img class="swiper-slide" src="./img/slide_04.JPG" alt="한전 고객센터 연결 장애"/>
-            <img class="swiper-slide" src="./img/slide_05.jpg" alt="한걸은 천천히 가겠습니다"/>
-            <img class="swiper-slide" src="./img/slide_06.jpg" alt="에너지 효율 1등급 대한민국을 위해"/>
-            <img class="swiper-slide" src="./img/slide_07.jpg" alt="실행의 2022년"/>
-            <img class="swiper-slide" src="./img/slide_08.jpg" alt="정보보안 생활화 SEVEN UP 운동"/>
-            <img class="swiper-slide" src="./img/slide_09.jpg" alt="직장 에티켓 알고 지키기"/>
+            <img class="swiper-slide" src="./img/main_slide/01.jpg" alt="성희롱 성폭력 없는 행복한 일터"/>
+            <img class="swiper-slide" src="./img/main_slide/02.jpg" alt="청령캠페인"/>
+            <img class="swiper-slide" src="./img/main_slide/03.jpg" alt="정시퇴근"/>
+            <img class="swiper-slide" src="./img/main_slide/04.jpg" alt="직장 에티켓"/>
+            <img class="swiper-slide" src="./img/main_slide/05.jpg" alt="정보보안 생활화"/>
+            <img class="swiper-slide" src="./img/main_slide/06.jpg" alt="안전운전 켐페인"/>
+            <img class="swiper-slide" src="./img/main_slide/07.jpg" alt="을지연습"/>
+            <img class="swiper-slide" src="./img/main_slide/08.jpg" alt="에너지효율1등급"/>
+            <img class="swiper-slide" src="./img/main_slide/09.jpg" alt="한전고객센터안내"/>
+            <img class="swiper-slide" src="./img/main_slide/10.jpg" alt="실행의 2022년"/>
+            <img class="swiper-slide" src="./img/main_slide/11.jpg" alt="안전을 위한 발걸음"/>
+            <img class="swiper-slide" src="./img/main_slide/12.jpg" alt="종이청구서"/>
+            <img class="swiper-slide" src="./img/main_slide/13.jpg" alt="통영연화도"/>
         </div>
         <div class="swiper-button-next swiper-button"></div>
         <div class="swiper-button-prev swiper-button"></div>
@@ -161,11 +184,6 @@
 
 <script>
 
-    /** 화면을 터치해주세요 - 메시지 숨기기 **/
-    setTimeout(() => {
-        document.getElementById("touch-msg").style.opacity = "0";
-    }, 450)
-
     /** 큰 이미지 미리 로드 **/
     setTimeout(() => {
         const x = document.getElementById("x");
@@ -178,7 +196,6 @@
             e.stopPropagation();
         })
     })
-
 
 
 </script>
