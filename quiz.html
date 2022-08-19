@@ -10,9 +10,62 @@
     <style>
         .content-area {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 100%
+        }
+
+        #step-box {
+            display: flex;
+        }
+
+        .step {
+            padding: 5vw;
+        }
+
+        .quiz-num {
+            width: 15vw;
+            height: 15vw;
+            border: 1px solid #eee;
+            font-size: 2.5rem;
+            padding-top: 1rem;
+            font-family: 'LeferiBaseType-BoldA', sans-serif;
+        }
+
+        .quiz-num.on{
+            background: #fff;
+            color: #0D3563;
+        }
+        .success {
+            background: #3985a5;
+            color: #fff;
+        }
+
+        .fail {
+            background: red;
+            color: #fff;
+        }
+
+        .example-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .example:disabled {
+            opacity: 0.5;
+        }
+
+        .example.on {
+            font-weight: bold;
+            opacity: 1 !important;
+        }
+
+        #quiz-box {
+            background: black;
+            width: 50vw;
+            height: 50vw;
         }
     </style>
 </head>
@@ -21,11 +74,156 @@
     <header class="title-header">퀴즈</header>
     <div style="height: 10vw; width: 10vw"></div>
     <section class="content-area">
-        <img src="./img/quiz.png" alt="퀴즈" style="width: 100%">
+        1. 단계를 선택하세요.
+        <div id="step-box">
+            <div class="step">1단계</div>
+            <div class="step">2단계</div>
+            <div class="step">3단계</div>
+        </div>
+        2. 아래 문제를 선택하세요.
+        <div>점수 : <span id="score">0</span>점</div>
+        <section class="quiz-area">
+            <div id="quiz-select-box"></div>
+            <div id="quiz-box"></div>
+        </section>
     </section>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
+<script>
+    const quizData = [[
+        {
+            q: "다음 중 전압의 표시단위는?",
+            e: [
+                "A",
+                "V",
+                "W",
+                "Hz"
+            ],
+            a: 1,
+        },
+        {
+            q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+            e: [
+                "드 포르스트",
+                "랭뮤어",
+                "와트",
+                "플레밍"
+            ],
+            a: 3,
+        },
+        {
+            q: "다음 중 전압의 표시단위는?",
+            e: [
+                "A",
+                "V",
+                "W",
+                "Hz"
+            ],
+            a: 1,
+        },
+        {
+            q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+            e: [
+                "드 포르스트",
+                "랭뮤어",
+                "와트",
+                "플레밍"
+            ],
+            a: 3,
+        }
+    ]];
+
+    let currStep = 0;
+    // let currQuizIdx = null;
+    let currQuizIdx;
+
+    const checkScore = () => {
+        // 맞은 숫자 * 10
+        // 대각선 및 직선 연결 보너스 추가
+        // 만점 보너스 추가
+    }
+
+    const checkStageCleared = () => {
+    }
+
+    const openQuestion = () => {
+    }
+
+
+    const stepBox = document.getElementById("step-box");
+    const quizSelectBox = document.getElementById("quiz-select-box");
+    const quizBox = document.getElementById("quiz-box");
+
+
+    const render = () => {
+
+
+        /** 퀴즈 고르기 **/
+        quizSelectBox.innerHTML = Object.keys(quizData[currStep]).reduce((acc, idx) => {
+            let resultClass = "";
+            const selected = quizData[currStep][idx].selected;
+            if (selected > -1) {
+                resultClass = selected === quizData[currStep][idx].a ? " success" : " fail";
+            }
+            acc += `<button class="quiz-num${resultClass}" data-idx="${idx}">0${(Number(idx) + 1)}</button>`;
+            return acc;
+        }, "");
+
+        document.querySelectorAll('.quiz-num').forEach((quizNumBtn) => {
+            quizNumBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                currQuizIdx = Number(quizNumBtn.dataset.idx);
+                render();
+            })
+        })
+
+        /** 퀴즈 제시 **/
+
+        if (currQuizIdx > -1) {
+            console.log(111, currQuizIdx)
+            const currQuiz = quizData[currStep][currQuizIdx];
+            const {q, e, selected} = currQuiz;
+            let answerClass = "";
+
+            quizBox.innerHTML = `
+                <div>${q}</div>
+                <div class="example-group">
+                    ${e.reduce((acc, cur, idx) => {
+                acc += `<button class="example${selected === idx ? " on" : ""}" data-idx="${idx}"${Boolean(selected) ? " disabled" : ""}>${cur}</button>`;
+                return acc;
+            }, "")}
+                </div>
+            `;
+
+            document.querySelectorAll('.example').forEach((ex) => {
+                ex.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    currQuiz.selected = Number(ex.dataset.idx); // 선택한 답 기록
+                    render();
+                })
+            })
+        } else {
+            console.log(222)
+            quizBox.innerHTML = `<div>퀴즈를 선택해주세요</div>`;
+        }
+
+        /** 정답 선택 **/
+        if (currQuizIdx > -1) {
+
+        }
+
+
+    }
+
+    render();
+
+    /// 스텝 클리어 후 상위단계로 이동하기 버튼이 나타나는데 목록에서도 갈 수 있다.
+
+    document.querySelector(".content-area").addEventListener("click", (e) => {
+        e.stopPropagation()
+    })
+</script>
 </body>
 </html>
