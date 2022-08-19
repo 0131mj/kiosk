@@ -2,6 +2,7 @@ const companyNav = document.getElementById("company-nav");
 const companyMenu = {
     vision: "비전",
     office: "사업소 소개",
+    history: "연혁",
 }
 
 /** 현재 메뉴 결정 **/
@@ -100,6 +101,32 @@ const setOffice = () => {
     selectOffice(0);
 }
 
+const showHistory = () => {
+    const history = [
+        ["1910.6.9", "한일와사㈜ 마산지점", ""],
+        ["1947.10.1", "남선전기㈜ 마산지점", "01"],
+        ["1961.7.1", "한국전력㈜ 경남지점 마산영업소", "02"],
+        ["1982.1.1", "한국전력공사 경남지사","03"],
+        ["1988.11.2", "한국전력공사 창원전력관리처 분리발족", "04"],
+        ["1988.11.2", "한국전력공사 경남사업본부", "05"],
+        ["2009.1.12", "판매 및 송변전 통합 경남지역본부", "06"],
+        ["2018.12.27~", "한국전력공사 경남본부"],
+    ]
+    document.getElementById('history').innerHTML = `<ol class="hq-history">${
+        history.reduce((acc, [date, text, file])=>{
+            acc += `<li>
+                        <div class="hq-history-date">${date}</div>
+                        <div class="hq-history-content">
+                            ${text}
+                            ${file ? `<img src="./img/hq_history_${file}.png" alt="${text}">`: ""}                            
+                        </div>
+                    </li>`;
+            return acc;
+        },"")
+    }</ol>`
+}
+
+
 function loadHTML() {
     fetch(`./content_quarter/${curMenu}.html`)
         .then(response => response.text())
@@ -107,6 +134,8 @@ function loadHTML() {
         .then((l) => {
             if (curMenu === "office") {
                 setOffice();
+            } else if (curMenu === "history") {
+                showHistory();
             }
         })
     ;

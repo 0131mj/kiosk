@@ -106,13 +106,14 @@ img.hq-slogan {
 
 .hq-history li {
     display: flex;
-    margin-bottom: 4.5vw;
+    margin-bottom: 5.5vw;
 }
 
 .hq-history-date {
     color: var(--point-color);
     font-family: 'LeferiBaseType-RegularA', sans-serif;
     width: 20vw;
+    flex-shrink: 0;
 }
 
 .hq-history-content {
