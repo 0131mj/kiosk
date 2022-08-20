@@ -24,6 +24,11 @@
             padding: 5vw;
         }
 
+        #quiz-select-box {
+            width: calc(45vw + 2px);
+            border: 1px solid #eee;
+        }
+
         .quiz-num {
             width: 15vw;
             height: 15vw;
@@ -33,10 +38,12 @@
             font-family: 'LeferiBaseType-BoldA', sans-serif;
         }
 
-        .quiz-num.on{
-            background: #fff;
-            color: #0D3563;
+        .quiz-num.on {
+            /*background: #fff;*/
+            /*color: #0D3563;*/
+            border: 0.5rem solid #fff;
         }
+
         .success {
             background: #3985a5;
             color: #fff;
@@ -53,13 +60,34 @@
             align-items: flex-start;
         }
 
-        .example:disabled {
+        .example {
+            display: flex;
+        }
+
+        .example:disabled span {
+            /*opacity: 0.5;*/
+        }
+
+        .example.on span {
+            font-weight: bold;
+            opacity: 1 !important;
+        }
+
+        .example.answer span {
+            color: #4bc6ff;
+        }
+
+        .example::before {
+            width: 8vw;
+            content: '(　) ';
+        }
+
+        .example:disabled::before {
             opacity: 0.5;
         }
 
-        .example.on {
-            font-weight: bold;
-            opacity: 1 !important;
+        .example.selected::before {
+            content: '( v ) ';
         }
 
         #quiz-box {
@@ -92,6 +120,19 @@
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
 <script>
+    const BONUS_SCORE_TRACKS = [
+        /** 가로 **/
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        /** 세로 **/
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        /** 대각선 **/
+        [0, 4, 8],
+        [2, 4, 6]
+    ]
     const quizData = [[
         {
             q: "다음 중 전압의 표시단위는?",
@@ -132,42 +173,116 @@
                 "플레밍"
             ],
             a: 3,
-        }
+        },
+        {
+            q: "다음 중 전압의 표시단위는?",
+            e: [
+                "A",
+                "V",
+                "W",
+                "Hz"
+            ],
+            a: 1,
+        },
+        {
+            q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+            e: [
+                "드 포르스트",
+                "랭뮤어",
+                "와트",
+                "플레밍"
+            ],
+            a: 3,
+        },
+        {
+            q: "다음 중 전압의 표시단위는?",
+            e: [
+                "A",
+                "V",
+                "W",
+                "Hz"
+            ],
+            a: 1,
+        },
+        {
+            q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+            e: [
+                "드 포르스트",
+                "랭뮤어",
+                "와트",
+                "플레밍"
+            ],
+            a: 3,
+        },
+        {
+            q: "다음 중 전압의 표시단위는?",
+            e: [
+                "A",
+                "V",
+                "W",
+                "Hz"
+            ],
+            a: 1,
+        },
     ]];
 
-    let currStep = 0;
-    // let currQuizIdx = null;
+    let currStepIdx = 0;
     let currQuizIdx;
-
-    const checkScore = () => {
-        // 맞은 숫자 * 10
-        // 대각선 및 직선 연결 보너스 추가
-        // 만점 보너스 추가
-    }
-
-    const checkStageCleared = () => {
-    }
-
-    const openQuestion = () => {
-    }
 
 
     const stepBox = document.getElementById("step-box");
     const quizSelectBox = document.getElementById("quiz-select-box");
     const quizBox = document.getElementById("quiz-box");
+    const scoreEl = document.getElementById("score");
 
+    const checkStageCleared = () => {
+    }
+    const checkIsRight = (stepIdx, quizIdx) => {
+        return quizData[stepIdx][quizIdx].a === quizData[stepIdx][quizIdx].selected;
+    }
+
+    const getScore = (stepIdx) => {
+        const basicScore = quizData[stepIdx].reduce((acc, quiz) => {
+            const {a, selected} = quiz;
+            if (a === selected) {
+                acc += 10;
+            }
+            return acc;
+        }, 0);
+        const trackBonusScore = BONUS_SCORE_TRACKS.reduce((acc, curTrack) => {
+            const trackCnt = curTrack.reduce((t, trackIdx) => {
+                t += checkIsRight(stepIdx, trackIdx) ? 1 : 0;
+                return t;
+            }, 0);
+            if (trackCnt === curTrack.length) {
+                acc += 1;
+            }
+            return acc;
+        }, 0);
+        const totalBonusScore = (() => {
+            const correctCnt = Object.keys(quizData[stepIdx]).reduce((acc, quizIdx) => {
+                const isRight = checkIsRight(stepIdx, Number(quizIdx));
+                acc += isRight ? 1: 0;
+                return acc;
+            }, 0);
+            return correctCnt === Object.keys(quizData[stepIdx]).length ? 2 : 0;
+        })();
+
+        return basicScore + trackBonusScore + totalBonusScore;
+    }
 
     const render = () => {
-
-
         /** 퀴즈 고르기 **/
-        quizSelectBox.innerHTML = Object.keys(quizData[currStep]).reduce((acc, idx) => {
+        quizSelectBox.innerHTML = Object.keys(quizData[currStepIdx]).reduce((acc, idx) => {
             let resultClass = "";
-            const selected = quizData[currStep][idx].selected;
+            let selectedClass = currQuizIdx === Number(idx) ? " on" : "";
+            const selected = quizData[currStepIdx][idx].selected;
             if (selected > -1) {
-                resultClass = selected === quizData[currStep][idx].a ? " success" : " fail";
+                const isRight = checkIsRight(currStepIdx, Number(idx));
+                // resultClass = selected === quizData[currStep][idx].a ? " success" : " fail";
+                resultClass = isRight ? " success" : " fail";
             }
-            acc += `<button class="quiz-num${resultClass}" data-idx="${idx}">0${(Number(idx) + 1)}</button>`;
+            acc += `<button class="quiz-num${resultClass}${selectedClass}" data-idx="${idx}">0${(Number(idx) + 1)}</button>`;
             return acc;
         }, "");
 
@@ -182,16 +297,19 @@
         /** 퀴즈 제시 **/
 
         if (currQuizIdx > -1) {
-            console.log(111, currQuizIdx)
-            const currQuiz = quizData[currStep][currQuizIdx];
-            const {q, e, selected} = currQuiz;
-            let answerClass = "";
+
+            const currQuiz = quizData[currStepIdx][currQuizIdx];
+            const {q, e, a, selected} = currQuiz;
 
             quizBox.innerHTML = `
                 <div>${q}</div>
                 <div class="example-group">
                     ${e.reduce((acc, cur, idx) => {
-                acc += `<button class="example${selected === idx ? " on" : ""}" data-idx="${idx}"${Boolean(selected) ? " disabled" : ""}>${cur}</button>`;
+                const selectedClass = selected === idx ? " selected" : "";
+                const answerClass = (selected > -1 && idx === a) ? " answer" : "";
+                acc += `<button class="example${answerClass}${selectedClass}" data-idx="${idx}"${selected > -1 ? " disabled" : ""}>
+                            <span>${cur}</span>
+                        </button>`;
                 return acc;
             }, "")}
                 </div>
@@ -203,16 +321,16 @@
                     currQuiz.selected = Number(ex.dataset.idx); // 선택한 답 기록
                     render();
                 })
-            })
+            });
+
+
+            scoreEl.innerText = `${getScore(currStepIdx)}`;
         } else {
-            console.log(222)
             quizBox.innerHTML = `<div>퀴즈를 선택해주세요</div>`;
+            scoreEl.innerText = "빵"
         }
 
-        /** 정답 선택 **/
-        if (currQuizIdx > -1) {
-
-        }
+        /** 점수 계산 및 표시 **/
 
 
     }
