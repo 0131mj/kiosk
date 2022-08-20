@@ -48,6 +48,7 @@
             font-size: 2.5rem;
             padding-top: 1rem;
             font-family: 'LeferiBaseType-BoldA', sans-serif;
+            position: relative;
         }
 
         .quiz-num.on {
@@ -57,13 +58,41 @@
         }
 
         .success {
-            background: #3985a5;
-            color: #fff;
+            /*background: #3985a5;*/
         }
 
-        .fail {
-            background: red;
+        .success::after {
+            content: "o";
             color: #fff;
+            font-size: 7rem;
+            position: absolute;
+            background: rgba(0, 61, 171, 0.7);
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'LeferiPoint-WhiteA', sans-serif;
+            width: 100%;
+            height: calc(100% - 1rem);
+            padding-top: 1rem;
+        }
+
+        .fail::after {
+            content: "x";
+            color: #fff;
+            font-size: 7rem;
+            position: absolute;
+            background: rgba(255, 0, 0, 0.7);
+            left: 0;
+            top: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'LeferiPoint-WhiteA', sans-serif;
+            width: 100%;
+            height: calc(100% - 1rem);
+            padding-top: 1rem;
         }
 
         .example-group {
@@ -114,17 +143,14 @@
     <header class="title-header">퀴즈</header>
     <div style="height: 10vw; width: 10vw"></div>
     <section class="content-area">
-        1. 단계를 선택하세요.
-        <div id="step-box">
-            <button class="step" data-step="0">1단계</button>
-            <button class="step" data-step="1">2단계</button>
-            <!--            <button class="step" data-step="2">3단계</button>-->
-        </div>
-        2. 아래 문제를 선택하세요.
-        <div>점수 : <span id="score">0</span>점</div>
+
+        <div id="step-box"></div>
+
+        <div><span id="score">0</span></div>
         <section class="quiz-area">
             <div id="quiz-select-box"></div>
             <div id="quiz-box"></div>
+            <div id="complete-msg"></div>
         </section>
     </section>
 </main>
@@ -329,20 +355,110 @@
                 ],
                 a: 1,
             },
-        ]
+        ],
+        [
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+        ],
     ];
 
     let currStepIdx = 0;
     let currQuizIdx;
 
 
-    const stepBox = document.getElementById("step-box");
+    const quizStepBox = document.getElementById("step-box");
     const quizSelectBox = document.getElementById("quiz-select-box");
     const quizBox = document.getElementById("quiz-box");
     const scoreEl = document.getElementById("score");
 
-    const checkStageCleared = () => {
-    }
     const checkIsRight = (stepIdx, quizIdx) => {
         return quizData[stepIdx][quizIdx].a === quizData[stepIdx][quizIdx].selected;
     }
@@ -381,6 +497,12 @@
     const render = () => {
 
         /** 스텝 고르기 **/
+        quizStepBox.innerHTML = Object.keys(quizData).reduce((acc, cur) => {
+            const stepIdx = Number(cur);
+            const activeStepClass = currStepIdx === stepIdx ? " on" : "";
+            acc += `<button class="step${activeStepClass}" data-step="${stepIdx}">${stepIdx + 1}단계</button>`;
+            return acc;
+        }, "")
         const stepBtns = document.querySelectorAll(".step");
         stepBtns.forEach((stepBtn) => {
             const stepIdx = Number(stepBtn.dataset.step)
@@ -421,7 +543,7 @@
         /** 퀴즈 제시 **/
 
 
-        scoreEl.innerText = `${getScore(currStepIdx)}`;
+        scoreEl.innerText = `${currStepIdx+1}단계 점수 : ${getScore(currStepIdx)}점`;
 
         if (currQuizIdx > -1) {
 
