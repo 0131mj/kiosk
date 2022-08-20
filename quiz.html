@@ -16,12 +16,24 @@
             width: 100%
         }
 
+        .empty {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         #step-box {
             display: flex;
         }
 
         .step {
             padding: 5vw;
+        }
+
+        .step.on {
+            color: yellowgreen;
         }
 
         #quiz-select-box {
@@ -92,8 +104,8 @@
 
         #quiz-box {
             background: black;
-            width: 50vw;
-            height: 50vw;
+            width: 45vw;
+            height: 45vw;
         }
     </style>
 </head>
@@ -104,9 +116,9 @@
     <section class="content-area">
         1. 단계를 선택하세요.
         <div id="step-box">
-            <div class="step">1단계</div>
-            <div class="step">2단계</div>
-            <div class="step">3단계</div>
+            <button class="step" data-step="0">1단계</button>
+            <button class="step" data-step="1">2단계</button>
+            <!--            <button class="step" data-step="2">3단계</button>-->
         </div>
         2. 아래 문제를 선택하세요.
         <div>점수 : <span id="score">0</span>점</div>
@@ -133,98 +145,192 @@
         [0, 4, 8],
         [2, 4, 6]
     ]
-    const quizData = [[
-        {
-            q: "다음 중 전압의 표시단위는?",
-            e: [
-                "A",
-                "V",
-                "W",
-                "Hz"
-            ],
-            a: 1,
-        },
-        {
-            q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
-            e: [
-                "드 포르스트",
-                "랭뮤어",
-                "와트",
-                "플레밍"
-            ],
-            a: 3,
-        },
-        {
-            q: "다음 중 전압의 표시단위는?",
-            e: [
-                "A",
-                "V",
-                "W",
-                "Hz"
-            ],
-            a: 1,
-        },
-        {
-            q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
-            e: [
-                "드 포르스트",
-                "랭뮤어",
-                "와트",
-                "플레밍"
-            ],
-            a: 3,
-        },
-        {
-            q: "다음 중 전압의 표시단위는?",
-            e: [
-                "A",
-                "V",
-                "W",
-                "Hz"
-            ],
-            a: 1,
-        },
-        {
-            q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
-            e: [
-                "드 포르스트",
-                "랭뮤어",
-                "와트",
-                "플레밍"
-            ],
-            a: 3,
-        },
-        {
-            q: "다음 중 전압의 표시단위는?",
-            e: [
-                "A",
-                "V",
-                "W",
-                "Hz"
-            ],
-            a: 1,
-        },
-        {
-            q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
-            e: [
-                "드 포르스트",
-                "랭뮤어",
-                "와트",
-                "플레밍"
-            ],
-            a: 3,
-        },
-        {
-            q: "다음 중 전압의 표시단위는?",
-            e: [
-                "A",
-                "V",
-                "W",
-                "Hz"
-            ],
-            a: 1,
-        },
-    ]];
+    const quizData = [
+        [
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+        ],
+        [
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+            {
+                q: "에디슨효과를 이용하여 2극 진공관을 발명한 과학자는?",
+                e: [
+                    "드 포르스트",
+                    "랭뮤어",
+                    "와트",
+                    "플레밍"
+                ],
+                a: 3,
+            },
+            {
+                q: "다음 중 전압의 표시단위는?",
+                e: [
+                    "A",
+                    "V",
+                    "W",
+                    "Hz"
+                ],
+                a: 1,
+            },
+        ]
+    ];
 
     let currStepIdx = 0;
     let currQuizIdx;
@@ -262,7 +368,7 @@
         const totalBonusScore = (() => {
             const correctCnt = Object.keys(quizData[stepIdx]).reduce((acc, quizIdx) => {
                 const isRight = checkIsRight(stepIdx, Number(quizIdx));
-                acc += isRight ? 1: 0;
+                acc += isRight ? 1 : 0;
                 return acc;
             }, 0);
             return correctCnt === Object.keys(quizData[stepIdx]).length ? 2 : 0;
@@ -271,7 +377,25 @@
         return basicScore + trackBonusScore + totalBonusScore;
     }
 
+
     const render = () => {
+
+        /** 스텝 고르기 **/
+        const stepBtns = document.querySelectorAll(".step");
+        stepBtns.forEach((stepBtn) => {
+            const stepIdx = Number(stepBtn.dataset.step)
+            stepBtn.classList.remove("on");
+            if (stepIdx === currStepIdx) {
+                stepBtn.classList.add("on");
+            }
+            stepBtn.addEventListener("click", (e) => {
+                e.stopPropagation();
+                currStepIdx = stepIdx;
+                currQuizIdx = undefined;
+                render();
+            })
+        })
+
         /** 퀴즈 고르기 **/
         quizSelectBox.innerHTML = Object.keys(quizData[currStepIdx]).reduce((acc, idx) => {
             let resultClass = "";
@@ -295,6 +419,9 @@
         })
 
         /** 퀴즈 제시 **/
+
+
+        scoreEl.innerText = `${getScore(currStepIdx)}`;
 
         if (currQuizIdx > -1) {
 
@@ -322,12 +449,8 @@
                     render();
                 })
             });
-
-
-            scoreEl.innerText = `${getScore(currStepIdx)}`;
         } else {
-            quizBox.innerHTML = `<div>퀴즈를 선택해주세요</div>`;
-            scoreEl.innerText = "빵"
+            quizBox.innerHTML = `<div class="empty">퀴즈를 선택해주세요</div>`;
         }
 
         /** 점수 계산 및 표시 **/
