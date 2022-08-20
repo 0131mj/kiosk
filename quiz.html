@@ -103,6 +103,10 @@
 
         .example {
             display: flex;
+            width: 100%;
+            background: #333;
+            padding: 2vw 1vw;
+            margin: 0.1vw ;
         }
 
         .example:disabled span {
@@ -134,7 +138,15 @@
         #quiz-box {
             background: black;
             width: 45vw;
-            height: 45vw;
+            height: 60vw;
+            padding: 5vw;
+        }
+        #step-result{
+            height: 15vw;
+            background: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -150,7 +162,7 @@
         <section class="quiz-area">
             <div id="quiz-select-box"></div>
             <div id="quiz-box"></div>
-            <div id="complete-msg"></div>
+            <div id="step-result"></div>
         </section>
     </section>
 </main>
@@ -451,13 +463,13 @@
     ];
 
     let currStepIdx = 0;
-    let currQuizIdx;
-
+    let currQuizIdx = [undefined, undefined, undefined];
 
     const quizStepBox = document.getElementById("step-box");
     const quizSelectBox = document.getElementById("quiz-select-box");
     const quizBox = document.getElementById("quiz-box");
     const scoreEl = document.getElementById("score");
+    const stepResult = document.getElementById("step-result");
 
     const checkIsRight = (stepIdx, quizIdx) => {
         return quizData[stepIdx][quizIdx].a === quizData[stepIdx][quizIdx].selected;
@@ -493,6 +505,15 @@
         return basicScore + trackBonusScore + totalBonusScore;
     }
 
+    const checkIsStepCompleted = () => {
+        const solvedCnt = quizData[currStepIdx].reduce((acc, cur) => {
+            if (cur.selected > -1) {
+                acc += 1;
+            }
+            return acc;
+        }, 0);
+        return solvedCnt === Object.keys(quizData[currStepIdx]).length;
+    }
 
     const render = () => {
 
@@ -513,7 +534,7 @@
             stepBtn.addEventListener("click", (e) => {
                 e.stopPropagation();
                 currStepIdx = stepIdx;
-                currQuizIdx = undefined;
+                // currQuizIdx[currStepIdx] = undefined;
                 render();
             })
         })
@@ -521,7 +542,7 @@
         /** 퀴즈 고르기 **/
         quizSelectBox.innerHTML = Object.keys(quizData[currStepIdx]).reduce((acc, idx) => {
             let resultClass = "";
-            let selectedClass = currQuizIdx === Number(idx) ? " on" : "";
+            let selectedClass = currQuizIdx[currStepIdx] === Number(idx) ? " on" : "";
             const selected = quizData[currStepIdx][idx].selected;
             if (selected > -1) {
                 const isRight = checkIsRight(currStepIdx, Number(idx));
@@ -535,21 +556,22 @@
         document.querySelectorAll('.quiz-num').forEach((quizNumBtn) => {
             quizNumBtn.addEventListener("click", (e) => {
                 e.stopPropagation();
-                currQuizIdx = Number(quizNumBtn.dataset.idx);
+                currQuizIdx[currStepIdx] = Number(quizNumBtn.dataset.idx);
                 render();
             })
         })
 
+        /** 퀴즈 점수 **/
+        const score = getScore(currStepIdx);
+        scoreEl.innerText = `${currStepIdx + 1}단계 점수 : ${score}점`;
+
         /** 퀴즈 제시 **/
-
-
-        scoreEl.innerText = `${currStepIdx+1}단계 점수 : ${getScore(currStepIdx)}점`;
-
-        if (currQuizIdx > -1) {
-
-            const currQuiz = quizData[currStepIdx][currQuizIdx];
+        const isStepSelected = currQuizIdx[currStepIdx] > -1;
+        if (!isStepSelected) {
+            quizBox.innerHTML = `<div class="empty">퀴즈를 선택해주세요</div>`;
+        } else {
+            const currQuiz = quizData[currStepIdx][currQuizIdx[currStepIdx]];
             const {q, e, a, selected} = currQuiz;
-
             quizBox.innerHTML = `
                 <div>${q}</div>
                 <div class="example-group">
@@ -571,12 +593,10 @@
                     render();
                 })
             });
-        } else {
-            quizBox.innerHTML = `<div class="empty">퀴즈를 선택해주세요</div>`;
         }
 
         /** 점수 계산 및 표시 **/
-
+        stepResult.innerHTML =  checkIsStepCompleted() ? `<p>빙고퀴즈${currStepIdx+1}단계가 완료되었습니다.<br/> 고객님의 점수는 ${getScore(currStepIdx)}점 입니다.</p>` : "";
 
     }
 
