@@ -8,18 +8,112 @@
     <title>아름다운 경남</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
+        #place-group {
+            display: flex;
+            flex-wrap: wrap;
+        }
 
+        .place-btn {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+            width: 30%;
+        }
     </style>
 </head>
 <body>
 <main>
     <header class="title-header">아름다운 경남</header>
     <section class="content-area">
-        내용 작성 예정중
+        명소를 선택하세요.
+        <div id="place-name"></div>
+        <template id="place-group"></template>
+
+        기본정보
+        <dl id="place-basic-info"></dl>
     </section>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
+<script>
+    let placeId = 1;
+    const FACILITIES = ["장애인편의시설", "놀이시설", "수유실", "유모차", "자전거", "와이파이"];
+    const placeData = [
+        {
+            name: "주남저수지",
+            info: {
+                address: "경상남도 창원시 의창구 동읍 주남로101번길 26",
+                manager: "창원시 푸른도시사업소 주남저수지과",
+                tel: "055-225-3481",
+                facility: [0, 4, 5]
+            },
+        },
+        {
+            name: "거제식물원 정글돔",
+            info: {
+                address: "경상남도 거제시 거제면 거제남서로 3595",
+                manager: "거제시",
+                tel: "055-639-6991",
+                facility: []
+            },
+        },
+        {
+            name: "부곡온천",
+            info: {
+                address: "부곡온천(경상남도 창녕군 부곡면 온천중앙로 77)",
+                manager: "창녕군청 온천담당",
+                tel: "055-530-1591",
+                facility: []
+            },
+        }
+    ];
+
+    const placeName = document.getElementById("place-name");
+    const placeBasicInfoEl = document.getElementById("place-basic-info");
+
+    const selectPlace = (placeId) => {
+        const {name, info} = placeData[placeId];
+        placeName.innerText = name;
+        const {address, facility, manager, tel} = info;
+        placeBasicInfoEl.innerHTML = `
+            <dt>주소</dt><dd>${address}</dd>
+            <dt>전화번호</dt><dd>${tel}</dd>
+            <dt>담당기관</dt><dd>${manager}</dd>
+            <dt>편의시설</dt>
+            <dd>${FACILITIES.reduce((acc, cur, idx) => {
+                acc += cur + `${facility.includes(idx) ? "(O)": "(x)"}`;
+                return acc;
+            }, "")}
+            </dd>
+        `;
+    }
+
+    /** 버튼그룹 생성 **/
+    const createBtnGroup = () => {
+        const target = document.getElementById("place-group");
+        const newBtnGroupWrapper = document.createElement("div");
+        newBtnGroupWrapper.setAttribute("id", "place-group");
+        const newBtnGroup = placeData.reduce((acc, {name, info}, idx) => {
+            const btn = document.createElement("button");
+            btn.innerHTML = `${name}`;
+            btn.classList.add("place-btn");
+            btn.addEventListener("click", () => {
+                selectPlace(idx)
+            })
+            newBtnGroupWrapper.appendChild(btn);
+            return acc;
+        }, newBtnGroupWrapper);
+        target.replaceWith(newBtnGroup);
+    }
+
+    selectPlace("0");
+    createBtnGroup();
+
+
+    /** 장소정보 변경 **/
+
+
+</script>
 </body>
 </html>
