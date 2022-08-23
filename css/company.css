@@ -36,7 +36,6 @@
 }
 
 
-
 /** 본사 비전 **/
 .ho-slogan {
     font-size: 2rem;
@@ -124,12 +123,18 @@ img.hq-slogan {
 }
 
 .hq-history-content {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+}
+
+.hq-history-text {
+    flex-grow: 1;
+    word-break: keep-all;
 }
 
 .hq-history-content img {
-    width: 14vw;
+    width: 21vw;
+    flex-shrink: 0;
 }
 
 /* 사업소 소개*/

@@ -54,6 +54,7 @@ window.addEventListener("DOMContentLoaded", renderControlMenu);
 const globalMenuObj = {
     ceo: "ceo 인사말",
     vision: "비전",
+    history: "연혁",
     company: "본사소개",
     quarter: "본부소개",
     department: "부서소개",
