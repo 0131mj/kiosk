@@ -280,8 +280,12 @@ a {
 }
 
 .content-nav .menu {
-    padding: 2vw;
+    padding: 2.5vw 5vw 2vw;
     opacity: 0.5;
+    border-radius: 1vw;
+    background: #555;
+    margin: 1vw;
+    box-shadow: 0 0.2vw 0 rgba(255,255,255,0.34) inset;
 }
 
 .content-nav .menu.on {
