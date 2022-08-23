@@ -149,8 +149,8 @@ img.hq-slogan {
 }
 
 #office-map {
-    width: 74vw;
-    height: 43.4vw;
+    width:  calc(74vw * 1.25);
+    height:  calc(43.4vw * 1.3);
 }
 
 .office-title {

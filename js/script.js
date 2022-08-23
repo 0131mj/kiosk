@@ -57,6 +57,7 @@ const globalMenuObj = {
     history: "연혁",
     company: "본사소개",
     quarter: "본부소개",
+    office:"관할 사업소",
     department: "부서소개",
     support: "지원사업",
     complains: "민원안내",
