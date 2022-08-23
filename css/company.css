@@ -1,6 +1,14 @@
 /** 본사 - 소개 **/
 #ho-introduce {
     word-break: keep-all;
+    font-size: 1.6rem;
+    font-family: 'LeferiPoint-WhiteA', sans-serif;
+    padding-top: 5vw;
+}
+
+#ho-introduce span {
+    color: var(--point-color);
+    font-family: 'LeferiBaseType-RegularA', sans-serif;
 }
 
 .ceo-signature {
@@ -17,18 +25,17 @@
 }
 
 .ceo-pic {
-    max-width: 15vw;
+    width: 20vw;
+    max-width: 20vw;
     margin-right: 2vw;
 }
 
 .ceo-title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
+    line-height: 4rem;
 }
 
-#ho-introduce span {
-    color: var(--point-color);
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
-}
+
 
 /** 본사 비전 **/
 .ho-slogan {

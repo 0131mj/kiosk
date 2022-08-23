@@ -40,6 +40,10 @@ em {
     width: 20vw;
 }
 
+.bold {
+    font-family: 'LeferiBaseType-BoldA', sans-serif;
+}
+
 .title-header {
     text-align: center;
     background: rgb(3,49,88);
