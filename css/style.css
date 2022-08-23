@@ -27,6 +27,21 @@ ol {
     list-style: none;
 }
 
+
+html {
+    font-size: 2vw;
+    font-family: 'LeferiPoint-WhiteA', sans-serif;
+}
+
+body {
+    /*background: #444;*/
+    /*background: #113B63;*/
+    /*background: #0D3563;*/
+    background: linear-gradient(rgb(10,22,46), #0D3563);
+    color: white;
+    display: flex;
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -73,21 +88,6 @@ em {
     width: 18vw;
     padding: 2vw 1vw 1vw 1vw;
 }
-
-html {
-    font-size: 2vw;
-    font-family: 'LeferiPoint-WhiteA', sans-serif;
-}
-
-body {
-    /*background: #444;*/
-    /*background: #113B63;*/
-    /*background: #0D3563;*/
-    background: linear-gradient(rgb(10,22,46), #0D3563);
-    color: white;
-    display: flex;
-}
-
 
 .flex-row {
     display: flex;

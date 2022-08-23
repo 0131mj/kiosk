@@ -1,119 +1,248 @@
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>아름다운 경남</title>
+    <meta charset="utf-8"/>
+    <title>Swiper demo</title>
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
+    />
     <link rel="stylesheet" href="./css/style.css">
+    <!-- Link Swiper's CSS -->
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
+    />
+
     <style>
-        #place-group {
-            display: flex;
-            flex-wrap: wrap;
+        .content-area {
+            position: relative;
+            width: 100vw;
         }
 
-        .place-btn {
+        .slide-wrapper {
+            padding: 3vw;
+
+        }
+
+        .swiper-thumbs {
+            background: black;
+            margin-top: 5vw;
+        }
+    </style>
+    <!-- Demo styles -->
+    <style>
+        html,
+        body {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            /*background: #eee;*/
+            /*font-family: Helvetica Neue, Helvetica, Arial, sans-serif;*/
+            /*font-size: 14px;*/
+            /*color: #000;*/
+            margin: 0;
+            padding: 0;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            /* Center slide text vertically */
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
             display: flex;
-            flex-direction: column;
-            border: 1px solid #eee;
-            width: 30%;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        body {
+            /*background: #000;*/
+            /*color: #000;*/
+        }
+
+        .swiper {
+            width: 100%;
+            height: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .swiper-slide {
+            background-size: cover;
+            background-position: center;
+        }
+
+        .mySwiper2 {
+            height: 80%;
+            width: 100%;
+        }
+
+        .mySwiper {
+            height: 20%;
+            box-sizing: border-box;
+            padding: 10px 0;
+        }
+
+        .mySwiper .swiper-slide {
+            width: 25%;
+            height: 100%;
+            opacity: 0.4;
+        }
+
+        .mySwiper .swiper-slide-thumb-active {
+            opacity: 1;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     </style>
 </head>
+
 <body>
 <main>
-    <header class="title-header">아름다운 경남</header>
-    <section class="content-area">
-        명소를 선택하세요.
-        <div id="place-name"></div>
-        <template id="place-group"></template>
-
-        기본정보
-        <dl id="place-basic-info"></dl>
+    <header class="title-header">
+        아름다운 경남
+    </header>
+    <section id="company-content" class="content-area">
+        <div class="slide-wrapper">
+            <div
+                    style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+                    class="swiper mySwiper2"
+            >
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-1.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-2.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-3.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-4.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-5.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-6.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-7.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-8.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-9.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-10.jpg"/>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+            <div thumbsSlider="" class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-1.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-2.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-3.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-4.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-5.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-6.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-7.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-8.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-9.jpg"/>
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://swiperjs.com/demos/images/nature-10.jpg"/>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
+<!-- Swiper -->
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
 <script>
-    let placeId = 1;
-    const FACILITIES = ["장애인편의시설", "놀이시설", "수유실", "유모차", "자전거", "와이파이"];
-    const placeData = [
-        {
-            name: "주남저수지",
-            info: {
-                address: "경상남도 창원시 의창구 동읍 주남로101번길 26",
-                manager: "창원시 푸른도시사업소 주남저수지과",
-                tel: "055-225-3481",
-                facility: [0, 4, 5]
-            },
+    const swiper = new Swiper(".mySwiper", {
+        loop: true,
+        spaceBetween: 10,
+        slidesPerView: 4,
+        freeMode: true,
+        watchSlidesProgress: true,
+    });
+    const swiper2 = new Swiper(".mySwiper2", {
+        loop: true,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
         },
-        {
-            name: "거제식물원 정글돔",
-            info: {
-                address: "경상남도 거제시 거제면 거제남서로 3595",
-                manager: "거제시",
-                tel: "055-639-6991",
-                facility: []
-            },
+        thumbs: {
+            swiper: swiper,
         },
-        {
-            name: "부곡온천",
-            info: {
-                address: "부곡온천(경상남도 창녕군 부곡면 온천중앙로 77)",
-                manager: "창녕군청 온천담당",
-                tel: "055-530-1591",
-                facility: []
-            },
-        }
-    ];
-
-    const placeName = document.getElementById("place-name");
-    const placeBasicInfoEl = document.getElementById("place-basic-info");
-
-    const selectPlace = (placeId) => {
-        const {name, info} = placeData[placeId];
-        placeName.innerText = name;
-        const {address, facility, manager, tel} = info;
-        placeBasicInfoEl.innerHTML = `
-            <dt>주소</dt><dd>${address}</dd>
-            <dt>전화번호</dt><dd>${tel}</dd>
-            <dt>담당기관</dt><dd>${manager}</dd>
-            <dt>편의시설</dt>
-            <dd>${FACILITIES.reduce((acc, cur, idx) => {
-                acc += cur + `${facility.includes(idx) ? "(O)": "(x)"}`;
-                return acc;
-            }, "")}
-            </dd>
-        `;
-    }
-
-    /** 버튼그룹 생성 **/
-    const createBtnGroup = () => {
-        const target = document.getElementById("place-group");
-        const newBtnGroupWrapper = document.createElement("div");
-        newBtnGroupWrapper.setAttribute("id", "place-group");
-        const newBtnGroup = placeData.reduce((acc, {name, info}, idx) => {
-            const btn = document.createElement("button");
-            btn.innerHTML = `${name}`;
-            btn.classList.add("place-btn");
-            btn.addEventListener("click", () => {
-                selectPlace(idx)
-            })
-            newBtnGroupWrapper.appendChild(btn);
-            return acc;
-        }, newBtnGroupWrapper);
-        target.replaceWith(newBtnGroup);
-    }
-
-    selectPlace("0");
-    createBtnGroup();
-
-
-    /** 장소정보 변경 **/
-
-
+    });
+</script>
+<script>
+    document.querySelector(".slide-wrapper").addEventListener("click", (e) => {
+        e.stopPropagation()
+    })
 </script>
 </body>
 </html>
