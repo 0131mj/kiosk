@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="utf-8"/>
-    <title>Swiper demo</title>
+    <title>아름다운 경남</title>
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
@@ -14,22 +14,7 @@
             href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
 
-    <style>
-        .content-area {
-            position: relative;
-            width: 100vw;
-        }
 
-        .slide-wrapper {
-            padding: 3vw;
-
-        }
-
-        .swiper-thumbs {
-            background: black;
-            margin-top: 5vw;
-        }
-    </style>
     <!-- Demo styles -->
     <style>
         html,
@@ -124,6 +109,32 @@
             object-fit: cover;
         }
     </style>
+    <style>
+        .content-area {
+            position: relative;
+            width: 100vw;
+        }
+
+        .slide-wrapper {
+            padding: 3vw;
+
+        }
+
+        .swiper-thumbs {
+            background: black;
+            margin-top: 5vw;
+        }
+
+        .swiper-slide {
+            background: transparent;
+            flex-direction: column;
+        }
+
+        .swiper-slide > img + span {
+            font-size: 1rem;
+            padding: 1vw;
+        }
+    </style>
 </head>
 
 <body>
@@ -139,35 +150,45 @@
             >
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-1.jpg"/>
+                        <img src="./img/beauty/0_0.png" alt="주남저수지"/>
+                        <span>주남저수지</span>
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-2.jpg"/>
+                        <img src="./img/beauty/1_0.png" alt="거제식물원 정글돔"/>
+                        <span>거제식물원 정글돔</span>
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-3.jpg"/>
+                        <img src="./img/beauty/2_0.jpg" alt="부곡온천"/>
+                        <span>부곡온천</span>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-4.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-5.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-6.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-7.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-8.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-9.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-10.jpg"/>
-                    </div>
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-4.jpg"/>-->
+<!--                        <span>감악산</span>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-5.jpg"/>-->
+<!--                        <span>연꽃테마파크</span>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-6.jpg"/>-->
+<!--                        <span>남일대해수욕장과 코끼리바위</span>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-7.jpg"/>-->
+<!--                        <span>사천바다케이블카</span>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-8.jpg"/>-->
+<!--                        <span>남해 독일마을</span>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-9.jpg"/>-->
+<!--                        <span>바람의 언덕</span>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-10.jpg"/>-->
+<!--                        <span>한려해상국립공원</span>-->
+<!--                    </div>-->
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -175,35 +196,35 @@
             <div thumbsSlider="" class="swiper mySwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-1.jpg"/>
+                        <img src="./img/beauty/0_0.png" alt="주남저수지"/>
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-2.jpg"/>
+                        <img src="./img/beauty/1_0.png" alt="거제식물원 정글돔"/>
                     </div>
                     <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-3.jpg"/>
+                        <img src="./img/beauty/2_0.jpg" alt="부곡온천"/>
                     </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-4.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-5.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-6.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-7.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-8.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-9.jpg"/>
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="https://swiperjs.com/demos/images/nature-10.jpg"/>
-                    </div>
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-4.jpg"/>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-5.jpg"/>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-6.jpg"/>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-7.jpg"/>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-8.jpg"/>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-9.jpg"/>-->
+<!--                    </div>-->
+<!--                    <div class="swiper-slide">-->
+<!--                        <img src="https://swiperjs.com/demos/images/nature-10.jpg"/>-->
+<!--                    </div>-->
                 </div>
             </div>
         </div>
@@ -238,6 +259,9 @@
             swiper: swiper,
         },
     });
+    swiper2.on("click", (e) => {
+        console.log("AA", e)
+    })
 </script>
 <script>
     document.querySelector(".slide-wrapper").addEventListener("click", (e) => {
