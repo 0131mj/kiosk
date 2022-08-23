@@ -63,7 +63,7 @@ const globalMenuObj = {
     photo: "기념촬영",
     discuss: "회의내역",
     manager: "담당자 찾기",
-    tech: "신기술",
+    tech: "전력 신기술",
     quiz: "퀴즈",
     beauty: "아름다운 경남",
     index: "홈",

@@ -2,10 +2,10 @@ const companyNav = document.getElementById("company-nav");
 const companyMenu = {
     car: "전기차충전사업",
     sun: "태양광 발전사업",
-    city: "스마트시티사업",
+    // city: "스마트시티사업",
     green: "그린수소사업",
-    ocean: "해상풍력사업",
-    carbon: "탄소중립사업",
+    // ocean: "해상풍력사업",
+    // carbon: "탄소중립사업",
 }
 
 const PAGE = "tech";
