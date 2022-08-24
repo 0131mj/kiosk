@@ -52,16 +52,16 @@ const renderControlMenu = () => {
 window.addEventListener("DOMContentLoaded", renderControlMenu);
 
 const globalMenuObj = {
-    ceo: "ceo 인사말",
+    ceo: "C E O 인사말",
     vision: "회사 비전",
     history: "회사 연혁",
     // company: "본사소개",
     // quarter: "본부소개",
     office:"관할 사업소",
     // department: "부서소개",
-    support: "지원사업",
+    support: "지원사업 안내",
     // complains: "민원안내",
-    photo: "사진촬영",
+    photo: "사진 촬영",
     // discuss: "회의내역",
     // manager: "담당자 찾기",
     tech: "전력 신기술",

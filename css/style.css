@@ -1,4 +1,4 @@
-:root{
+:root {
     --point-color: #ffd400
 }
 
@@ -37,7 +37,7 @@ body {
     /*background: #444;*/
     /*background: #113B63;*/
     /*background: #0D3563;*/
-    background: linear-gradient(rgb(10,22,46), #0D3563);
+    background: linear-gradient(rgb(10, 22, 46), #0D3563);
     color: white;
     display: flex;
 }
@@ -51,7 +51,7 @@ em {
     font-style: normal;
 }
 
-#logo{
+#logo {
     width: 20vw;
 }
 
@@ -61,13 +61,14 @@ em {
 
 .title-header {
     text-align: center;
-    background: rgb(3,49,88);
+    background: rgb(3, 49, 88);
     padding: 3.5vw 2.5vw 2.5vw 2.5vw;
     width: 100%;
     font-size: 2rem;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
     position: relative;
 }
+
 .header-control-btn {
     position: absolute;
     top: 0;
@@ -78,6 +79,7 @@ em {
     font-size: 1.5rem;
     word-break: keep-all;
 }
+
 .header-home-btn {
     left: 0;
     padding: 0 4vw;
@@ -141,14 +143,13 @@ main {
 }
 
 .global-menu-panel {
-    background: black;
+    background: white;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     width: 80vw;
-    border-radius: 1vw;
+    border-radius: 2vw;
     overflow: hidden;
-    opacity: 0.9;
     font-size: 1.1rem;
     margin-bottom: 20vw;
 }
@@ -158,27 +159,70 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
+    background: 5vw;
+    padding: 4vw;
 }
 
 .global-menu {
     /*width: 25%;*/
-    width: 33.33333%;
+    width: 20vw;
+    height: 20vw;
     background: #333;
-    border: 1px solid black;
+    border: 1px solid #eee;
     box-sizing: border-box;
-    font-size: 1.3rem;
+    font-size: 2.2rem;
     word-break: keep-all;
-    height: 16vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 0.5rem;
+    padding: 1vw 2vw 0.5vw;
+    margin: 1.5vw;
+    border-radius: 3vw;
+    color: black;
+    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    box-shadow: 0 0.4vw 0 rgba(255, 255, 255, 0.34) inset;
 }
+
+.global-menu:nth-child(1) {
+    background-color: rgb(91, 155, 213);
+}
+
+.global-menu:nth-child(2) {
+    background-color: rgb(146, 208, 80);
+}
+
+.global-menu:nth-child(3) {
+    background-color: rgb(255, 192, 0);
+}
+
+.global-menu:nth-child(4) {
+    background-color: rgb(0, 176, 240);
+}
+
+.global-menu:nth-child(5) {
+    background-color: rgb(244, 177, 131);
+}
+.global-menu:nth-child(6) {
+    background-color: rgb(143, 170, 220);
+}
+.global-menu:nth-child(7) {
+    background-color: rgb(255, 217, 102);
+}
+.global-menu:nth-child(8) {
+    background-color: rgb(0, 176, 80);
+}
+
+.global-menu:nth-child(9) {
+    background-color: rgb(200, 200, 200);
+}
+
+
 
 .global-menu-close-btn {
     background: black;
     padding: 1rem;
     text-align: center;
+    font-size: 2rem;
 }
 
 a, button {
@@ -219,26 +263,30 @@ a {
     border-top-left-radius: 2vw;
     border-bottom-left-radius: 2vw;
 }
-#control-spread-btn{
+
+#control-spread-btn {
     display: none;
 }
-.control-menus.fold{
+
+.control-menus.fold {
     height: 6vw;
     width: 6vw;
     top: 50%;
     z-index: 1;
 }
 
-.control-menus.fold #control-spread-btn{
+.control-menus.fold #control-spread-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3rem;
 }
+
 .control-menus.fold .control-menu {
     display: none;
 }
-#control-spread-btn{
+
+#control-spread-btn {
     font-size: 2rem;
 }
 
@@ -251,6 +299,7 @@ a {
     height: 4vw;
     width: 4vw;
 }
+
 .control-menu span {
     width: 0.8vw;
     height: 0.8vw;
@@ -283,14 +332,14 @@ a {
     border-radius: 1vw;
     background: #555;
     margin: 1vw;
-    box-shadow: 0 0.2vw 0 rgba(255,255,255,0.34) inset;
+    box-shadow: 0 0.2vw 0 rgba(255, 255, 255, 0.34) inset;
     font-family: 'LeferiBaseType-RegularA', sans-serif;
     color: #bbb;
 }
 
 .content-nav .menu.on {
     background: #333;
-    box-shadow: 0 -0.2vw 0 rgba(255,255,255,0.34) inset;
+    box-shadow: 0 -0.2vw 0 rgba(255, 255, 255, 0.34) inset;
     color: #c0ebff;
 }
 
