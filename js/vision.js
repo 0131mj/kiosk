@@ -1,7 +1,7 @@
 const companyNav = document.getElementById("company-nav");
 const companyMenu = {
-    ho: "본사 비전",
     hq: "본부 비전",
+    ho: "본사 비전",
 }
 
 /** 현재 메뉴 결정 **/
