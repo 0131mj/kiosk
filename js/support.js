@@ -1,8 +1,8 @@
 const companyNav = document.getElementById("company-nav");
 const companyMenu = {
-    root: "뿌리기업",
-    efficiency: "효율화",
-    trans: "송변전설비",
+    high: "고효율 가전제품 구매비용 지원",
+    efficiency: "에너지효율향상 사업",
+    cash: "에너지 캐쉬백",
     power: "파워체크"
 }
 
@@ -30,10 +30,4 @@ document.querySelectorAll('a').forEach(a => {
     })
 })
 
-function loadHTML() {
-    fetch(`./content_support/${curMenu}.html`)
-        .then(response => response.text())
-        .then(text => document.getElementById('company-content').innerHTML = text);
-}
-
-loadHTML();
+document.getElementById('company-content').innerHTML = `<img src="./img/support_img/${curMenu}.JPG" style="max-height: 70vh; max-width: 100%" />`
