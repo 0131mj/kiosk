@@ -274,23 +274,24 @@ a {
 }
 
 .content-nav .menus {
-    padding: 0 2vw;
     justify-content: center;
     font-size: 1.8rem;
 }
 
 .content-nav .menu {
-    padding: 2.5vw 5vw 2vw;
-    opacity: 0.5;
+    padding: 2.5vw 2.5vw 1.5vw;
     border-radius: 1vw;
     background: #555;
     margin: 1vw;
     box-shadow: 0 0.2vw 0 rgba(255,255,255,0.34) inset;
+    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    color: #bbb;
 }
 
 .content-nav .menu.on {
-    opacity: 1;
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    background: #333;
+    box-shadow: 0 -0.2vw 0 rgba(255,255,255,0.34) inset;
+    color: #c0ebff;
 }
 
 .content-nav .sub-menus {
