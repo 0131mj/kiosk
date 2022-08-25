@@ -55,7 +55,7 @@ const setOffice = () => {
         nameEl2.innerText = name;
         addressEl.innerText = address;
         officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.gif")`;
-        orgEl.setAttribute("src", `./img/hq_org/${idx}.jpg`);
+        orgEl.style.backgroundImage = `url(./img/hq_org/${idx}.jpg)`;
         officeImg.setAttribute("src",`./img/office/${idx}.png`)
     }
     const officeBtn = document.querySelectorAll(".office-btn");

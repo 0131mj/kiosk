@@ -17,12 +17,18 @@
     <template id="company-nav"></template>
     <section id="company-content" class="content-area">
         <style>
+
             .office-org-bg {
-                background: #fff;
-                padding: 2vw;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-bottom: 5vw;
+                height: 42vw;
+                background-size: contain;
+                background-color: #fff;
+                background-repeat: no-repeat;
+                background-position: center;
+                border: 2vw solid #fff;
             }
 
             #office-map {
@@ -77,12 +83,22 @@
             .content-area {
                 padding: 5vw 4vw;
             }
+
+            p, h4 {
+                margin: 0 0 1.5vw
+            }
+
+            .office-introduce img {
+                height: 100%;
+            }
         </style>
         <div class="office-introduce">
             <p>지도에서 사업소를 선택하세요.</p>
             <div id="office-map"></div>
             <h3 id="office-name" class="office-title">경남본부 직할</h3>
             <div>
+                <h4>조직현황</h4>
+                <div class="office-org-bg" id="office-org"></div>
                 <h4>기본 정보</h4>
                 <div style="display: flex; align-items: center">
                     <img id="office-img" src="./img/office/1.png" alt="경남본부 직할">
@@ -94,10 +110,6 @@
                         <dt>대표번호</dt>
                         <dd id="office-tel">055-123</dd>
                     </dl>
-                </div>
-                <h4>조직현황</h4>
-                <div class="office-org-bg">
-                    <img id="office-org" alt="조직현황"/>
                 </div>
             </div>
         </div>
