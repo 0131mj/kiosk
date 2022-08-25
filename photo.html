@@ -8,6 +8,26 @@
     <title>사진촬영</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/photo.css">
+    <style>
+        #progress-bar {
+            display: flex;
+            padding: .8vw;
+            border: .3vw solid yellow;
+            border-radius: 1.5vw;
+            margin-top: 2vw;
+        }
+
+        .progress-cell {
+            background-color: yellow;
+            width: 1.5vw;
+            height: 3vw;
+            margin: 0.2vw
+        }
+
+        .progress-cell.off {
+            background-color: black;
+        }
+    </style>
 </head>
 <body>
 <main>
@@ -26,7 +46,7 @@
                         <div class="photo-bg bg-01"></div>
                         한전본사
                     </button>
-                    <button data-bg="02"  class="photo-bg-btn">
+                    <button data-bg="02" class="photo-bg-btn">
                         <div class="photo-bg bg-02"></div>
                         로망스 다리
                     </button>
@@ -40,45 +60,61 @@
     </div>
     <div id="photo-countdown"></div>
     <div class="photo-confirm-modal hide">
-            <div class="photo-confirm-title">촬영 완료</div>
-            <div class="photo bg-01">
-                <img src="./img/user.png" alt="샘플" class="sample-human">
-            </div>
-            <div class="photo-confirm-description">
-                촬영이 완료되었습니다.<br/>
-                사진을 받으실 휴대폰 번호를 입력해주세요.
-            </div>
-            <input id="phone-num-input-field" class="phone-num" value="010" placeholder="휴대폰 번호 입력" readonly />
-            <div class="dial">
-                <button class="num-key">1</button>
-                <button class="num-key">2</button>
-                <button class="num-key">3</button>
-                <button class="num-key">4</button>
-                <button class="num-key">5</button>
-                <button class="num-key">6</button>
-                <button class="num-key">7</button>
-                <button class="num-key">8</button>
-                <button class="num-key">9</button>
-                <button id="clear-key">모두<br/>지우기</button>
-                <button class="num-key">0</button>
-                <button id="back-key"><-</button>
-            </div>
-            <button id="send-btn">
-                전송하기
-            </button>
-            <button id="photo-cancel-btn">
-                취소
-            </button>
-            <div class="auto-cancel-description">
-                10초간 입력이 없으면 HOME 화면으로 돌아갑니다.
-            </div>
+        <div class="photo-confirm-title">촬영 완료</div>
+        <div class="photo bg-01">
+            <img src="./img/user.png" alt="샘플" class="sample-human">
         </div>
+        <div class="photo-confirm-description">
+            촬영이 완료되었습니다.<br/>
+            사진을 받으실 휴대폰 번호를 입력해주세요.
+        </div>
+        <input id="phone-num-input-field" class="phone-num" value="010" placeholder="휴대폰 번호 입력" readonly/>
+        <div class="dial">
+            <button class="num-key">1</button>
+            <button class="num-key">2</button>
+            <button class="num-key">3</button>
+            <button class="num-key">4</button>
+            <button class="num-key">5</button>
+            <button class="num-key">6</button>
+            <button class="num-key">7</button>
+            <button class="num-key">8</button>
+            <button class="num-key">9</button>
+            <button id="clear-key">모두<br/>지우기</button>
+            <button class="num-key">0</button>
+            <button id="back-key"><-</button>
+        </div>
+        <button id="send-btn">
+            전송하기
+        </button>
+        <button id="photo-cancel-btn">
+            취소
+        </button>
+        <div class="auto-cancel-description">
+            10초간 입력이 없으면 HOME 화면으로 돌아갑니다.
+        </div>
+    </div>
 </main>
 <div class="photo-send-result-modal-bg dimmed hide">
     <div class="photo-send-result-modal">
         <div id="result-title"></div>
         <div id="result-msg"></div>
-        <div class="auto-close"><span id="remain_sec">5</span>초 후에 자동으로 창이 닫힙니다.</div>
+        <div class="auto-close"><span id="remain_sec">7</span>초 후에 자동으로 창이 닫힙니다.</div>
+        <div id="progress-bar">
+            <div class="progress-cell"></div>
+            <div class="progress-cell"></div>
+
+            <div class="progress-cell"></div>
+            <div class="progress-cell"></div>
+
+            <div class="progress-cell"></div>
+            <div class="progress-cell"></div>
+
+            <div class="progress-cell"></div>
+            <div class="progress-cell"></div>
+
+            <div class="progress-cell"></div>
+            <div class="progress-cell"></div>
+        </div>
     </div>
 </div>
 <template id="global-menu-panel"></template>
@@ -104,6 +140,8 @@
 
     const photoCountdown = document.getElementById("photo-countdown");
 
+    const progressCells = document.querySelectorAll(".progress-cell");
+
 
     const resetNumber = () => {
         phoneNum.value = "010";
@@ -128,7 +166,7 @@
         photoSettingBox.classList.add("hide");
         document.body.classList.add("on");
         const shut = setTimeout(() => {
-            let cnt = 5;
+            let cnt = 7;
             photoCountdown.innerText = `${cnt}`;
             const countDown = setInterval(() => {
                 cnt -= 1;
@@ -178,34 +216,40 @@
         const resultInfo = {
             success: {
                 title: "사진전송 예약완료",
-                msg: `아래 번호로 사진을 전송해 드리겠습니다.\n ${phoneNum.value} \n 이용해 주셔서 감사합니다.`
+                msg: `아래 번호로 사진을 전송해 드리겠습니다.<br/> ${phoneNum.value} <br/> 이용해 주셔서 감사합니다.`
             },
             invalid: {
                 title: "유효하지 않은 휴대폰 번호",
-                msg: "휴대폰 번호가 올바르지 않습니다. \n 다시 입력해주세요."
+                msg: "휴대폰 번호가 올바르지 않습니다. <br/> 다시 입력해주세요."
             },
             error: {
                 title: "에러 발생",
-                msg: `전송 도중 문제가 발생했습니다.\n 관리자에게 문의해주세요.`
+                msg: `전송 도중 문제가 발생했습니다.<br/> 관리자에게 문의해주세요.`
             }
         }
         return resultInfo[type];
     }
 
     const autoClose = (isSuccess = false) => {
-        let cnt = 5;
+        let cnt = 10;
         const countDown = setInterval(() => {
             cnt -= 1;
-            document.getElementById("remain_sec").innerText = cnt;
+            document.getElementById("remain_sec").innerText = `${Math.ceil(cnt / 2)}`;
+            if (progressCells[cnt]) {
+                progressCells[cnt].classList.add("off");
+            }
             if (cnt === 0) {
+                progressCells.forEach((cell)=>{
+                    cell.classList.remove("off")
+                })
                 clearInterval(countDown);
                 closeResultModal();
-                document.getElementById("remain_sec").innerText = "5";
+                document.getElementById("remain_sec").innerText = "7";
                 if (isSuccess) {
                     closePhotoConfirmModal();
                 }
             }
-        }, 1000)
+        }, 500)
     }
 
     const showResult = () => {
@@ -227,7 +271,7 @@
 
         const {title, msg} = getResult(RESULT);
         document.getElementById("result-title").innerText = title;
-        document.getElementById("result-msg").innerText = msg;
+        document.getElementById("result-msg").innerHTML = msg;
         photoSendResultModal.classList.remove("hide");
         // 5초후 자동으로 닫히도록 처리
         autoClose(RESULT === "success");
