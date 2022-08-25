@@ -338,9 +338,9 @@ a {
 }
 
 .content-nav .menu.on {
-    background: #333;
+    background: #1fbdd7;
     box-shadow: 0 -0.2vw 0 rgba(255, 255, 255, 0.34) inset;
-    color: #c0ebff;
+    color: #fff;
 }
 
 .content-nav .sub-menus {
