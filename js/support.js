@@ -1,9 +1,9 @@
 const companyNav = document.getElementById("company-nav");
 const companyMenu = {
-    high: "고효율 가전제품 구매비용 지원",
-    efficiency: "에너지효율향상 사업",
-    cash: "에너지 캐쉬백",
-    power: "파워체크"
+    high: "고효율 기기 구매비용 지원",
+    efficiency: "에너지 효율화",
+    power: "파워체크",
+    cash: "에너지 캐쉬백 지원",
 }
 
 /** 현재 메뉴 결정 **/
@@ -30,4 +30,4 @@ document.querySelectorAll('a').forEach(a => {
     })
 })
 
-document.getElementById('company-content').innerHTML = `<img src="./img/support_img/${curMenu}.JPG" style="max-height: 70vh; max-width: 100%" />`
+document.getElementById('company-content').innerHTML = `<img src="./img/support_img/${curMenu}.jpg" style="height: 80vh; max-width: 100%" />`
