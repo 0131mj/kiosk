@@ -22,25 +22,6 @@ main {
     margin: 2rem;
 }
 
-.photo-bgs {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.photo-bg {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 12vw;
-    height: 8vw;
-    background: darkgrey;
-    margin: 0.5rem;
-    border: 0.5vw solid transparent;
-    background-size: contain;
-    word-break: keep-all;
-}
-
 .photo-preview {
     width: calc(56vw * 1.5);
     height: 56vw;
@@ -84,6 +65,29 @@ main {
 }
 
 /** 배경 선택 **/
+.photo-bg-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 1vw;
+    font-size: 1.3rem;
+}
+
+.photo-bg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15vw;
+    height: 10vw;
+    background: darkgrey;
+    margin: 0.5rem;
+    border: 0.5vw solid transparent;
+    background-size: contain;
+    word-break: keep-all;
+}
+.photo-bg-btn.on .photo-bg{
+    border-color: white;
+}
 
 .bg-01 {
     background: url("../img/01.jpg") no-repeat;
@@ -93,10 +97,6 @@ main {
 .bg-02 {
     background: url("../img/02.jpg") no-repeat;
     background-size: cover;
-}
-
-.photo-bg.on {
-    border-color: white;
 }
 
 .bg-select-box {

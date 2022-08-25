@@ -20,11 +20,16 @@
         </div>
         <section class="photo-setting-box">
             <div class="bg-select-box">
-                <div>배경 선택
-                </div>
-                <div class="photo-bgs">
-                    <button data-bg="01" class="photo-bg bg-01 on">한전본사</button>
-                    <button data-bg="02" class="photo-bg bg-02">로망스 다리</button>
+                <div>배경 선택</div>
+                <div class="photo-bg-btns">
+                    <button data-bg="01" class="photo-bg-btn on">
+                        <div class="photo-bg bg-01"></div>
+                        한전본사
+                    </button>
+                    <button data-bg="02"  class="photo-bg-btn">
+                        <div class="photo-bg bg-02"></div>
+                        로망스 다리
+                    </button>
                 </div>
             </div>
             <button id="shutter-btn" class="shutter">📷<span>사진찍기</span></button>
@@ -80,7 +85,7 @@
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
 <script>
-    const photoBgBtn = document.querySelectorAll(".photo-bg");
+    const photoBgBtn = document.querySelectorAll(".photo-bg-btn");
     const shutterBtn = document.getElementById("shutter-btn");
     const photoConfirmModal = document.querySelector(".photo-confirm-modal");
     const photoSendResultModal = document.querySelector(".photo-send-result-modal-bg");
