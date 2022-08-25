@@ -18,14 +18,14 @@
         }
 
         .progress-cell {
-            background-color: yellow;
+            background-color: #333;
             width: 1.5vw;
             height: 3vw;
             margin: 0.2vw
         }
 
-        .progress-cell.off {
-            background-color: black;
+        .progress-cell.on {
+            background-color: yellow;
         }
     </style>
 </head>
@@ -98,7 +98,7 @@
     <div class="photo-send-result-modal">
         <div id="result-title"></div>
         <div id="result-msg"></div>
-        <div class="auto-close"><span id="remain_sec">7</span>초 후에 자동으로 창이 닫힙니다.</div>
+        <div class="auto-close"><span id="remain_sec">5</span>초 후에 자동으로 창이 닫힙니다.</div>
         <div id="progress-bar">
             <div class="progress-cell"></div>
             <div class="progress-cell"></div>
@@ -112,7 +112,6 @@
             <div class="progress-cell"></div>
             <div class="progress-cell"></div>
 
-            <div class="progress-cell"></div>
             <div class="progress-cell"></div>
         </div>
     </div>
@@ -233,18 +232,19 @@
     const autoClose = (isSuccess = false) => {
         let cnt = 10;
         const countDown = setInterval(() => {
+            if (progressCells[10-cnt]) {
+                progressCells[10-cnt].classList.add("on");
+            }
             cnt -= 1;
             document.getElementById("remain_sec").innerText = `${Math.ceil(cnt / 2)}`;
-            if (progressCells[cnt]) {
-                progressCells[cnt].classList.add("off");
-            }
+
             if (cnt === 0) {
                 progressCells.forEach((cell)=>{
-                    cell.classList.remove("off")
+                    cell.classList.remove("on")
                 })
                 clearInterval(countDown);
                 closeResultModal();
-                document.getElementById("remain_sec").innerText = "7";
+                document.getElementById("remain_sec").innerText = "5";
                 if (isSuccess) {
                     closePhotoConfirmModal();
                 }
