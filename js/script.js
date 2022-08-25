@@ -59,15 +59,18 @@ const globalMenuObj = {
     // quarter: "본부소개",
     office:"관할 사업소",
     // department: "부서소개",
+    // complain_count: '창구 민원',
+    // complain_etc: '기타 민원',
     support: "지원사업 안내",
+    guest: "방문고객 안내",
     // complains: "민원안내",
-    photo: "사진 촬영",
     // discuss: "회의내역",
     // manager: "담당자 찾기",
     tech: "전력 신기술",
     // quiz: "퀴즈",
     beauty: "아름다운 경남",
-    index: "홈",
+    photo: "사진 촬영",
+    // index: "홈",
 }
 
 const globalMenus = `

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>방문고객 안내</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .menu {
+            width: 25%;
+            word-break: keep-all;
+            height: 14vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content-area{
+            padding: 5vw 8vw;
+        }
+    </style>
+</head>
+<body>
+<main>
+    <header class="title-header">방문고객 안내</header>
+    <template id="company-nav"></template>
+    <section id="company-content" class="content-area"></section>
+    <template id="hq-history"></template>
+</main>
+<template id="global-menu-panel"></template>
+<template id="control-menus"></template>
+<script src="./js/script.js"></script>
+<script src="./js/guest.js"></script>
+</body>
+</html>
