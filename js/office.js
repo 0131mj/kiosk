@@ -39,6 +39,11 @@ const setOffice = () => {
     const officeImg = document.getElementById("office-img");
     const locationBtn = document.getElementById("location-btn");
     const telBtn = document.getElementById("tel-btn");
+    const popup = document.getElementById("popup");
+    const popupImg = document.getElementById("popup-img");
+    const closeModalBtn = document.getElementById("close-modal-btn");
+    const modalTitle = document.getElementById("modal-title");
+    const modal = document.querySelector("#popup > .modal");
 
     officeMap.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -68,14 +73,41 @@ const setOffice = () => {
             e.stopPropagation();
             selectOffice(btn.dataset.code);
         })
-    })
+    });
+
+    const openPopup = () =>{
+        popup.classList.remove("hide");
+    }
+
+    const closePopup = () => {
+        popup.classList.add("hide");
+    }
 
     locationBtn.addEventListener("click",(e)=>{
-        console.log(e.currentTarget.dataset.code);
+        const code = e.currentTarget.dataset.code;
+        popupImg.setAttribute("src", `./img/hq_location/${code}.png`);
+        modalTitle.innerText = `찾아오시는 길 - ${data[Number(code)].name} `
+        openPopup();
     })
 
     telBtn.addEventListener("click",(e)=>{
-        console.log(e.currentTarget.dataset.code);
+        const code = e.currentTarget.dataset.code;
+        popupImg.setAttribute("src", `./img/hq_tel/${code}.png`);
+        modalTitle.innerText = `업무별 전화번호 - ${data[Number(code)].name} `
+        openPopup();
+    })
+
+    closeModalBtn.addEventListener("click",(e)=>{
+        e.stopPropagation();
+        closePopup();
+    })
+
+    modal.addEventListener("click",(e)=>{
+        e.stopPropagation();
+    })
+    popup.addEventListener("click",(e)=>{
+        e.stopPropagation();
+        closePopup();
     })
 
     selectOffice(0);
