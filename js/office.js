@@ -4,27 +4,27 @@ const setOffice = () => {
             name: "경남본부 직할",
             address: " (51439) 경남 창원시 성산구 중앙대로210번길 13",
             coordinate: {
-                x: 62,
+                x: 61,
                 y: 45,
                 w: 5,
-                h: 7
+                h: 9
             }
         },
         {
             name: "진주지사",
             address: "(52782) 경남 진주시 동진로 279",
             coordinate: {
-                x: 40,
-                y: 53,
-                w: 10,
-                h: 5
+                x: 20,
+                y: 50,
+                w: 14,
+                h: 8
             }
         },
         {
             name: "마산지사",
             address: "(51350) 경남 창원시 마산회원구3.15대로 966",
             coordinate: {
-                x: 54,
+                x: 49,
                 y: 58,
                 w: 7,
                 h: 5
@@ -54,7 +54,7 @@ const setOffice = () => {
         nameEl.innerText = name;
         nameEl2.innerText = name;
         addressEl.innerText = address;
-        officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.gif")`;
+        officeMap.style.backgroundImage = `url("./img/hq_map/_${idx}.png")`;
         orgEl.style.backgroundImage = `url(./img/hq_org/${idx}.jpg)`;
         officeImg.setAttribute("src",`./img/office/${idx}.png`)
     }
