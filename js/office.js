@@ -37,8 +37,10 @@ const setOffice = () => {
     const addressEl = document.getElementById("office-address");
     const orgEl = document.getElementById("office-org");
     const officeImg = document.getElementById("office-img");
+    const locationBtn = document.getElementById("location-btn");
+    const telBtn = document.getElementById("tel-btn");
 
-    officeMap.addEventListener("click", (e)=>{
+    officeMap.addEventListener("click", (e) => {
         e.stopPropagation();
     })
 
@@ -56,7 +58,9 @@ const setOffice = () => {
         addressEl.innerText = address;
         officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.png")`;
         orgEl.style.backgroundImage = `url(./img/hq_org/${idx}.jpg)`;
-        officeImg.setAttribute("src",`./img/office/${idx}.png`)
+        officeImg.setAttribute("src", `./img/office/${idx}.png`);
+        locationBtn.setAttribute("data-code", idx);
+        telBtn.setAttribute("data-code", idx);
     }
     const officeBtn = document.querySelectorAll(".office-btn");
     officeBtn.forEach(btn => {
@@ -64,6 +68,14 @@ const setOffice = () => {
             e.stopPropagation();
             selectOffice(btn.dataset.code);
         })
+    })
+
+    locationBtn.addEventListener("click",(e)=>{
+        console.log(e.currentTarget.dataset.code);
+    })
+
+    telBtn.addEventListener("click",(e)=>{
+        console.log(e.currentTarget.dataset.code);
     })
 
     selectOffice(0);

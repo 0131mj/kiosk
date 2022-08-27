@@ -59,22 +59,12 @@
                 font-weight: 900;
             }
 
-            #office-img {
-                width: calc(21.5vw * 1.5);
-                height: calc(14.3vw * 1.5);
-                margin-bottom: 2vw;
-            }
-
             #office-address {
                 word-break: keep-all;
             }
 
             .basic-info dt {
-                width: 30% !important;
-            }
-
-            .basic-info dd {
-                width: 60% !important;
+                width: 20% !important;
             }
 
             .basic-info {
@@ -90,8 +80,52 @@
                 margin: 0 0 1.5vw
             }
 
+            /* 사업소 소개*/
+            .office-introduce {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .office-introduce img {
+                max-width: 100%;
+            }
+
+            .office-title {
+                font-size: 1.5rem;
+                text-align: center;
+                margin-top: 3rem;
+                font-family: 'LeferiBaseType-RegularA', sans-serif;
+            }
+
+            .office-introduce .basic-info {
+                display: flex;
+                flex-wrap: wrap;
+                margin-top: 0;
+            }
+
+            .office-introduce .basic-info dt {
+                width: 20%
+            }
+
+            .office-introduce .basic-info dd {
+                width: 70%;
+                padding-bottom: .7rem;
+            }
+
             .office-introduce img {
                 height: 100%;
+            }
+
+            .popup-btn{
+                background-color: #cd3232;
+                padding: 1vw 1.5vw 0.5vw 1.5vw;
+                margin-right: 1vw;
+            }
+            #office-img {
+                width: calc(21.5vw * 1.6);
+                height: calc(14.3vw * 1.6);
+                margin-bottom: 2vw;
             }
         </style>
         <div class="office-introduce">
@@ -111,6 +145,8 @@
                         <dd id="office-address">(51439) 경남 창원시 성산구 중앙대로210번길 13</dd>
                         <dt>대표번호</dt>
                         <dd id="office-tel">055-123</dd>
+                        <button id="location-btn" class="popup-btn">찾아오시는 길</button>
+                        <button id="tel-btn" class="popup-btn">업무별 전화번호</button>
                     </dl>
                 </div>
             </div>
