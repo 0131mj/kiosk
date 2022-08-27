@@ -54,7 +54,7 @@ const setOffice = () => {
         nameEl.innerText = name;
         nameEl2.innerText = name;
         addressEl.innerText = address;
-        officeMap.style.backgroundImage = `url("./img/hq_map/_${idx}.png")`;
+        officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.png")`;
         orgEl.style.backgroundImage = `url(./img/hq_org/${idx}.jpg)`;
         officeImg.setAttribute("src",`./img/office/${idx}.png`)
     }
