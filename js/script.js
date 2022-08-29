@@ -52,30 +52,31 @@ const renderControlMenu = () => {
 window.addEventListener("DOMContentLoaded", renderControlMenu);
 
 const globalMenuObj = {
-    ceo: "C E O 인사말",
-    vision: "회사 비전",
+    ceo: "CEO 인사말",
+    vision: "회사 Vision",
     history: "회사 연혁",
-    // company: "본사소개",
-    // quarter: "본부소개",
     office:"관할 사업소",
+
+    photo: "방문기념 사진촬영",
+    manager: "담당자 찾기",
+    discuss: "회의 안내",
+    beauty: "아름다운 경남사진",
+
     // department: "부서소개",
-    // complain_count: '창구 민원',
+    counter: '고객창구 업무소개',
     // complain_etc: '기타 민원',
-    support: "지원사업 안내",
-    guest: "방문고객 안내",
     // complains: "민원안내",
-    // discuss: "회의내역",
-    // manager: "담당자 찾기",
+    guest: "방문고객 안내",
+    support: "한전 지원사업",
     tech: "전력 신기술",
     // quiz: "퀴즈",
-    beauty: "아름다운 경남",
-    photo: "사진 촬영",
     // index: "홈",
 }
 
 const globalMenus = `
 <div class="global-menu-bg dimmed hide">
-    <div class="global-menu-panel">          
+    <div class="global-menu-panel">
+        <div class="global-menu-panel-title bold">한전 경남본부 방문을 환영합니다.</div>          
         <div class="global-menus">
             ${Object.entries(globalMenuObj).reduce(
     (rows, [link, text]) => rows + `
@@ -84,7 +85,8 @@ const globalMenus = `
                     </a>`, ""
 )
 }
-        </div>    
+        </div>
+        <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/>좌측 고객지원실을 이용 바랍니다.</div>
         <footer class="global-menu-close-btn">닫기</footer>    
     </div>
 </div>
