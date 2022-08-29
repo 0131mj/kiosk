@@ -165,7 +165,7 @@
 
     const selectDept = (code) => {
         const {name, desc, location, img} = deptData[Number(code) - 1];
-        deptMap.innerHTML = `<img src = "./img/support/${code}.jpg" alt="${name} 위치 안내도"/>`;
+        deptMap.innerHTML = `<img src = "./img/support_map/${code}.jpg" alt="${name} 위치 안내도"/>`;
         deptName.innerHTML = name;
 
         const isSupport = Boolean(desc);

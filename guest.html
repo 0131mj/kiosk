@@ -8,16 +8,21 @@
     <title>방문고객 안내</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-        .menu {
-            width: 25%;
+        .content-nav .menus{
+            flex-wrap: wrap;
+        }
+        .content-nav .menu{
+            width: 22%;
             word-break: keep-all;
-            height: 14vw;
+            font-size: 1.5rem;
+            padding: 2vw 1.5vw 1vw;
+            height: 12vw;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         .content-area{
-            padding: 5vw 8vw;
+            padding: 3vw 0;
         }
     </style>
 </head>
@@ -26,7 +31,6 @@
     <header class="title-header">방문고객 안내</header>
     <template id="content-nav"></template>
     <section id="content" class="content-area"></section>
-    <template id="hq-history"></template>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>

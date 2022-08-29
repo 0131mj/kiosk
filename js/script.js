@@ -69,7 +69,15 @@ const globalMenuObj = {
             sun: "태양광 접수"
         }
     },
-    support: {text: "한전 지원사업", submenu: {}},
+    support: {
+        text: "한전 지원사업",
+        submenu: {
+            high: "고효율 기기 구매비용 지원",
+            efficiency: "에너지 효율화",
+            power: "파워체크",
+            cash: "에너지 캐쉬백 지원",
+        }
+    },
     tech: {text: "전력 신기술", submenu: {}},
     // department: "부서소개",
     // complain_etc: '기타 민원',
@@ -137,7 +145,7 @@ const path = window.location.pathname
     .replace(".html", "")
     .replace("/", "");
 
-if (path === "guest") {
+if (path === "guest" || path === "support") {
     const contentNav = document.getElementById("content-nav");
     const contentMenu = globalMenuObj[path].submenu;
 
@@ -153,8 +161,8 @@ if (path === "guest") {
         <div class="content-nav">
             <div class="flex-row menus">   
                 ${Object.entries(contentMenu).reduce((acc, [key, text]) => {
-                return acc + `<a href="./${path}.html?menu=${key}" class="menu${key === curMenu ? ' on' : ''}">${text}</a>`;
-            }, "")}
+        return acc + `<a href="./${path}.html?menu=${key}" class="menu${key === curMenu ? ' on' : ''}">${text}</a>`;
+    }, "")}
             </div>    
         </div>
     `;
@@ -165,5 +173,5 @@ if (path === "guest") {
         })
     })
 
-    document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="max-width: 100%" />`
+    document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="height: 80vh; max-width: 100%" />`
 }
