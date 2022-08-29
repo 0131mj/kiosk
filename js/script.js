@@ -81,10 +81,10 @@ const globalMenuObj = {
     tech: {
         text: "전력 신기술",
         submenu: {
-            car: "전기차충전사업",
+            car: "전기차 충전사업",
             sun: "태양광 발전사업",
             // city: "스마트시티사업",
-            green: "그린수소사업",
+            green: "그린수소 사업",
             // ocean: "해상풍력사업",
             // carbon: "탄소중립사업",
         }
@@ -102,12 +102,23 @@ const globalMenus = `
         <div class="global-menu-panel-title bold">한전 경남본부 방문을 환영합니다.</div>          
         <div class="global-menus">
             ${Object.entries(globalMenuObj).reduce(
-    (rows, [link, {text}]) => rows + `
-                    <a href="${link}.html" class="global-menu">
+    (rows, [page, {text}]) => rows + `
+                    <a href="${page}.html" class="global-menu color-${page}">
                         ${text}
                     </a>`, ""
-)
-}
+            )
+            }
+        </div>
+        <div id="tree-area">
+        ${["guest", "support", "tech"].reduce((acc, page)=>{
+                console.log(page);
+                acc += Object.entries(globalMenuObj[page].submenu).reduce((_acc, [key, val])=>{
+                    _acc += `<a class="tree-fruit color-${page}" href="./${page}.html?menu=${key}" data-menu="${key}">${val}</a>`
+                    return _acc;
+                },"")
+                return acc;
+            },"")
+        }
         </div>
         <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/>좌측 고객지원실을 이용 바랍니다.</div>
         <footer class="global-menu-close-btn">닫기</footer>    
@@ -155,6 +166,7 @@ if (titleHeader) {
     titleHeader.appendChild(headerBackBtn);
 }
 
+
 if (path === "guest" || path === "support" || path === "tech") {
     const contentNav = document.getElementById("content-nav");
     const contentMenu = globalMenuObj[path].submenu;
@@ -164,8 +176,7 @@ if (path === "guest" || path === "support" || path === "tech") {
     const params = Object.fromEntries(urlSearchParams.entries());
     const {menu} = params || {};
     const curMenu = menu || Object.keys(contentMenu)[0];
-
-
+    
     /** 현재 메뉴 표시 **/
     contentNav.outerHTML = `
         <div class="content-nav">
@@ -177,12 +188,7 @@ if (path === "guest" || path === "support" || path === "tech") {
         </div>
     `;
 
-    document.querySelectorAll('a').forEach(a => {
-        a.addEventListener("click", (e) => {
-            e.stopPropagation()
-        })
-    })
-
+    /** 현재 내용 표시 **/
     if (path === "guest" || path === "support") {
         document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="height: 80vh; max-width: 100%" />`
     } else if (path === "tech") {
@@ -194,5 +200,10 @@ if (path === "guest" || path === "support" || path === "tech") {
 
         loadHTML();
     }
-
 }
+
+document.querySelectorAll('a').forEach(a => {
+    a.addEventListener("click", (e) => {
+        e.stopPropagation()
+    })
+})
