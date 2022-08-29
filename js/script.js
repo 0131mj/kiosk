@@ -78,7 +78,17 @@ const globalMenuObj = {
             cash: "에너지 캐쉬백 지원",
         }
     },
-    tech: {text: "전력 신기술", submenu: {}},
+    tech: {
+        text: "전력 신기술",
+        submenu: {
+            car: "전기차충전사업",
+            sun: "태양광 발전사업",
+            // city: "스마트시티사업",
+            green: "그린수소사업",
+            // ocean: "해상풍력사업",
+            // carbon: "탄소중립사업",
+        }
+    },
     // department: "부서소개",
     // complain_etc: '기타 민원',
     // complains: "민원안내",
@@ -145,7 +155,7 @@ const path = window.location.pathname
     .replace(".html", "")
     .replace("/", "");
 
-if (path === "guest" || path === "support") {
+if (path === "guest" || path === "support" || path === "tech") {
     const contentNav = document.getElementById("content-nav");
     const contentMenu = globalMenuObj[path].submenu;
 
@@ -173,5 +183,16 @@ if (path === "guest" || path === "support") {
         })
     })
 
-    document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="height: 80vh; max-width: 100%" />`
+    if (path === "guest" || path === "support") {
+        document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="height: 80vh; max-width: 100%" />`
+    } else if (path === "tech") {
+        function loadHTML() {
+            fetch(`./content_${path}/${curMenu}.html`)
+                .then(response => response.text())
+                .then(text => document.getElementById('content').innerHTML = text);
+        }
+
+        loadHTML();
+    }
+
 }
