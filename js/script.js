@@ -52,23 +52,28 @@ const renderControlMenu = () => {
 window.addEventListener("DOMContentLoaded", renderControlMenu);
 
 const globalMenuObj = {
-    ceo: "CEO 인사말",
-    vision: "회사 Vision",
-    history: "회사 연혁",
-    office:"관할 사업소",
-
-    photo: "방문기념 사진촬영",
-    manager: "담당자 찾기",
-    discuss: "회의 안내",
-    beauty: "아름다운 경남사진",
-
+    ceo: {text: "CEO 인사말", submenu: {}},
+    vision: {text: "회사 Vision", submenu: {}},
+    history: {text: "회사 연혁", submenu: {}},
+    office: {text: "관할 사업소", submenu: {}},
+    photo: {text: "방문기념 사진촬영", submenu: {}},
+    manager: {text: "담당자 찾기", submenu: {}},
+    discuss: {text: "회의 안내", submenu: {}},
+    beauty: {text: "아름다운 경남사진", submenu: {}},
+    counter: {text: '고객창구 업무소개', submenu: {}},
+    guest: {
+        text: "방문고객 안내",
+        submenu: {
+            trans: "송변전설비 인근주민지원",
+            reward: "송전선로 용지보상",
+            sun: "태양광 접수"
+        }
+    },
+    support: {text: "한전 지원사업", submenu: {}},
+    tech: {text: "전력 신기술", submenu: {}},
     // department: "부서소개",
-    counter: '고객창구 업무소개',
     // complain_etc: '기타 민원',
     // complains: "민원안내",
-    guest: "방문고객 안내",
-    support: "한전 지원사업",
-    tech: "전력 신기술",
     // quiz: "퀴즈",
     // index: "홈",
 }
@@ -79,7 +84,7 @@ const globalMenus = `
         <div class="global-menu-panel-title bold">한전 경남본부 방문을 환영합니다.</div>          
         <div class="global-menus">
             ${Object.entries(globalMenuObj).reduce(
-    (rows, [link, text]) => rows + `
+    (rows, [link, {text}]) => rows + `
                     <a href="${link}.html" class="global-menu">
                         ${text}
                     </a>`, ""
@@ -125,4 +130,40 @@ headerBackBtn.addEventListener("click", moveBack);
 if (titleHeader) {
     titleHeader.insertBefore(headerHomeBtn, titleHeader.firstChild);
     titleHeader.appendChild(headerBackBtn);
+}
+
+/** Guest **/
+const path = window.location.pathname
+    .replace(".html", "")
+    .replace("/", "");
+
+if (path === "guest") {
+    const contentNav = document.getElementById("content-nav");
+    const contentMenu = globalMenuObj[path].submenu;
+
+    /** 현재 메뉴 결정 **/
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    const {menu} = params || {};
+    const curMenu = menu || Object.keys(contentMenu)[0];
+
+
+    /** 현재 메뉴 표시 **/
+    contentNav.outerHTML = `
+        <div class="content-nav">
+            <div class="flex-row menus">   
+                ${Object.entries(contentMenu).reduce((acc, [key, text]) => {
+                return acc + `<a href="./${path}.html?menu=${key}" class="menu${key === curMenu ? ' on' : ''}">${text}</a>`;
+            }, "")}
+            </div>    
+        </div>
+    `;
+
+    document.querySelectorAll('a').forEach(a => {
+        a.addEventListener("click", (e) => {
+            e.stopPropagation()
+        })
+    })
+
+    document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="max-width: 100%" />`
 }
