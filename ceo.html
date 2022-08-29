@@ -11,13 +11,9 @@
 </head>
 <body>
 <main>
-    <header class="title-header">
-        CEO 인사말
-    </header>
-    <template id="company-nav"></template>
-    <section id="company-content" class="content-area">
-
-    </section>
+    <header class="title-header"></header>
+    <template id="content-nav"></template>
+    <section id="content" class="content-area"></section>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
@@ -26,7 +22,7 @@
     function loadHTML() {
         fetch(`./content_company/introduce.html`)
             .then(response => response.text())
-            .then(text => document.getElementById('company-content').innerHTML = text);
+            .then(text => document.getElementById('content').innerHTML = text);
     }
 
     loadHTML();

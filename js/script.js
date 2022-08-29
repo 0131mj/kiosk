@@ -144,16 +144,16 @@ headerBackBtn.innerText = "뒤로 가기";
 headerBackBtn.classList.add("header-control-btn");
 headerBackBtn.classList.add("header-back-btn");
 headerBackBtn.addEventListener("click", moveBack);
-
-if (titleHeader) {
-    titleHeader.insertBefore(headerHomeBtn, titleHeader.firstChild);
-    titleHeader.appendChild(headerBackBtn);
-}
-
-/** Guest **/
+/** Content **/
 const path = window.location.pathname
     .replace(".html", "")
     .replace("/", "");
+
+if (titleHeader) {
+    titleHeader.textContent = globalMenuObj[path].text;
+    titleHeader.insertBefore(headerHomeBtn, titleHeader.firstChild);
+    titleHeader.appendChild(headerBackBtn);
+}
 
 if (path === "guest" || path === "support" || path === "tech") {
     const contentNav = document.getElementById("content-nav");
