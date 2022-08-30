@@ -111,7 +111,6 @@ const globalMenus = `
         </div>
         <div id="tree-area">
         ${["guest", "support", "tech"].reduce((acc, page)=>{
-                console.log(page);
                 acc += Object.entries(globalMenuObj[page].submenu).reduce((_acc, [key, val])=>{
                     _acc += `<a class="tree-fruit color-${page}" href="./${page}.html?menu=${key}" data-menu="${key}">${val}</a>`
                     return _acc;
@@ -161,7 +160,8 @@ const path = window.location.pathname
     .replace(".html", "")
     .replace("/", "");
 
-if (titleHeader) {
+if (titleHeader && path) {
+    console.log(path, titleHeader)
     titleHeader.textContent = globalMenuObj[path].text;
     titleHeader.insertBefore(headerHomeBtn, titleHeader.firstChild);
     titleHeader.appendChild(headerBackBtn);
