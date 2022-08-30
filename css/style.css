@@ -369,7 +369,7 @@ a {
 #tree-area {
     height: 65vw;
     position: relative;
-    background: url("../img/menu/_tree.png") no-repeat;
+    background: url("../img/menu/tree.png") no-repeat;
     background-position: center;
     background-size: contain;
     display: flex;
