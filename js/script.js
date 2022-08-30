@@ -158,6 +158,7 @@ headerBackBtn.addEventListener("click", moveBack);
 /** Content **/
 const path = window.location.pathname
     .replace(".html", "")
+    .replace("kiosk/", "")
     .replace("/", "");
 
 if (titleHeader && path) {
