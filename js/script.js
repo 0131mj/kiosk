@@ -66,7 +66,7 @@ const globalMenuObj = {
         submenu: {
             trans: "송변전설비 인근주민지원",
             reward: "송전선로 용지보상",
-            sun: "태양광 접수"
+            sunpower: "태양광 접수"
         }
     },
     support: {
@@ -119,8 +119,9 @@ const globalMenus = `
                 return acc;
             },"")
         }
+        <div id="tree-title" class="bold">KEPCO 지원사업</div>
         </div>
-        <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/>좌측 고객지원실을 이용 바랍니다.</div>
+        <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/><span class="bold">← 좌측 고객지원실</span> 을 이용 바랍니다.</div>
         <footer class="global-menu-close-btn">닫기</footer>    
     </div>
 </div>

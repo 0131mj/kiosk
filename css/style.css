@@ -159,8 +159,11 @@ main {
     color: #000;
     font-weight: bold;
     padding: 3vw;
-    border-radius: 5vw;
+    border-radius: 8vw;
     text-align: center;
+    background-color: #ffd400;
+    margin: 2vw auto 5vw;
+    width: 60vw;
 }
 
 .global-menu-panel-title {
@@ -194,22 +197,22 @@ main {
     justify-content: center;
     align-items: center;
     padding: 1vw 2vw 0.5vw;
-    margin: 1.5vw;
-    border-radius: 3vw;
+    margin: 0.5vw;
+    border-radius: 1vw;
     font-family: 'LeferiBaseType-BoldA', sans-serif;
     box-shadow: 0 0.4vw 0 rgba(255, 255, 255, 0.34) inset;
 }
 
 .color-guest {
-    background-color: rgb(35, 121, 0);
+    background-color: rgb(255 129 0);
 }
 
 .color-support {
-    background-color: rgb(84, 250, 24);
+   background-color: #df5f5f;
 }
 
 .color-tech {
-    background-color: rgb(165, 185, 11);
+    background-color: rgb(89 156 189);
 }
 
 .global-menu-close-btn {
@@ -361,33 +364,86 @@ a {
 #tree-area {
     height: 40vw;
     position: relative;
+    background: url("../img/menu/tree.png") no-repeat ;
+    background-position: center;
+    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4vw 0;
 }
 
 .tree-fruit {
     color: #fff;
     padding: 2vw;
-    margin: 2vw;
     position: absolute;
-    width: 10vw;
+    width: 14vw;
     height: 10vw;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     word-break: keep-all;
+    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    font-size: 0.9rem;
+    box-shadow: 0 0.3vw 0 rgba(255, 255, 255, 0.34) inset;
 }
 
 [data-menu="car"] {
-    left: 20%;
-    bottom: 5%;
+    left: 34%;
+    top: 75%;
 }
 
 [data-menu="sun"] {
-    left: 40%;
+    left: 52%;
     bottom: 0;
 }
 
 [data-menu="green"] {
-    left: 60%;
-    bottom: 0;
+    left: 65%;
+    top: 69%;
+}
+
+/** support **/
+[data-menu="high"] {
+    left: 37%;
+    top:-10%;
+}
+
+[data-menu="efficiency"] {
+    left: 55%;
+    top: -5%;
+}
+
+[data-menu="power"] {
+    left: 64%;
+    top: 20%;
+}
+
+[data-menu="cash"] {
+    left: 70%;
+    top: 46%;
+}
+
+[data-menu="trans"] {
+    left: 20%;
+    top: 5%;
+}
+
+[data-menu="reward"] {
+    left: 16%;
+    top: 32%;
+}
+
+[data-menu="sunpower"] {
+    left: 17%;
+    top: 59%;
+}
+
+.tree-fruit.color-tech{
+    width: 10vw;
+}
+
+#tree-title{
+    font-size: 1.2rem;
 }
