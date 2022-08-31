@@ -52,46 +52,46 @@ const resizers = document.querySelectorAll(".resizer");
 let currentResizer;
 
 for (let resizer of resizers) {
-    resizer.addEventListener("mousedown", mousedown);
+    resizer.addEventListener("touchstart", mousedown);
 
     function mousedown(e) {
         currentResizer = e.target;
         isResizing = true;
 
-        let prevX = e.clientX;
-        let prevY = e.clientY;
+        let prevX = e.touches[0].clientX;
+        let prevY = e.touches[0].clientY;
 
-        window.addEventListener("mousemove", mousemove);
-        window.addEventListener("mouseup", mouseup);
+        window.addEventListener("touchmove", mousemove);
+        window.addEventListener("touchend", mouseup);
 
         function mousemove(e) {
             const rect = el.getBoundingClientRect();
 
             if (currentResizer.classList.contains("se")) {
-                el.style.width = rect.width - (prevX - e.clientX) + "px";
-                el.style.height = rect.height - (prevY - e.clientY) + "px";
+                el.style.width = rect.width - (prevX - e.touches[0].clientX) + "px";
+                el.style.height = rect.height - (prevY - e.touches[0].clientY) + "px";
             } else if (currentResizer.classList.contains("sw")) {
-                el.style.width = rect.width + (prevX - e.clientX) + "px";
-                el.style.height = rect.height - (prevY - e.clientY) + "px";
-                el.style.left = rect.left - (prevX - e.clientX) + "px";
+                el.style.width = rect.width + (prevX - e.touches[0].clientX) + "px";
+                el.style.height = rect.height - (prevY - e.touches[0].clientY) + "px";
+                el.style.left = rect.left - (prevX - e.touches[0].clientX) + "px";
             } else if (currentResizer.classList.contains("ne")) {
-                el.style.width = rect.width - (prevX - e.clientX) + "px";
-                el.style.height = rect.height + (prevY - e.clientY) + "px";
-                el.style.top = rect.top - (prevY - e.clientY) + "px";
+                el.style.width = rect.width - (prevX - e.touches[0].clientX) + "px";
+                el.style.height = rect.height + (prevY - e.touches[0].clientY) + "px";
+                el.style.top = rect.top - (prevY - e.touches[0].clientY) + "px";
             } else {
-                el.style.width = rect.width + (prevX - e.clientX) + "px";
-                el.style.height = rect.height + (prevY - e.clientY) + "px";
-                el.style.top = rect.top - (prevY - e.clientY) + "px";
-                el.style.left = rect.left - (prevX - e.clientX) + "px";
+                el.style.width = rect.width + (prevX - e.touches[0].clientX) + "px";
+                el.style.height = rect.height + (prevY - e.touches[0].clientY) + "px";
+                el.style.top = rect.top - (prevY - e.touches[0].clientY) + "px";
+                el.style.left = rect.left - (prevX - e.touches[0].clientX) + "px";
             }
 
-            prevX = e.clientX;
-            prevY = e.clientY;
+            prevX = e.touches[0].clientX;
+            prevY = e.touches[0].clientY;
         }
 
         function mouseup() {
-            window.removeEventListener("mousemove", mousemove);
-            window.removeEventListener("mouseup", mouseup);
+            window.removeEventListener("touchmove", mousemove);
+            window.removeEventListener("touchend", mouseup);
             isResizing = false;
         }
     }
