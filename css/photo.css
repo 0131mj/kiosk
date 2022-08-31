@@ -31,7 +31,7 @@ main {
     align-items: center;
 }
 
-.photo-preview.shut::after{
+.photo-preview.shut::after {
     content: "";
     position: absolute;
     z-index: 1;
@@ -49,41 +49,43 @@ main {
 }
 
 #photo-target {
-    width: 20vw;
-    height: 40vw;
+    width: 10vw;
+    height: 20vw;
     position: fixed;
-    background: url("../img/photo/human.png") no-repeat center red;
+    /*background: url("../img/photo/human.png") no-repeat center red;*/
+    background: url("../img/photo/human.png") no-repeat center rgba(255, 255, 255, 0.5);
     background-size: contain;
+    border: .4vw dashed;
 }
+
 .resizer {
     width: 2vw;
     height: 2vw;
-    background-color: #ffd400;
+    background-color: #fff;
     z-index: 2;
     position: absolute;
 }
 
 .resizer.nw {
-    top: -1px;
-    left: -1px;
+    top: -1vw;
+    left: -1vw;
 }
 
 .resizer.ne {
-    top: -1px;
-    right: -1px;
+    top: -1vw;
+    right: -1vw;
 }
 
 .resizer.sw {
-    background: blue;
-    bottom: -1px;
-    left: -1px;
+    bottom: -1vw;
+    left: -1vw;
 }
 
 .resizer.se {
-    background: palegreen;
-    bottom: -1px;
-    right: -1px;
+    bottom: -1vw;
+    right: -1vw;
 }
+
 #photo-countdown {
     color: rgba(255, 255, 255, 0.8);
     z-index: 1;
@@ -114,7 +116,8 @@ main {
     background-size: contain;
     word-break: keep-all;
 }
-.photo-bg-btn.on .photo-bg{
+
+.photo-bg-btn.on .photo-bg {
     border-color: white;
 }
 
@@ -180,7 +183,7 @@ main {
     margin-top: 8vw;
 }
 
-.photo-confirm-title{
+.photo-confirm-title {
     font-size: 2rem;
     padding: 4vw;
 }
@@ -219,7 +222,8 @@ main {
     color: #000;
     outline: none;
 }
-.phone-num::placeholder{
+
+.phone-num::placeholder {
     color: #ddd;
 }
 
@@ -242,12 +246,12 @@ main {
 }
 
 
-#photo-cancel-btn{
+#photo-cancel-btn {
     padding: 4vw;
     margin: 2vw;
 }
 
-.auto-cancel-description{
+.auto-cancel-description {
     font-size: 0.8rem;
     color: #777;
 }
