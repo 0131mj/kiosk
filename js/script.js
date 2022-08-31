@@ -75,7 +75,7 @@ const globalMenuObj = {
             high: "고효율 기기 구매비용 지원",
             efficiency: "에너지 효율화",
             power: "파워체크",
-            cash: "에너지 캐쉬백 지원",
+            root: "뿌리기업 지원",
         }
     },
     tech: {
@@ -83,8 +83,8 @@ const globalMenuObj = {
         submenu: {
             car: "전기차 충전사업",
             sun: "태양광 발전사업",
-            // city: "스마트시티사업",
             green: "그린수소 사업",
+            // city: "스마트시티사업",
             // ocean: "해상풍력사업",
             // carbon: "탄소중립사업",
         }
