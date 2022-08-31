@@ -60,8 +60,30 @@ main {
     height: 2vw;
     background-color: #ffd400;
     z-index: 2;
+    position: absolute;
 }
 
+.resizer.nw {
+    top: -1px;
+    left: -1px;
+}
+
+.resizer.ne {
+    top: -1px;
+    right: -1px;
+}
+
+.resizer.sw {
+    background: blue;
+    bottom: -1px;
+    left: -1px;
+}
+
+.resizer.se {
+    background: palegreen;
+    bottom: -1px;
+    right: -1px;
+}
 #photo-countdown {
     color: rgba(255, 255, 255, 0.8);
     z-index: 1;
