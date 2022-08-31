@@ -2,9 +2,11 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <script type="text/javascript" src="./js/pinchzoom.js"></script>
     <title>사진촬영</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/photo.css">
@@ -27,6 +29,11 @@
         .progress-cell.on {
             background-color: yellow;
         }
+
+        /** pinch **/
+        .pinch-zoom-container{
+            width: calc(56vw * 1.5)
+        }
     </style>
 </head>
 <body>
@@ -36,7 +43,7 @@
     </header>
     <div class="photo-take-box" id="photo-take-box">
         <div class="photo-preview bg-01">
-            <img src="./img/user.png" alt="샘플" class="sample-human">
+            <img src="./img/user.png" alt="샘플" class="sample-human pinch-zoom">
         </div>
         <section class="photo-setting-box">
             <div class="bg-select-box">
@@ -116,6 +123,13 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    var el = document.querySelector('img.pinch-zoom');
+    new PinchZoom.default(el, {
+
+    });
+</script>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>

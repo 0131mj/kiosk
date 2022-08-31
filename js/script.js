@@ -161,7 +161,6 @@ const path = window.location.pathname
     .replace("/", "");
 
 if (titleHeader && path) {
-    console.log(path, titleHeader)
     titleHeader.textContent = globalMenuObj[path].text;
     titleHeader.insertBefore(headerHomeBtn, titleHeader.firstChild);
     titleHeader.appendChild(headerBackBtn);
