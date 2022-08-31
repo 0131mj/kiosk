@@ -48,11 +48,18 @@ main {
     align-items: center;
 }
 
-.sample-human {
-    width: 30%;
-    left: 0;
-    top: 0;
-    position: absolute;
+#photo-target {
+    width: 20vw;
+    height: 40vw;
+    position: fixed;
+    background: url("../img/photo/human.png") no-repeat center red;
+    background-size: contain;
+}
+.resizer {
+    width: 1vw;
+    height: 2vw;
+    background-color: #ffd400;
+    z-index: 2;
 }
 
 #photo-countdown {
@@ -106,6 +113,7 @@ main {
     display: flex;
     background: #151515;
     width: 100%;
+    z-index: 1;
 }
 
 .shutter {
