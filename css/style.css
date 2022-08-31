@@ -144,7 +144,7 @@ main {
 
 .global-menu-panel {
     color: black;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 30%, rgba(200, 200, 200, 1) 100%);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 30%, rgb(228 246 255) 100%);
     /*background: white;*/
 
     display: flex;
@@ -163,14 +163,18 @@ main {
     padding: 2vw 1.5vw 1.5vw;
     border-radius: 8vw;
     text-align: center;
-    background-color: #ffd400;
+    background-color: #d7eafd;
     margin: 2vw auto 5vw;
     width: 60vw;
 }
 
+.visitor-introduce .bold {
+    color: red;
+}
+
 .global-menu-panel-title {
-    color: #1e2250;
-    font-size: 2rem;
+    color: #4e5f7e;
+    font-size: 2.1rem;
     text-align: center;
     padding-top: 8vw;
 }
@@ -189,8 +193,10 @@ main {
     /*width: 25%;*/
     width: 15vw;
     height: 10vw;
-    background: linear-gradient(0deg, white 0%, #eee 50%);
-    color: #1e2250;
+    /*background: linear-gradient(0deg, white 0%, #eee 50%);*/
+    background: #4f5981;
+    /*color: #1e2250;*/
+    color: #fff;
     border: 1px solid #bbb;
     box-sizing: border-box;
     font-size: 1.1rem;
