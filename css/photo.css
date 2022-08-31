@@ -8,6 +8,15 @@ main {
     position: relative;
 }
 
+.photo-explanation {
+    position: absolute;
+    margin-top: 22vw;
+    text-align: center;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    z-index: -1;
+}
+
 .photo-take-box {
     display: flex;
     flex-direction: column;
