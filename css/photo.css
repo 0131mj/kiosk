@@ -113,6 +113,14 @@ main {
     font-size: 1.3rem;
 }
 
+.photo-bg-btn {
+    color: #888;
+}
+
+.photo-bg-btn.on {
+    color: #fff;
+}
+
 .photo-bg {
     display: flex;
     justify-content: center;
@@ -124,10 +132,12 @@ main {
     border: 0.5vw solid transparent;
     background-size: contain;
     word-break: keep-all;
+    opacity: 0.8;
 }
 
 .photo-bg-btn.on .photo-bg {
     border-color: white;
+    opacity: 1;
 }
 
 .bg-01 {
@@ -190,6 +200,7 @@ main {
     color: #555;
     border-radius: 1vw;
     margin-top: 8vw;
+    font-size: 1.2rem;
 }
 
 .photo-confirm-title {
@@ -208,8 +219,18 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2vw solid #fff;
+    border: 5vw solid #fff;
     position: relative;
+}
+
+.photo::after {
+    content: '';
+    height: 5vw;
+    background: url(../img/photo/frame_text.png) bottom no-repeat;
+    bottom: -5vw;
+    background-size: contain;
+    width: 100%;
+    position: absolute;
 }
 
 

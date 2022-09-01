@@ -72,35 +72,35 @@
     <div class="photo-confirm-modal hide">
         <div class="photo-confirm-title">촬영 완료</div>
         <div class="photo bg-01">
-            <img src="./img/user.png" alt="샘플" class="sample-human">
+            <img src="img/photo/user.png" alt="샘플" class="sample-human" style="position: absolute; bottom: 0">
         </div>
         <div class="photo-confirm-description">
             촬영이 완료되었습니다.<br/>
-            사진을 받으실 휴대폰 번호를 입력해주세요.
+            확인 후 사진 출력 버튼을 눌러주세요.
         </div>
-        <input id="phone-num-input-field" class="phone-num" value="010" placeholder="휴대폰 번호 입력" readonly/>
-        <div class="dial">
-            <button class="num-key">1</button>
-            <button class="num-key">2</button>
-            <button class="num-key">3</button>
-            <button class="num-key">4</button>
-            <button class="num-key">5</button>
-            <button class="num-key">6</button>
-            <button class="num-key">7</button>
-            <button class="num-key">8</button>
-            <button class="num-key">9</button>
-            <button id="clear-key">모두<br/>지우기</button>
-            <button class="num-key">0</button>
-            <button id="back-key"><-</button>
-        </div>
+<!--        <input id="phone-num-input-field" class="phone-num" value="010" placeholder="휴대폰 번호 입력" readonly/>-->
+<!--        <div class="dial">-->
+<!--            <button class="num-key">1</button>-->
+<!--            <button class="num-key">2</button>-->
+<!--            <button class="num-key">3</button>-->
+<!--            <button class="num-key">4</button>-->
+<!--            <button class="num-key">5</button>-->
+<!--            <button class="num-key">6</button>-->
+<!--            <button class="num-key">7</button>-->
+<!--            <button class="num-key">8</button>-->
+<!--            <button class="num-key">9</button>-->
+<!--            <button id="clear-key">모두<br/>지우기</button>-->
+<!--            <button class="num-key">0</button>-->
+<!--            <button id="back-key"><-</button>-->
+<!--        </div>-->
         <button id="send-btn">
-            전송하기
+            사진 출력
         </button>
         <button id="photo-cancel-btn">
             취소
         </button>
         <div class="auto-cancel-description">
-            10초간 입력이 없으면 HOME 화면으로 돌아갑니다.
+            30초간 입력이 없으면 HOME 화면으로 돌아갑니다.
         </div>
     </div>
 </main>
@@ -153,7 +153,7 @@
     const photoTarget = document.getElementById("photo-target");
 
     const resetNumber = () => {
-        phoneNum.value = "010";
+        // phoneNum.value = "010";
     }
 
     const openPhotoConfirmModal = () => {
@@ -174,6 +174,7 @@
     const takePhoto = () => {
         photoSettingBox.classList.add("hide");
         document.body.classList.add("on");
+        document.querySelector(".photo-explanation").classList.add("hide");
         const shut = setTimeout(() => {
             let cnt = 7;
             photoCountdown.innerText = `${cnt}`;
@@ -189,6 +190,7 @@
                             openPhotoConfirmModal();
                             clearInterval(countDown);
                             clearTimeout(shut);
+                            document.querySelector(".photo-explanation").classList.remove("hide");
                             photoSettingBox.classList.remove("hide");
                             document.body.classList.remove("on");
                             photoTakeBox.classList.add("hide");
@@ -264,13 +266,14 @@
 
     const showResult = () => {
 
-        let RESULT = "success";
-        if (phoneNum.value.startsWith("1")) {
-            RESULT = "invalid";
-        }
-        if (phoneNum.value.startsWith("2")) {
-            RESULT = "error";
-        }
+        const RESULT = "success";
+        // let RESULT = "success";
+        // if (phoneNum.value.startsWith("1")) {
+        //     RESULT = "invalid";
+        // }
+        // if (phoneNum.value.startsWith("2")) {
+        //     RESULT = "error";
+        // }
         /**
          * 서버에서 결과값 받이와서 표시 및 후처리
          * success : 전송 성공
@@ -279,7 +282,9 @@
          * */
 
 
-        const {title, msg} = getResult(RESULT);
+        // const {title, msg} = getResult(RESULT);
+        const title = "사진 출력 완료";
+        const msg = `포토프린터에서 사진을 수령해 주시기 바랍니다.<br/>이용해 주셔서 감사합니다.`
         document.getElementById("result-title").innerText = title;
         document.getElementById("result-msg").innerHTML = msg;
         photoSendResultModal.classList.remove("hide");
@@ -289,27 +294,27 @@
 
 
     /* 다이얼 조작 */
-    numKeys.forEach(btn => {
-        btn.addEventListener("click", () => {
-            if (phoneNum.value.length < 13) {
-                if ([3, 8].includes(phoneNum.value.length)) {
-                    phoneNum.value += " ";
-                }
-                phoneNum.value += btn.textContent;
-            }
-        })
-    });
-
-    clearKey.addEventListener("click", () => {
-        phoneNum.value = "";
-    })
-
-    backKey.addEventListener("click", () => {
-        if (phoneNum.value.endsWith(" ")) {
-            phoneNum.value = phoneNum.value.slice(0, -1);
-        }
-        phoneNum.value = phoneNum.value.slice(0, -1);
-    });
+    // numKeys.forEach(btn => {
+    //     btn.addEventListener("click", () => {
+    //         if (phoneNum.value.length < 13) {
+    //             if ([3, 8].includes(phoneNum.value.length)) {
+    //                 phoneNum.value += " ";
+    //             }
+    //             phoneNum.value += btn.textContent;
+    //         }
+    //     })
+    // });
+    //
+    // clearKey.addEventListener("click", () => {
+    //     phoneNum.value = "";
+    // })
+    //
+    // backKey.addEventListener("click", () => {
+    //     if (phoneNum.value.endsWith(" ")) {
+    //         phoneNum.value = phoneNum.value.slice(0, -1);
+    //     }
+    //     phoneNum.value = phoneNum.value.slice(0, -1);
+    // });
 
     photoCancelBtn.addEventListener("click", closePhotoConfirmModal)
 
