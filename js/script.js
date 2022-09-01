@@ -1,7 +1,9 @@
 const controlMenus = `
 <div class="control-menus">    
     <button class="control-menu global-menu-open-btn">
-        <div style="font-size: 2rem">🏠</div>
+        <svg height="4vw" width="4vw" id="Layer_1" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path fill="white" d="M15.45,7L14,5.551V2c0-0.55-0.45-1-1-1h-1c-0.55,0-1,0.45-1,1v0.553L9,0.555C8.727,0.297,8.477,0,8,0S7.273,0.297,7,0.555  L0.55,7C0.238,7.325,0,7.562,0,8c0,0.563,0.432,1,1,1h1v6c0,0.55,0.45,1,1,1h3v-5c0-0.55,0.45-1,1-1h2c0.55,0,1,0.45,1,1v5h3  c0.55,0,1-0.45,1-1V9h1c0.568,0,1-0.437,1-1C16,7.562,15.762,7.325,15.45,7z"/>
+        </svg>
     </button>
 </div>
 `;
@@ -98,18 +100,18 @@ const globalMenus = `
                     <a href="${page}.html" class="global-menu color-${page}">
                         ${text}
                     </a>`, ""
-            )
-            }
+)
+}
         </div>
         <div id="tree-area">
-        ${["guest", "support", "tech"].reduce((acc, page)=>{
-                acc += Object.entries(globalMenuObj[page].submenu).reduce((_acc, [key, val])=>{
-                    _acc += `<a class="tree-fruit color-${page}" href="./${page}.html?menu=${key}" data-menu="${key}">${val}</a>`
-                    return _acc;
-                },"")
-                return acc;
-            },"")
-        }
+        ${["guest", "support", "tech"].reduce((acc, page) => {
+    acc += Object.entries(globalMenuObj[page].submenu).reduce((_acc, [key, val]) => {
+        _acc += `<a class="tree-fruit color-${page}" href="./${page}.html?menu=${key}" data-menu="${key}">${val}</a>`
+        return _acc;
+    }, "")
+    return acc;
+}, "")
+}
         </div>
         <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/><span class="bold">← 좌측 고객지원실</span> 을 이용 바랍니다.</div>
         <footer class="global-menu-close-btn">닫기</footer>    
@@ -168,7 +170,7 @@ if (path === "guest" || path === "support" || path === "tech") {
     const params = Object.fromEntries(urlSearchParams.entries());
     const {menu} = params || {};
     const curMenu = menu || Object.keys(contentMenu)[0];
-    
+
     /** 현재 메뉴 표시 **/
     contentNav.outerHTML = `
         <div class="content-nav">
@@ -201,5 +203,5 @@ document.querySelectorAll('a').forEach(a => {
 })
 
 /**
- * @todo: 30초동안 없으면 슬라이드쇼 넘어가는걸로, 없는 페이지 :  해당 내용은 준비중입니다. 전력신기술 색상 변경, home 아이콘 추가변경
+ * @todo: 30초동안 없으면 슬라이드쇼 넘어가는걸로, 없는 페이지 :  해당 내용은 준비중입니다.
  */
