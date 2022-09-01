@@ -237,6 +237,7 @@ main {
 a, button {
     background: transparent;
     border: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 a {
