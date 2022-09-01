@@ -1,15 +1,7 @@
 const controlMenus = `
 <div class="control-menus">    
     <button class="control-menu global-menu-open-btn">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+        <div style="font-size: 2rem">🏠</div>
     </button>
 </div>
 `;
@@ -207,3 +199,7 @@ document.querySelectorAll('a').forEach(a => {
         e.stopPropagation()
     })
 })
+
+/**
+ * @todo: 30초동안 없으면 슬라이드쇼 넘어가는걸로, 아름다운 경남사진 페이지 크게, 없는 페이지 :  해당 내용은 준비중입니다. 전력신기술 색상 변경, home 아이콘 추가변경
+ */
