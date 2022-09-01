@@ -17,8 +17,10 @@ function mousedown(e) {
 
     function mousemove(e) {
         if (!isResizing) {
-            let newX = prevX - e.touches[0].clientX;
-            let newY = prevY - e.touches[0].clientY;
+            const xPos = e.touches[0].clientX;
+            const yPos = e.touches[0].clientY;
+            let newX = prevX - xPos;
+            let newY = prevY - yPos;
 
             const rect = el.getBoundingClientRect();
 
@@ -35,10 +37,8 @@ function mousedown(e) {
             }
             el.style.left = x + "px";
             el.style.top = y + "px";
-            prevX = e.touches[0].clientX;
-            prevY = e.touches[0].clientY;
-
-
+            prevX = xPos;
+            prevY = yPos;
         }
     }
 
