@@ -64,10 +64,10 @@ const globalMenuObj = {
     support: {
         text: "한전 지원사업",
         submenu: {
+            root: "뿌리기업 지원",
             high: "고효율 기기 구매비용 지원",
             efficiency: "에너지 효율화",
             power: "파워체크",
-            root: "뿌리기업 지원",
         }
     },
     tech: {
