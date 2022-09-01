@@ -202,6 +202,47 @@ document.querySelectorAll('a').forEach(a => {
     })
 })
 
+
+
 /**
- * @todo: 30초동안 없으면 슬라이드쇼 넘어가는걸로
+ * @description : 일정시간 동안 터치 없을시 홈으로 이동하는 기능
  */
+
+const isHome = window.location.href.includes("index.html");
+
+if (!isHome) {
+    
+    /** 프로그레스바 (테스트 시연용) **/
+    const progressBar = document.createElement("div");
+    const progressBarStyles = {
+        position: "fixed",
+        bottom: "0",
+        zIndex: "3",
+        background: "red",
+        width: "100vw",
+        height: "0.5vw",
+        transition: "all 0.5s linear"
+    }
+    for (let style in progressBarStyles) {
+        progressBar.style[style] = progressBarStyles[style];
+    }
+    document.body.appendChild(progressBar);
+    const showProgress = () => progressBar.style.width = `${cnt / TIMING * 100}vw`;
+    
+
+    /** ----- 일정시간 이상 터치 없을시 홈으로 이동 ----- **/
+    const TIMING = 30;
+    let cnt;
+    const countReset = () => cnt = TIMING;
+    countReset();
+    const countDown = window.setInterval(() => {
+        showProgress(); // 테스트 시연용
+        cnt--;
+        if (cnt < 1) {
+            clearInterval(countDown);
+            window.location.href = "./index.html";
+        }
+    }, 1000);
+    window.addEventListener("mousedown", countReset);
+    window.addEventListener("touchstart", countReset);
+}
