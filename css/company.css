@@ -2,13 +2,13 @@
 #ho-introduce {
     word-break: keep-all;
     font-size: 1.6rem;
-    font-family: 'LeferiPoint-WhiteA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
     padding-top: 5vw;
 }
 
 #ho-introduce span {
     color: var(--point-color);
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
 }
 
 .ceo-signature {
@@ -17,7 +17,7 @@
 }
 
 .ceo-signature span {
-    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    font-family: 'S-CoreBold', sans-serif;
     font-size: 1.8rem;
     letter-spacing: 1rem;
     margin-left: 1rem;
@@ -31,8 +31,9 @@
 }
 
 .ceo-title {
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     line-height: 4rem;
+    font-family: 'S-CoreExtraBold', sans-serif;
 }
 
 
@@ -44,7 +45,7 @@
     padding: 2.2vw 1.5vw 1.5vw 1.5vw;
     border-radius: 5vw;
     line-height: 3rem;
-    font-family: 'LeferiPoint-WhiteA', sans-serif;
+    font-family: 'S-CoreThin', sans-serif;
     margin-bottom: 2vw;
 }
 
@@ -85,7 +86,7 @@
     padding: 2vw;
     color: white;
     width: 30vw;
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
 }
 
 .hq-vision-concept-list .item .title span {
@@ -112,12 +113,12 @@ img.hq-slogan {
 
 .hq-history li {
     display: flex;
-    margin-bottom: 5.5vw;
+    margin-bottom: 5.4vw;
 }
 
 .hq-history-date {
     color: var(--point-color);
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
     width: 20vw;
     flex-shrink: 0;
 }

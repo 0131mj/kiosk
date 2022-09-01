@@ -3,22 +3,29 @@
 }
 
 @font-face {
-    font-family: 'LeferiPoint-WhiteA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-WhiteA.woff') format('woff');
+    font-family: 'S-CoreThin';
+    src: url('../font/S-CoreDream-1Thin.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'LeferiBaseType-RegularA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-RegularA.woff') format('woff');
+    font-family: 'S-CoreLight';
+    src: url('../font/S-CoreDream-3Light.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'LeferiBaseType-BoldA';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiBaseType-BoldA.woff') format('woff');
+    font-family: 'S-CoreBold';
+    src: url('../font/S-CoreDream-6Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreExtraBold';
+    src: url('../font/S-CoreDream-7ExtraBold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -30,7 +37,7 @@ ol {
 
 html {
     font-size: 2vw;
-    font-family: 'LeferiPoint-WhiteA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
 }
 
 body {
@@ -56,16 +63,16 @@ em {
 }
 
 .bold {
-    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    font-family: 'S-CoreBold', sans-serif;
 }
 
 .title-header {
     text-align: center;
     background: rgb(3, 49, 88);
-    padding: 3.5vw 2.5vw 2.5vw 2.5vw;
+    padding: 3vw 2.5vw;
     width: 100%;
     font-size: 2rem;
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
     position: relative;
 }
 
@@ -88,7 +95,7 @@ em {
 .header-back-btn {
     right: 0;
     width: 18vw;
-    padding: 2vw 1vw 1vw 1vw;
+    padding: 1vw;
 }
 
 .flex-row {
@@ -174,9 +181,10 @@ main {
 
 .global-menu-panel-title {
     color: #4e5f7e;
-    font-size: 2.1rem;
+    font-size: 2.2rem;
     text-align: center;
     padding-top: 8vw;
+    font-family: 'S-CoreExtraBold', sans-serif;
 }
 
 .global-menus {
@@ -190,24 +198,21 @@ main {
 }
 
 .global-menu {
-    /*width: 25%;*/
     width: 15vw;
     height: 10vw;
-    /*background: linear-gradient(0deg, white 0%, #eee 50%);*/
     background: #4f5981;
-    /*color: #1e2250;*/
     color: #fff;
     border: 1px solid #bbb;
     box-sizing: border-box;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     word-break: keep-all;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1vw 2vw 0.5vw;
+    padding: 1vw 2vw;
     margin: 0.5vw;
     border-radius: 1vw;
-    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
     box-shadow: 0 0.3vw 0 rgba(255, 255, 255, 0.34) inset;
 }
 
@@ -269,7 +274,7 @@ a {
     align-items: center;
     font-size: 0.5rem;
     flex-shrink: 0;
-    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    font-family: 'S-CoreBold', sans-serif;
     border-top-left-radius: 2vw;
     border-bottom-left-radius: 2vw;
 }
@@ -338,17 +343,17 @@ a {
 }
 
 .content-nav .menu {
-    padding: 2.5vw 2.5vw 1.5vw;
+    padding: 1.5vw 2.5vw;
     border-radius: 1vw;
     background: #555;
     margin: 1vw;
     box-shadow: 0 0.2vw 0 rgba(255, 255, 255, 0.34) inset;
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
     color: #bbb;
 }
 
 .content-nav .menu.on {
-    background: #1fbdd7;
+    background: #0793ab;
     box-shadow: 0 -0.2vw 0 rgba(255, 255, 255, 0.34) inset;
     color: #fff;
 }
@@ -357,7 +362,7 @@ a {
     font-size: 1.5rem;
     padding: 0 2vw;
     justify-content: center;
-    font-family: 'LeferiBaseType-RegularA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
 }
 
 
@@ -367,7 +372,7 @@ a {
 }
 
 .content-nav .sub-menu.on {
-    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    font-family: 'S-CoreBold', sans-serif;
     opacity: 1;
 }
 
@@ -386,7 +391,7 @@ a {
 
 .tree-fruit {
     color: #fff;
-    padding: 3vw 2vw 2vw 2vw;
+    padding: 2vw;
     position: absolute;
     width: 11.5vw;
     height: 11.5vw;
@@ -395,7 +400,7 @@ a {
     justify-content: center;
     align-items: center;
     word-break: keep-all;
-    font-family: 'LeferiBaseType-BoldA', sans-serif;
+    font-family: 'S-CoreLight', sans-serif;
     font-size: 1rem;
     box-shadow: 0 0.3vw 0 rgba(255, 255, 255, 0.34) inset;
     /*opacity: 0.8;*/

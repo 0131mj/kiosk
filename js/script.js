@@ -93,7 +93,7 @@ const globalMenuObj = {
 const globalMenus = `
 <div class="global-menu-bg dimmed hide">
     <div class="global-menu-panel">
-        <div class="global-menu-panel-title bold">한전 경남본부 방문을 환영합니다.</div>          
+        <div class="global-menu-panel-title">한전 경남본부 방문을 환영합니다</div>          
         <div class="global-menus">
             ${Object.entries(globalMenuObj).reduce(
     (rows, [page, {text}]) => rows + `
@@ -201,7 +201,6 @@ document.querySelectorAll('a').forEach(a => {
         e.stopPropagation()
     })
 })
-
 
 
 /**
