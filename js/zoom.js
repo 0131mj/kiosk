@@ -4,7 +4,7 @@ let isResizing = false;
 
 const pRect = preview.getBoundingClientRect();
 
-const BOUND_PADDING = 3;
+const PADDING = 3;
 
 el.addEventListener("touchstart", mousedown);
 
@@ -25,10 +25,10 @@ function mousedown(e) {
             const x = rect.left - newX;
             const y = rect.top - newY;
 
-            const isLeftEdge = pRect.x + BOUND_PADDING >= x;
-            const isTopEdge = pRect.y + BOUND_PADDING >= y;
-            const isRightEdge = pRect.x + pRect.width - BOUND_PADDING <= x + rect.width;
-            const isBottomEdge = pRect.y + pRect.height - BOUND_PADDING <= y + rect.height;
+            const isLeftEdge = pRect.x + PADDING >= x;
+            const isTopEdge = pRect.y + PADDING >= y;
+            const isRightEdge = pRect.x + pRect.width - PADDING <= x + rect.width;
+            const isBottomEdge = pRect.y + pRect.height - PADDING <= y + rect.height;
 
             if (isLeftEdge || isTopEdge || isRightEdge || isBottomEdge) {
                 return
@@ -51,6 +51,12 @@ function mousedown(e) {
 const resizers = document.querySelectorAll(".resizer");
 let currentResizer;
 
+/** 리사이즈시, 크기 변화적용 **/
+const setWidth = (_w) => el.style.width = `${_w}px`;
+const setHeight = (_h) => el.style.height = `${_h}px`;
+const setLeft = (_l) => el.style.left = `${_l}px`;
+const setTop = (_t) => el.style.top = `${_t}px`;
+
 for (let resizer of resizers) {
     resizer.addEventListener("touchstart", mousedown);
 
@@ -65,28 +71,39 @@ for (let resizer of resizers) {
         window.addEventListener("touchend", mouseup);
 
         function mousemove(e) {
-            const rect = el.getBoundingClientRect();
+
+            const xPos = e.touches[0].clientX;
+            const yPos = e.touches[0].clientY;
+
+            const xGap = prevX - xPos;
+            const yGap = prevY - yPos;
+
+            const {width: w, height: h, top: t, left: l} = el.getBoundingClientRect();
+
+            /** 1. resizer 가 바운더리를 벗어나지 않도록 처리 **/
+
+            /** 2. 일정길이 이하 / 이상으로 움직이지 않도록 처리 **/
 
             if (currentResizer.classList.contains("se")) {
-                el.style.width = rect.width - (prevX - e.touches[0].clientX) + "px";
-                el.style.height = rect.height - (prevY - e.touches[0].clientY) + "px";
+                setWidth(w - xGap);
+                setHeight(h - yGap);
             } else if (currentResizer.classList.contains("sw")) {
-                el.style.width = rect.width + (prevX - e.touches[0].clientX) + "px";
-                el.style.height = rect.height - (prevY - e.touches[0].clientY) + "px";
-                el.style.left = rect.left - (prevX - e.touches[0].clientX) + "px";
+                setWidth(w + xGap);
+                setHeight(h - yGap);
+                setLeft(l - xGap);
             } else if (currentResizer.classList.contains("ne")) {
-                el.style.width = rect.width - (prevX - e.touches[0].clientX) + "px";
-                el.style.height = rect.height + (prevY - e.touches[0].clientY) + "px";
-                el.style.top = rect.top - (prevY - e.touches[0].clientY) + "px";
+                setWidth(w - xGap);
+                setHeight(h + yGap);
+                setTop(t - yGap);
             } else {
-                el.style.width = rect.width + (prevX - e.touches[0].clientX) + "px";
-                el.style.height = rect.height + (prevY - e.touches[0].clientY) + "px";
-                el.style.top = rect.top - (prevY - e.touches[0].clientY) + "px";
-                el.style.left = rect.left - (prevX - e.touches[0].clientX) + "px";
+                setWidth(w + xGap)
+                setHeight(h + yGap)
+                setTop(t - yGap)
+                setLeft(l - xGap);
             }
 
-            prevX = e.touches[0].clientX;
-            prevY = e.touches[0].clientY;
+            prevX = xPos;
+            prevY = yPos;
         }
 
         function mouseup() {
