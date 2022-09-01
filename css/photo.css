@@ -324,3 +324,7 @@ main {
 #result-msg {
     line-height: 2em;
 }
+
+.sample-human{
+    width: 50%;
+}
