@@ -355,12 +355,12 @@ a {
 
 .content-nav .menus {
     justify-content: center;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
 }
 
 .content-nav .menu {
     padding: 1.5vw 2.5vw;
-    border-radius: 1vw;
+    border-radius: .5vw;
     background: #555;
     margin: 1vw;
     box-shadow: 0 0.2vw 0 rgba(255, 255, 255, 0.34) inset;

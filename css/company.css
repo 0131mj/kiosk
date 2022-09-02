@@ -1,14 +1,17 @@
 /** 본사 - 소개 **/
 #ho-introduce {
     word-break: keep-all;
-    font-size: 1.6rem;
     font-family: 'S-CoreLight', sans-serif;
     padding-top: 5vw;
 }
 
 #ho-introduce span {
     color: var(--point-color);
-    font-family: 'S-CoreLight', sans-serif;
+}
+
+.ho-introduce-content {
+    font-size: 1.4rem;
+    line-height: 2.6rem;
 }
 
 .ceo-signature {
@@ -17,7 +20,7 @@
 }
 
 .ceo-signature span {
-    font-family: 'S-CoreBold', sans-serif;
+    font-family: 'S-CoreMedium', sans-serif;
     font-size: 1.8rem;
     letter-spacing: 1rem;
     margin-left: 1rem;
@@ -66,6 +69,12 @@
     word-break: keep-all;
 }
 
+.vision-main-text {
+    word-break: keep-all;
+    text-align: center;
+    line-height: 5vw;
+}
+
 .hq-vision-concept-list {
     justify-content: space-between;
 }
@@ -75,7 +84,7 @@
     background: rgba(255, 255, 255, 0.1);
     margin-bottom: 3vw;
     min-height: 20vw;
-    border-radius: 2vw;
+    border-radius: 1vw;
 }
 
 .hq-vision-concept-list .item .title {
@@ -86,7 +95,15 @@
     padding: 2vw;
     color: white;
     width: 30vw;
-    font-family: 'S-CoreLight', sans-serif;
+}
+
+.hq-vision-concept-list .item .title div:nth-child(1) {
+    font-family: 'S-CoreMedium', sans-serif;
+}
+
+.hq-vision-concept-list .item .title div:nth-child(2) {
+    font-size: 1.3rem;
+    margin-top: 0.5vw;
 }
 
 .hq-vision-concept-list .item .title span {
@@ -98,6 +115,8 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    line-height: 2.5rem;
+    font-size: 1.3rem;
 }
 
 img.hq-slogan {
