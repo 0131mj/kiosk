@@ -243,7 +243,7 @@ const setOffice = () => {
 
     telBtn.addEventListener("click", (e) => {
         const code = e.currentTarget.dataset.code;
-        popupImg.setAttribute("src", `./img/hq_tel/${code}.png`);
+        popupImg.setAttribute("src", `./img/office_tel/${code}.png`);
         modalTitle.innerText = `업무별 전화번호 - ${data[Number(code)].name} `
         openPopup();
     })
