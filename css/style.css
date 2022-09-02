@@ -380,12 +380,12 @@ a {
     margin: 1vw;
     box-shadow: 0 0.2vw 0 rgba(255, 255, 255, 0.34) inset;
     font-family: 'S-CoreMedium', sans-serif;
-    color: #bbb;
+    color: #999;
 }
 
 .content-nav .menu.on {
-    background: #0793ab;
-    /*background: var(--default-menu);*/
+    /*background: #0793ab;*/
+    background: var(--default-menu);
     box-shadow: 0 -0.2vw 0 rgba(255, 255, 255, 0.34) inset;
     color: #fff;
 }
