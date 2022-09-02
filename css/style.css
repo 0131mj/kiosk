@@ -280,8 +280,8 @@ a {
     color: #cef;
     top: 45%;
     right: 0;
-    width: 8vw;
-    height: 8vw;
+    width: 7.5vw;
+    height: 8.5vw;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -292,6 +292,7 @@ a {
     font-family: 'S-CoreBold', sans-serif;
     border-top-left-radius: 2vw;
     border-bottom-left-radius: 2vw;
+    padding-left: 0.2vw;
 }
 
 #control-spread-btn {
