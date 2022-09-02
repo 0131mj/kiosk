@@ -176,7 +176,7 @@ if (path === "guest" || path === "support" || path === "tech") {
         <div class="content-nav">
             <div class="flex-row menus">   
                 ${Object.entries(contentMenu).reduce((acc, [key, text]) => {
-        return acc + `<a href="./${path}.html?menu=${key}" class="menu${key === curMenu ? ' on' : ''}">${text}</a>`;
+        return acc + `<a href="./${path}.html?menu=${key}" class="menu${key === curMenu ? ' on' : ''} color-${path}">${text}</a>`;
     }, "")}
             </div>    
         </div>

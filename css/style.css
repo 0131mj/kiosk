@@ -1,5 +1,6 @@
 :root {
-    --point-color: #ffd400
+    --point-color: #ffd400;
+    --default-menu: #4f5981;
 }
 
 @font-face {
@@ -215,7 +216,7 @@ main {
 .global-menu {
     width: 15vw;
     height: 10vw;
-    background: #4f5981;
+    background: var(--default-menu);
     color: #fff;
     border: 1px solid #bbb;
     box-sizing: border-box;
@@ -236,15 +237,29 @@ main {
     color: #fff;
 }
 
+.color-guest.on {
+    background: #df5f5f !important;
+}
+
 .color-support {
     background: #599cbd;
     color: #fff;
 }
 
+.color-support.on {
+    background: #599cbd !important;
+}
+
+
 .color-tech {
     background: #eb8f32;
     color: #fff;
 }
+
+.color-tech.on {
+    background: #eb8f32 !important;
+}
+
 
 .global-menu-close-btn {
     background: black;
@@ -370,6 +385,7 @@ a {
 
 .content-nav .menu.on {
     background: #0793ab;
+    /*background: var(--default-menu);*/
     box-shadow: 0 -0.2vw 0 rgba(255, 255, 255, 0.34) inset;
     color: #fff;
 }
@@ -484,7 +500,7 @@ a {
     font-size: 1.75rem;
 }
 
-.empty{
+.empty {
     width: 100vw;
     height: 70vh;
     display: flex;
