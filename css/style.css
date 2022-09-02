@@ -17,6 +17,20 @@
 }
 
 @font-face {
+    font-family: 'S-CoreRegular';
+    src: url('../font/S-CoreDream-4Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'S-CoreMedium';
+    src: url('../font/S-CoreDream-5Medium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'S-CoreBold';
     src: url('../font/S-CoreDream-6Bold.woff') format('woff');
     font-weight: normal;
@@ -72,7 +86,7 @@ em {
     padding: 3vw 2.5vw;
     width: 100%;
     font-size: 2rem;
-    font-family: 'S-CoreLight', sans-serif;
+    font-family: 'S-CoreMedium', sans-serif;
     position: relative;
 }
 
@@ -96,6 +110,7 @@ em {
     right: 0;
     width: 18vw;
     padding: 1vw;
+    font-family: 'S-CoreLight', sans-serif;
 }
 
 .flex-row {
@@ -212,7 +227,7 @@ main {
     padding: 1vw 2vw;
     margin: 0.5vw;
     border-radius: 1vw;
-    font-family: 'S-CoreLight', sans-serif;
+    font-family: 'S-CoreMedium', sans-serif;
     box-shadow: 0 0.3vw 0 rgba(255, 255, 255, 0.34) inset;
 }
 
@@ -348,7 +363,7 @@ a {
     background: #555;
     margin: 1vw;
     box-shadow: 0 0.2vw 0 rgba(255, 255, 255, 0.34) inset;
-    font-family: 'S-CoreLight', sans-serif;
+    font-family: 'S-CoreMedium', sans-serif;
     color: #bbb;
 }
 
@@ -400,8 +415,7 @@ a {
     justify-content: center;
     align-items: center;
     word-break: keep-all;
-    font-family: 'S-CoreLight', sans-serif;
-    font-size: 1rem;
+    font-family: 'S-CoreMedium', sans-serif;
     box-shadow: 0 0.3vw 0 rgba(255, 255, 255, 0.34) inset;
     /*opacity: 0.8;*/
 }
