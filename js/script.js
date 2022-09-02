@@ -239,7 +239,7 @@ if (!isHome) {
         cnt--;
         if (cnt < 1) {
             clearInterval(countDown);
-            window.location.href = "./index.html";
+            // window.location.href = "./index.html";
         }
     }, 1000);
     window.addEventListener("mousedown", countReset);
