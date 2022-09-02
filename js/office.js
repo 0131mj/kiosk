@@ -213,7 +213,8 @@ const setOffice = () => {
         addressEl.innerText = address;
         officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.png")`;
         orgEl.style.backgroundImage = `url(./img/hq_org/${idx}.jpg)`;
-        officeImg.setAttribute("src", `./img/office/${idx}.png`);
+        officeImg.setAttribute("src", `./img/office/${idx}.gif`);
+        officeImg.setAttribute("alt", name);
         locationBtn.setAttribute("data-code", idx);
         telBtn.setAttribute("data-code", idx);
     }
