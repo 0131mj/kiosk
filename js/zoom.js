@@ -38,6 +38,7 @@ function onMoveStart(e) {
     let prevY = e.touches[0].clientY; // 마우스가 클릭된 위치값
 
     function onMove(e) {
+
         if (!isResizing) {
             const xPos = e.touches[0].clientX;
             const yPos = e.touches[0].clientY;
@@ -64,8 +65,8 @@ function onMoveStart(e) {
             setLeft(getRangeValue(x, MIN_X, MAX_X));
             setTop(getRangeValue(y, MIN_Y, MAX_Y));
 
-            prevX = getRangeValue(xPos, MIN_X, MAX_X)
-            prevY = getRangeValue(yPos, MIN_Y, MAX_Y)
+            prevX = getRangeValue(xPos, MIN_X, MAX_X);
+            prevY = getRangeValue(yPos, MIN_Y, MAX_Y);
         }
     }
 
@@ -89,6 +90,7 @@ let currentResizer;
 
 for (let resizer of resizers) {
     function onResizeStart(e) {
+        console.log("리사이즈 중")
         currentResizer = e.target;
         isResizing = true;
 
@@ -121,13 +123,21 @@ for (let resizer of resizers) {
 
             /** 리사이저가 움직일 수 있는 범위값 (사이즈 기준) **/
             const MIN_WIDTH = 200;
-            const MAX_WIDTH = 600;
+            const MAX_WIDTH = 600; // 임시값, 현재 x 포지션과 width 너비에 따라 동적이어야 함.
             const MIN_HEIGHT = 200;
             const MAX_HEIGHT = 600;
 
+            // 결과적으로 리사이저가 움직일 수 있는 범위를 벗어나지 못하도록만 하면 됨
+
+
             if (currentResizer.classList.contains("se")) {
-                setWidth(humanBoxWidth + xMoveDist);
-                setHeight(humanBoxHeight + yMoveDist);
+
+                // setWidth(humanBoxWidth + xMoveDist);
+                // setHeight(humanBoxHeight + yMoveDist);
+                /*** 사이즈만 변경되는 케이스 */
+                setWidth(getRangeValue(humanBoxWidth + xMoveDist, MIN_WIDTH, MAX_WIDTH));
+                setHeight(getRangeValue(humanBoxHeight + yMoveDist, MIN_HEIGHT, MAX_HEIGHT));
+
             } else if (currentResizer.classList.contains("sw")) {
                 setWidth(humanBoxWidth - xMoveDist);
                 setHeight(humanBoxHeight + yMoveDist);
@@ -146,6 +156,9 @@ for (let resizer of resizers) {
 
             prevX = xPos;
             prevY = yPos;
+
+            // prevX = getRangeValue(xPos, MIN_X, MAX_X);
+            // prevY = getRangeValue(yPos, MIN_Y, MAX_Y);
         }
 
         function onResizeStop() {
