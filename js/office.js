@@ -236,7 +236,7 @@ const setOffice = () => {
 
     locationBtn.addEventListener("click", (e) => {
         const code = e.currentTarget.dataset.code;
-        popupImg.setAttribute("src", `./img/hq_location/${code}.png`);
+        popupImg.setAttribute("src", `./img/office_map/${code}.png`);
         modalTitle.innerText = `찾아오시는 길 - ${data[Number(code)].name} `
         openPopup();
     })
