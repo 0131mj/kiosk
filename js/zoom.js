@@ -12,15 +12,9 @@ const photoTargetEl = document.getElementById("photo-target");
 /** 크기 및 위치 변화 적용 **/
 
 const setWidth = (w) => {
-    if (w <= MIN_WIDTH || w >= MAX_WIDTH) {
-        return;
-    }
     photoTargetEl.style.width = `${w}px`
 };
 const setHeight = (h) => {
-    if (h <= MIN_HEIGHT || h >= MAX_HEIGHT) {
-        return;
-    }
     photoTargetEl.style.height = `${h}px`
 };
 const setLeft = (_l) => photoTargetEl.style.left = `${_l}px`;
@@ -48,19 +42,24 @@ function onMoveStart(e) {
             const xPos = e.touches[0].clientX;
             const yPos = e.touches[0].clientY;
 
-            let xMoveDist = xPos - prevX; // 움직인 거리 : 현재 위치 - 이전 위치
-            let yMoveDist = yPos - prevY; // 움직인 거리 : 현재 위치 - 이전 위치
+            const xMoveDist = xPos - prevX; // 움직인 거리 : 현재 위치 - 이전 위치
+            const yMoveDist = yPos - prevY; // 움직인 거리 : 현재 위치 - 이전 위치
 
-            const {left: humanBoxLeft, top: humanBoxTop} = photoTargetEl.getBoundingClientRect();
+            const {
+                left: humanBoxLeft,
+                top: humanBoxTop,
+                width: humanBoxWidth,
+                height: humanBoxHeight
+            } = photoTargetEl.getBoundingClientRect();
 
             const x = humanBoxLeft + xMoveDist;
             const y = humanBoxTop + yMoveDist;
 
-            const MIN_X = 200;  // 임시값,
+            const MIN_X = 190;  // 임시값,
             const MAX_X = 1750; // 임시값, 동적이어야 함. 현재 너비 추가
 
-            const MIN_Y = 900;  // 임시값,
-            const MAX_Y = 1600; // 임시값, 동적이어야 함. 현재 높이 추가
+            const MIN_Y = 910;  // 임시값,
+            const MAX_Y = 1660; // 임시값, 동적이어야 함. 현재 높이 추가
 
             setLeft(getRangeValue(x, MIN_X, MAX_X));
             setTop(getRangeValue(y, MIN_Y, MAX_Y));
@@ -93,48 +92,57 @@ for (let resizer of resizers) {
         currentResizer = e.target;
         isResizing = true;
 
-        let prevX = e.touches[0].clientX;
-        let prevY = e.touches[0].clientY;
+        let prevX = e.touches[0].clientX; // 마우스가 클릭된 위치값
+        let prevY = e.touches[0].clientY; // 마우스가 클릭된 위치값
 
         function onResizeMove(e) {
 
-            const xPos = e.touches[0].clientX;
-            const yPos = e.touches[0].clientY;
+            const xPos = e.touches[0].clientX; // 마우스가 움직여서 도달한 위치값
+            const yPos = e.touches[0].clientY; // 마우스가 움직여서 도달한 위치값
 
-            /** 1. resizer 가 바운더리를 벗어나지 않도록 처리 **/
-            const isLeftEdge = xPos <= boundaryRect.x + PADDING;
-            const isRightEdge = xPos >= boundaryRect.x + boundaryRect.width - PADDING;
-            const isTopEdge = yPos <= boundaryRect.y + PADDING;
-            const isBottomEdge = yPos >= boundaryRect.y + boundaryRect.height - PADDING;
-            if (isLeftEdge || isRightEdge || isTopEdge || isBottomEdge) {
-                return;
-            }
+            const xMoveDist = xPos - prevX; // 움직인 거리 : 현재 위치 - 이전 위치
+            const yMoveDist = yPos - prevY; // 움직인 거리 : 현재 위치 - 이전 위치
 
-            const xGap = prevX - xPos;
-            const yGap = prevY - yPos;
+            const {width: humanBoxWidth, height: humanBoxHeight, top: humanBoxTop, left: humanBoxLeft} = photoTargetEl.getBoundingClientRect();
 
-            const {width: w, height: h, top: t, left: l} = photoTargetEl.getBoundingClientRect();
+            /**
+             * 1. resizer 가 바운더리를 벗어나지 않도록 처리
+             * 2. 일정길이 이하 / 이상으로 변형되지 않도록 처리
+             *  현재 위치값과 박스의 고정 최소/최대 크기를 고려하여 리사이저가 취할 수 있는 좌표값을 정한다.
+             *  max 값에 도달하지 않았어도 마우스가 바운더리를 벗어나려 하면 더이상 늘어날 수 없다.
+             *
+             *  **/
 
+            /** 리사이저가 움직일 수 있는 범위값 (위치 기준) **/
+            const MIN_X = 190;  // 임시값,
+            const MAX_X = 1750; // 임시값, 동적이어야 함. 현재 너비 추가
+            const MIN_Y = 910;  // 임시값,
+            const MAX_Y = 1660; // 임시값, 동적이어야 함. 현재 높이 추가
 
-            /** 2. 일정길이 이하 / 이상으로 변형되지 않도록 처리 **/
+            /** 리사이저가 움직일 수 있는 범위값 (사이즈 기준) **/
+            const MIN_WIDTH = 200;
+            const MAX_WIDTH = 600;
+            const MIN_HEIGHT = 200;
+            const MAX_HEIGHT = 600;
 
             if (currentResizer.classList.contains("se")) {
-                setWidth(w - xGap);
-                setHeight(h - yGap);
+                setWidth(humanBoxWidth + xMoveDist);
+                setHeight(humanBoxHeight + yMoveDist);
             } else if (currentResizer.classList.contains("sw")) {
-                setWidth(w + xGap);
-                setHeight(h - yGap);
-                setLeft(l - xGap);
+                setWidth(humanBoxWidth - xMoveDist);
+                setHeight(humanBoxHeight + yMoveDist);
+                setLeft(humanBoxLeft + xMoveDist); //ok
             } else if (currentResizer.classList.contains("ne")) {
-                setWidth(w - xGap);
-                setHeight(h + yGap);
-                setTop(t - yGap);
+                setWidth(humanBoxWidth + xMoveDist);
+                setHeight(humanBoxHeight - yMoveDist);
+                setTop(humanBoxTop + yMoveDist);
             } else {
-                setWidth(w + xGap)
-                setHeight(h + yGap)
-                setTop(t - yGap)
-                setLeft(l - xGap);
+                setWidth(humanBoxWidth - xMoveDist)
+                setHeight(humanBoxHeight - yMoveDist)
+                setTop(humanBoxTop + yMoveDist)
+                setLeft(humanBoxLeft + xMoveDist);
             }
+
 
             prevX = xPos;
             prevY = yPos;
