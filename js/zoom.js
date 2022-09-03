@@ -4,7 +4,7 @@ let isResizing = false;
 
 const pRect = preview.getBoundingClientRect();
 
-const PADDING = 3;
+const PADDING = 20;
 
 el.addEventListener("touchstart", mousedown);
 
@@ -75,12 +75,21 @@ for (let resizer of resizers) {
             const xPos = e.touches[0].clientX;
             const yPos = e.touches[0].clientY;
 
+            /** 1. resizer 가 바운더리를 벗어나지 않도록 처리 **/
+            const isLeftEdge = xPos <= pRect.x + PADDING;
+            const isRightEdge = xPos >= pRect.x + pRect.width - PADDING;
+            const isTopEdge = yPos <= pRect.y + PADDING;
+            const isBottomEdge = yPos >= pRect.y + pRect.height - PADDING;
+            if (isLeftEdge || isRightEdge || isTopEdge || isBottomEdge) {
+                return;
+            }
+
             const xGap = prevX - xPos;
             const yGap = prevY - yPos;
 
             const {width: w, height: h, top: t, left: l} = el.getBoundingClientRect();
 
-            /** 1. resizer 가 바운더리를 벗어나지 않도록 처리 **/
+
 
             /** 2. 일정길이 이하 / 이상으로 움직이지 않도록 처리 **/
 
