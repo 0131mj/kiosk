@@ -187,7 +187,7 @@ const setOffice = () => {
     const addressEl = document.getElementById("office-address");
     const orgEl = document.getElementById("office-org");
     const officeImg = document.getElementById("office-img");
-    const locationBtn = document.getElementById("location-btn");
+    const mapBtn = document.getElementById("map-btn");
     const telBtn = document.getElementById("tel-btn");
     const popup = document.getElementById("popup");
     const popupImg = document.getElementById("popup-img");
@@ -215,7 +215,7 @@ const setOffice = () => {
         orgEl.style.backgroundImage = `url(./img/hq_org/${idx}.jpg)`;
         officeImg.setAttribute("src", `./img/office/${idx}.gif`);
         officeImg.setAttribute("alt", name);
-        locationBtn.setAttribute("data-code", idx);
+        mapBtn.setAttribute("data-code", idx);
         telBtn.setAttribute("data-code", idx);
     }
     const officeBtn = document.querySelectorAll(".office-btn");
@@ -226,7 +226,13 @@ const setOffice = () => {
         })
     });
 
-    const openPopup = () => {
+    const openPopup = (e) => {
+        const code = e.currentTarget.dataset.code;
+        const type = e.currentTarget.id.replace("-btn","");
+        const prefix = type === "tel" ? "업무별 전화번호" : "찾아오시는 길";
+        popupImg.setAttribute("src", `./img/office_${type}/${code}.png`);
+        popupImg.setAttribute("data-type", type);
+        modalTitle.innerText = `${prefix} - ${data[Number(code)].name} `
         popup.classList.remove("hide");
     }
 
@@ -234,19 +240,9 @@ const setOffice = () => {
         popup.classList.add("hide");
     }
 
-    locationBtn.addEventListener("click", (e) => {
-        const code = e.currentTarget.dataset.code;
-        popupImg.setAttribute("src", `./img/office_map/${code}.png`);
-        modalTitle.innerText = `찾아오시는 길 - ${data[Number(code)].name} `
-        openPopup();
-    })
+    mapBtn.addEventListener("click", openPopup)
 
-    telBtn.addEventListener("click", (e) => {
-        const code = e.currentTarget.dataset.code;
-        popupImg.setAttribute("src", `./img/office_tel/${code}.png`);
-        modalTitle.innerText = `업무별 전화번호 - ${data[Number(code)].name} `
-        openPopup();
-    })
+    telBtn.addEventListener("click", openPopup)
 
     closeModalBtn.addEventListener("click", (e) => {
         e.stopPropagation();

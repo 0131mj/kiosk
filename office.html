@@ -66,7 +66,7 @@
 
             .basic-info {
                 margin-left: 5vw !important;
-                font-size: 1.2rem !important;
+                font-size: 1.1rem !important;
             }
 
             .content-area {
@@ -75,6 +75,10 @@
 
             p, h4 {
                 margin: 0 0 1.5vw
+            }
+
+            h4 {
+                font-size: 1.2rem;
             }
 
             /* 사업소 소개*/
@@ -89,10 +93,11 @@
             }
 
             .office-title {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
                 text-align: center;
                 margin-top: 3rem;
                 font-family: 'S-CoreLight', sans-serif;
+                color: #ffda00;
             }
 
             .office-introduce .basic-info {
@@ -149,6 +154,16 @@
                 width: 82vw;
             }
 
+            #popup-img[data-type="map"] {
+                border: 2vw solid #fff;
+            }
+
+            #popup-img[data-type="tel"] {
+                border-top: 2vw solid #fff;
+                border-bottom: 1vw solid #fff;
+            }
+
+
             #close-modal-btn {
 
             }
@@ -161,7 +176,7 @@
                 <h4>조직현황</h4>
                 <div class="office-org-bg" id="office-org"></div>
                 <h4>기본 정보</h4>
-                <div style="display: flex; align-items: center">
+                <div style="display: flex; align-items: stretch">
                     <img id="office-img" src="" alt="-">
                     <dl class="basic-info">
                         <dt>사업소명</dt>
@@ -170,7 +185,7 @@
                         <dd id="office-address">(51439) 경남 창원시 성산구 중앙대로210번길 13</dd>
                         <dt>대표번호</dt>
                         <dd id="office-tel">055-123</dd>
-                        <button id="location-btn" class="popup-btn">찾아오시는 길</button>
+                        <button id="map-btn" class="popup-btn">찾아오시는 길</button>
                         <button id="tel-btn" class="popup-btn">업무별 전화번호</button>
                     </dl>
                 </div>
