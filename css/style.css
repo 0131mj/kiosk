@@ -112,6 +112,7 @@ em {
     width: 18vw;
     padding: 1vw;
     font-family: 'S-CoreLight', sans-serif;
+    opacity: 0.7;
 }
 
 .flex-row {
