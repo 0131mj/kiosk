@@ -26,47 +26,59 @@ const setHeight = (h) => {
 const setLeft = (_l) => photoTargetEl.style.left = `${_l}px`;
 const setTop = (_t) => photoTargetEl.style.top = `${_t}px`;
 
+const getRangeValue = (val, min, max) => {
+    if (val <= min) {
+        return min;
+    } else if (val >= max) {
+        return max;
+    } else {
+        return val;
+    }
+}
+
 /**
  * 기능 1 : 위치 이동
  * *  */
 function onMoveStart(e) {
-    let prevX = e.touches[0].clientX;
-    let prevY = e.touches[0].clientY;
+    let prevX = e.touches[0].clientX; // 마우스가 클릭된 위치값
+    let prevY = e.touches[0].clientY; // 마우스가 클릭된 위치값
 
     function onMove(e) {
         if (!isResizing) {
             const xPos = e.touches[0].clientX;
             const yPos = e.touches[0].clientY;
-            let newX = prevX - xPos;
-            let newY = prevY - yPos;
 
-            const rect = photoTargetEl.getBoundingClientRect();
+            let xMoveDist = xPos - prevX; // 움직인 거리 : 현재 위치 - 이전 위치
+            let yMoveDist = yPos - prevY; // 움직인 거리 : 현재 위치 - 이전 위치
 
-            const x = rect.left - newX;
-            const y = rect.top - newY;
+            const {left: humanBoxLeft, top: humanBoxTop} = photoTargetEl.getBoundingClientRect();
 
-            const isLeftEdge = boundaryRect.x + PADDING >= x;
-            const isTopEdge = boundaryRect.y + PADDING >= y;
-            const isRightEdge = boundaryRect.x + boundaryRect.width - PADDING <= x + rect.width;
-            const isBottomEdge = boundaryRect.y + boundaryRect.height - PADDING <= y + rect.height;
+            const x = humanBoxLeft + xMoveDist;
+            const y = humanBoxTop + yMoveDist;
 
-            if (isLeftEdge || isTopEdge || isRightEdge || isBottomEdge) {
-                return
-            }
-            photoTargetEl.style.left = x + "px";
-            photoTargetEl.style.top = y + "px";
-            prevX = xPos;
-            prevY = yPos;
+            const MIN_X = 200;  // 임시값,
+            const MAX_X = 1750; // 임시값, 동적이어야 함. 현재 너비 추가
+
+            const MIN_Y = 900;  // 임시값,
+            const MAX_Y = 1600; // 임시값, 동적이어야 함. 현재 높이 추가
+
+            setLeft(getRangeValue(x, MIN_X, MAX_X));
+            setTop(getRangeValue(y, MIN_Y, MAX_Y));
+
+            prevX = getRangeValue(xPos, MIN_X, MAX_X)
+            prevY = getRangeValue(yPos, MIN_Y, MAX_Y)
         }
     }
+
     function onMoveEnd() {
         window.removeEventListener("touchmove", onMove);
         window.removeEventListener("touchend", onMoveEnd);
     }
-    
+
     window.addEventListener("touchmove", onMove);
     window.addEventListener("touchend", onMoveEnd);
 }
+
 photoTargetEl.addEventListener("touchstart", onMoveStart);
 
 
@@ -127,6 +139,7 @@ for (let resizer of resizers) {
             prevX = xPos;
             prevY = yPos;
         }
+
         function onResizeStop() {
             window.removeEventListener("touchmove", onResizeMove);
             window.removeEventListener("touchend", onResizeStop);
@@ -136,5 +149,6 @@ for (let resizer of resizers) {
         window.addEventListener("touchmove", onResizeMove);
         window.addEventListener("touchend", onResizeStop);
     }
+
     resizer.addEventListener("touchstart", onResizeStart);
 }
