@@ -8,6 +8,26 @@ const PADDING = 20;
 
 el.addEventListener("touchstart", mousedown);
 
+/** 리사이즈시, 크기 변화적용 **/
+const MIN_WIDTH = 200;
+const MAX_WIDTH = 1000;
+const MIN_HEIGHT = 200;
+const MAX_HEIGHT = 1000;
+const setWidth = (w) => {
+    if (w <= MIN_WIDTH || w >= MAX_WIDTH) {
+        return;
+    }
+    el.style.width = `${w}px`
+};
+const setHeight = (h) => {
+    if (h <= MIN_HEIGHT || h >= MAX_HEIGHT) {
+        return;
+    }
+    el.style.height = `${h}px`
+};
+const setLeft = (_l) => el.style.left = `${_l}px`;
+const setTop = (_t) => el.style.top = `${_t}px`;
+
 function mousedown(e) {
     window.addEventListener("touchmove", mousemove);
     window.addEventListener("touchend", mouseup);
@@ -51,11 +71,6 @@ function mousedown(e) {
 const resizers = document.querySelectorAll(".resizer");
 let currentResizer;
 
-/** 리사이즈시, 크기 변화적용 **/
-const setWidth = (_w) => el.style.width = `${_w}px`;
-const setHeight = (_h) => el.style.height = `${_h}px`;
-const setLeft = (_l) => el.style.left = `${_l}px`;
-const setTop = (_t) => el.style.top = `${_t}px`;
 
 for (let resizer of resizers) {
     resizer.addEventListener("touchstart", mousedown);
@@ -90,8 +105,7 @@ for (let resizer of resizers) {
             const {width: w, height: h, top: t, left: l} = el.getBoundingClientRect();
 
 
-
-            /** 2. 일정길이 이하 / 이상으로 움직이지 않도록 처리 **/
+            /** 2. 일정길이 이하 / 이상으로 변형되지 않도록 처리 **/
 
             if (currentResizer.classList.contains("se")) {
                 setWidth(w - xGap);
