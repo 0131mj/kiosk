@@ -1,100 +1,99 @@
-const el = document.getElementById("photo-target");
-
-let isResizing = false;
-
-const pRect = preview.getBoundingClientRect();
-
 const PADDING = 20;
-
-el.addEventListener("touchstart", mousedown);
-
-/** 리사이즈시, 크기 변화적용 **/
 const MIN_WIDTH = 200;
 const MAX_WIDTH = 1000;
 const MIN_HEIGHT = 200;
 const MAX_HEIGHT = 1000;
+
+let isResizing = false;
+
+const boundaryRect = previewEl.getBoundingClientRect();
+const photoTargetEl = document.getElementById("photo-target");
+
+/** 크기 및 위치 변화 적용 **/
+
 const setWidth = (w) => {
     if (w <= MIN_WIDTH || w >= MAX_WIDTH) {
         return;
     }
-    el.style.width = `${w}px`
+    photoTargetEl.style.width = `${w}px`
 };
 const setHeight = (h) => {
     if (h <= MIN_HEIGHT || h >= MAX_HEIGHT) {
         return;
     }
-    el.style.height = `${h}px`
+    photoTargetEl.style.height = `${h}px`
 };
-const setLeft = (_l) => el.style.left = `${_l}px`;
-const setTop = (_t) => el.style.top = `${_t}px`;
+const setLeft = (_l) => photoTargetEl.style.left = `${_l}px`;
+const setTop = (_t) => photoTargetEl.style.top = `${_t}px`;
 
-function mousedown(e) {
-    window.addEventListener("touchmove", mousemove);
-    window.addEventListener("touchend", mouseup);
-
+/**
+ * 기능 1 : 위치 이동
+ * *  */
+function onMoveStart(e) {
     let prevX = e.touches[0].clientX;
     let prevY = e.touches[0].clientY;
 
-    function mousemove(e) {
+    function onMove(e) {
         if (!isResizing) {
             const xPos = e.touches[0].clientX;
             const yPos = e.touches[0].clientY;
             let newX = prevX - xPos;
             let newY = prevY - yPos;
 
-            const rect = el.getBoundingClientRect();
+            const rect = photoTargetEl.getBoundingClientRect();
 
             const x = rect.left - newX;
             const y = rect.top - newY;
 
-            const isLeftEdge = pRect.x + PADDING >= x;
-            const isTopEdge = pRect.y + PADDING >= y;
-            const isRightEdge = pRect.x + pRect.width - PADDING <= x + rect.width;
-            const isBottomEdge = pRect.y + pRect.height - PADDING <= y + rect.height;
+            const isLeftEdge = boundaryRect.x + PADDING >= x;
+            const isTopEdge = boundaryRect.y + PADDING >= y;
+            const isRightEdge = boundaryRect.x + boundaryRect.width - PADDING <= x + rect.width;
+            const isBottomEdge = boundaryRect.y + boundaryRect.height - PADDING <= y + rect.height;
 
             if (isLeftEdge || isTopEdge || isRightEdge || isBottomEdge) {
                 return
             }
-            el.style.left = x + "px";
-            el.style.top = y + "px";
+            photoTargetEl.style.left = x + "px";
+            photoTargetEl.style.top = y + "px";
             prevX = xPos;
             prevY = yPos;
         }
     }
-
-    function mouseup() {
-        window.removeEventListener("touchmove", mousemove);
-        window.removeEventListener("touchend", mouseup);
+    function onMoveEnd() {
+        window.removeEventListener("touchmove", onMove);
+        window.removeEventListener("touchend", onMoveEnd);
     }
+    
+    window.addEventListener("touchmove", onMove);
+    window.addEventListener("touchend", onMoveEnd);
 }
+photoTargetEl.addEventListener("touchstart", onMoveStart);
 
+
+/**
+ * 기능 2 : Resize
+ * *  */
 const resizers = document.querySelectorAll(".resizer");
 let currentResizer;
 
-
 for (let resizer of resizers) {
-    resizer.addEventListener("touchstart", mousedown);
-
-    function mousedown(e) {
+    function onResizeStart(e) {
         currentResizer = e.target;
         isResizing = true;
 
         let prevX = e.touches[0].clientX;
         let prevY = e.touches[0].clientY;
 
-        window.addEventListener("touchmove", mousemove);
-        window.addEventListener("touchend", mouseup);
-
-        function mousemove(e) {
+        function onResizeMove(e) {
 
             const xPos = e.touches[0].clientX;
             const yPos = e.touches[0].clientY;
 
             /** 1. resizer 가 바운더리를 벗어나지 않도록 처리 **/
-            const isLeftEdge = xPos <= pRect.x + PADDING;
-            const isRightEdge = xPos >= pRect.x + pRect.width - PADDING;
-            const isTopEdge = yPos <= pRect.y + PADDING;
-            const isBottomEdge = yPos >= pRect.y + pRect.height - PADDING;
+            const isLeftEdge = xPos <= boundaryRect.x + PADDING;
+            const isRightEdge = xPos >= boundaryRect.x + boundaryRect.width - PADDING;
+            const isTopEdge = yPos <= boundaryRect.y + PADDING;
+            const isBottomEdge = yPos >= boundaryRect.y + boundaryRect.height - PADDING;
             if (isLeftEdge || isRightEdge || isTopEdge || isBottomEdge) {
                 return;
             }
@@ -102,7 +101,7 @@ for (let resizer of resizers) {
             const xGap = prevX - xPos;
             const yGap = prevY - yPos;
 
-            const {width: w, height: h, top: t, left: l} = el.getBoundingClientRect();
+            const {width: w, height: h, top: t, left: l} = photoTargetEl.getBoundingClientRect();
 
 
             /** 2. 일정길이 이하 / 이상으로 변형되지 않도록 처리 **/
@@ -128,11 +127,14 @@ for (let resizer of resizers) {
             prevX = xPos;
             prevY = yPos;
         }
-
-        function mouseup() {
-            window.removeEventListener("touchmove", mousemove);
-            window.removeEventListener("touchend", mouseup);
+        function onResizeStop() {
+            window.removeEventListener("touchmove", onResizeMove);
+            window.removeEventListener("touchend", onResizeStop);
             isResizing = false;
         }
+
+        window.addEventListener("touchmove", onResizeMove);
+        window.addEventListener("touchend", onResizeStop);
     }
+    resizer.addEventListener("touchstart", onResizeStart);
 }

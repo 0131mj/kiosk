@@ -210,7 +210,7 @@ document.querySelectorAll('a').forEach(a => {
 const isHome = window.location.href.includes("index.html");
 
 if (!isHome) {
-    
+
     /** 프로그레스바 (테스트 시연용) **/
     const progressBar = document.createElement("div");
     const progressBarStyles = {
@@ -227,7 +227,7 @@ if (!isHome) {
     }
     document.body.appendChild(progressBar);
     const showProgress = () => progressBar.style.width = `${cnt / TIMING * 100}vw`;
-    
+
 
     /** ----- 일정시간 이상 터치 없을시 홈으로 이동 ----- **/
     const TIMING = 30;
@@ -239,7 +239,10 @@ if (!isHome) {
         cnt--;
         if (cnt < 1) {
             clearInterval(countDown);
-            window.location.href = "./index.html";
+            const isDevMode = window.location.href.startsWith("http://192.168.1.16:8080");
+            if (!isDevMode) {
+                window.location.href = "./index.html";
+            }
         }
     }, 1000);
     window.addEventListener("mousedown", countReset);

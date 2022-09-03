@@ -116,7 +116,7 @@
     const photoConfirmModal = document.querySelector(".photo-confirm-modal");
     const photoSendResultModal = document.querySelector(".photo-send-result-modal-bg");
     const photoCancelBtn = document.getElementById("photo-cancel-btn");
-    const preview = document.querySelector(".photo-preview");
+    const previewEl = document.querySelector(".photo-preview");
 
     const sendBtn = document.getElementById("send-btn");
 
@@ -126,7 +126,6 @@
     const photoCountdown = document.getElementById("photo-countdown");
 
     const progressCells = document.querySelectorAll(".progress-cell");
-    const photoTarget = document.getElementById("photo-target");
 
     const openPhotoConfirmModal = () => {
         photoConfirmModal.classList.remove("hide");
@@ -153,10 +152,10 @@
                 cnt -= 1;
                 photoCountdown.innerText = `${cnt}`;
                 if (cnt === 0) {
-                    preview.classList.add("shut");
+                    previewEl.classList.add("shut");
                     photoCountdown.innerText = "";
                     setTimeout(() => {
-                        preview.classList.remove("shut");
+                        previewEl.classList.remove("shut");
                         setTimeout(() => {
                             openPhotoConfirmModal();
                             clearInterval(countDown);
@@ -183,9 +182,9 @@
 
         /** 미리보기 변화 **/
         const photoNum = target.dataset.bg;
-        preview.classList.remove(`bg-01`);
-        preview.classList.remove(`bg-02`);
-        preview.classList.add(`bg-${photoNum}`);
+        previewEl.classList.remove(`bg-01`);
+        previewEl.classList.remove(`bg-02`);
+        previewEl.classList.add(`bg-${photoNum}`);
     }
 
     photoBgBtn.forEach(btn => {
