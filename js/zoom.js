@@ -1,8 +1,4 @@
 const PADDING = 20;
-const MIN_WIDTH = 200;
-const MAX_WIDTH = 1000;
-const MIN_HEIGHT = 200;
-const MAX_HEIGHT = 1000;
 
 let isResizing = false;
 
@@ -11,28 +7,13 @@ const photoTargetEl = document.getElementById("photo-target");
 
 /** 크기 및 위치 변화 적용 **/
 
-const setWidth = (w) => {
-    photoTargetEl.style.width = `${w}px`
-};
-const setHeight = (h) => {
-    photoTargetEl.style.height = `${h}px`
-};
-const setLeft = (_l) => photoTargetEl.style.left = `${_l}px`;
-const setTop = (_t) => photoTargetEl.style.top = `${_t}px`;
-
-const getRangeValue = (val, min, max) => {
-    if (val <= min) {
-        return min;
-    } else if (val >= max) {
-        return max;
-    } else {
-        return val;
-    }
-}
+const setWidth = (w) => photoTargetEl.style.width = `${w}px`;
+const setHeight = (h) => photoTargetEl.style.height = `${h}px`;
+const setLeft = (l) => photoTargetEl.style.left = `${l}px`;
+const setTop = (t) => photoTargetEl.style.top = `${t}px`;
 
 /**
  * 기능 1 : 위치 이동
- * @todo: 의도치않게 스냅되는 현상 수정
  * *  */
 function onMoveStart(e) {
     let prevX = e.touches[0].clientX; // 마우스가 클릭된 위치값
@@ -54,20 +35,37 @@ function onMoveStart(e) {
                 height: humanBoxHeight
             } = photoTargetEl.getBoundingClientRect();
 
-            const x = humanBoxLeft + xMoveDist;
-            const y = humanBoxTop + yMoveDist;
+            /** Left 결정 **/
+            if (humanBoxWidth + humanBoxLeft + xMoveDist >= boundRightEnd) {
+                setLeft(boundRightEnd - humanBoxWidth);
+            } else if (humanBoxLeft + xMoveDist <= boundLeftEnd) {
+                setLeft(boundLeftEnd);
+            } else {
+                setLeft(humanBoxLeft + xMoveDist);
+            }
+            if (xPos >= boundRightEnd) {
+                prevX = boundRightEnd;
+            } else if (xPos <= boundLeftEnd) {
+                prevX = boundLeftEnd;
+            } else {
+                prevX = xPos;
+            }
 
-            const MIN_X = 190;  // 임시값,
-            const MAX_X = 1750; // 임시값, 동적이어야 함. 현재 너비 추가
-
-            const MIN_Y = 910;  // 임시값,
-            const MAX_Y = 1660; // 임시값, 동적이어야 함. 현재 높이 추가
-
-            setLeft(getRangeValue(x, MIN_X, MAX_X));
-            setTop(getRangeValue(y, MIN_Y, MAX_Y));
-
-            prevX = getRangeValue(xPos, MIN_X, MAX_X);
-            prevY = getRangeValue(yPos, MIN_Y, MAX_Y);
+            /** Top 결정 **/
+            if (humanBoxHeight + humanBoxTop + yMoveDist >= boundBottomEnd) {
+                setTop(boundBottomEnd - humanBoxHeight);
+            } else if (humanBoxTop + yMoveDist <= boundTopEnd) {
+                setTop(boundTopEnd);
+            } else {
+                setTop(humanBoxTop + yMoveDist);
+            }
+            if (yPos >= boundBottomEnd) {
+                prevY = boundBottomEnd;
+            } else if (yPos <= boundTopEnd) {
+                prevY = boundTopEnd;
+            } else {
+                prevY = yPos;
+            }
         }
     }
 
