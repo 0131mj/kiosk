@@ -6,7 +6,7 @@ const MAX_HEIGHT = 1000;
 
 let isResizing = false;
 
-const boundaryRect = previewEl.getBoundingClientRect();
+const boundRect = previewEl.getBoundingClientRect();
 const photoTargetEl = document.getElementById("photo-target");
 
 /** 크기 및 위치 변화 적용 **/
@@ -32,6 +32,7 @@ const getRangeValue = (val, min, max) => {
 
 /**
  * 기능 1 : 위치 이동
+ * @todo: 의도치않게 스냅되는 현상 수정
  * *  */
 function onMoveStart(e) {
     let prevX = e.touches[0].clientX; // 마우스가 클릭된 위치값
@@ -88,6 +89,23 @@ photoTargetEl.addEventListener("touchstart", onMoveStart);
 const resizers = document.querySelectorAll(".resizer");
 let currentResizer;
 
+
+/** 기본 변하지 않는 상수값 - 바운더리 좌표값 **/
+const boundLeftEnd = boundRect.x + PADDING;
+const boundRightEnd = boundRect.x + boundRect.width - PADDING;
+const boundTopEnd = boundRect.top + PADDING;
+const boundBottomEnd = boundRect.top + boundRect.height - PADDING;
+
+/** 기본 변하지 않는 상수값 - 바운더리 좌표값
+ * 1. 바운더리 크기 와 위치
+ * 2. 박스 최대/최소 크기
+ * **/
+
+const BOX_MIN_WIDTH = 200;
+const BOX_MAX_WIDTH = 600;
+const BOX_MIN_HEIGHT = 200;
+const BOX_MAX_HEIGHT = 600;
+
 for (let resizer of resizers) {
     function onResizeStart(e) {
         console.log("리사이즈 중")
@@ -105,7 +123,13 @@ for (let resizer of resizers) {
             const xMoveDist = xPos - prevX; // 움직인 거리 : 현재 위치 - 이전 위치
             const yMoveDist = yPos - prevY; // 움직인 거리 : 현재 위치 - 이전 위치
 
-            const {width: humanBoxWidth, height: humanBoxHeight, top: humanBoxTop, left: humanBoxLeft} = photoTargetEl.getBoundingClientRect();
+            const {
+                width: humanBoxWidth,
+                height: humanBoxHeight,
+                top: humanBoxTop,
+                left: humanBoxLeft
+            } = photoTargetEl.getBoundingClientRect();
+
 
             /**
              * 1. resizer 가 바운더리를 벗어나지 않도록 처리
@@ -115,17 +139,13 @@ for (let resizer of resizers) {
              *
              *  **/
 
-            /** 리사이저가 움직일 수 있는 범위값 (위치 기준) **/
-            const MIN_X = 190;  // 임시값,
-            const MAX_X = 1750; // 임시값, 동적이어야 함. 현재 너비 추가
-            const MIN_Y = 910;  // 임시값,
-            const MAX_Y = 1660; // 임시값, 동적이어야 함. 현재 높이 추가
 
-            /** 리사이저가 움직일 수 있는 범위값 (사이즈 기준) **/
-            const MIN_WIDTH = 200;
-            const MAX_WIDTH = 600; // 임시값, 현재 x 포지션과 width 너비에 따라 동적이어야 함.
-            const MIN_HEIGHT = 200;
-            const MAX_HEIGHT = 600;
+            /** 현재 포지션과 크기에 따라 변하는 값
+             * maxRangeWidth, minRangeWidth, minX, minY,
+             * **/
+
+            /** 리사이저가 움직일 수 있는 범위값 (위치 기준) **/
+
 
             // 결과적으로 리사이저가 움직일 수 있는 범위를 벗어나지 못하도록만 하면 됨
 
@@ -134,28 +154,96 @@ for (let resizer of resizers) {
 
                 // setWidth(humanBoxWidth + xMoveDist);
                 // setHeight(humanBoxHeight + yMoveDist);
-                /*** 사이즈만 변경되는 케이스 */
-                setWidth(getRangeValue(humanBoxWidth + xMoveDist, MIN_WIDTH, MAX_WIDTH));
-                setHeight(getRangeValue(humanBoxHeight + yMoveDist, MIN_HEIGHT, MAX_HEIGHT));
+                /*** 사이즈만 변경되는 케이스
+                 * 즉, 사이즈만 업데이트 해줄 수 있을 뿐
+                 *
+                 *
+                 *
+                 * 로직 :  마우스 커서의 움직임을 제한해야한다.
+                 * 마우스커서의 리미트를 파악하고,거기에 맞도록 MAX_WIDTH 와 MAX_HEIGHT 를 결정.
+                 * 마우스커서의 리미트를 확인하는 방식은 제한이 어떻게 걸려있는지를 판단하는데, 두가지케이스가 아니면
+                 * 1) 일정크기 미만으로 줄어들 때 / 일정크기 이상으로 커질 때
+                 * 2) 마우스커서가 상 / 하 / 좌 / 우 바깥을 벗서나려 할때
+                 *
+                 * 마우스가 바운드를 넘어갔을 때 문제 처리, 즉 MAX_X 값은 크기제한과 바운더리 맥스가 경합하여 한가지 값만 취한다.
+                 * 결과갑의 마우스값도 보존
+                 * */
+
+                /** 제한 처리: 제한에 걸리면 커서는 제한된 위치에 그대로 머무르게 하기  **/
+
+                /*** x 처리 ***/
+
+                /* (1) 우측 제한 (2번 거름) **/
+                let nextXPos = xPos;
+                // 1) 바운드 제한
+                if (nextXPos >= boundRightEnd) {
+                    nextXPos = boundRightEnd;
+                }
+                // 2) 크기 제한
+                if (nextXPos >= humanBoxLeft + BOX_MAX_WIDTH) {
+                    nextXPos = humanBoxLeft + BOX_MAX_WIDTH;
+                }
+
+                /* (2) 좌측 제한 **/
+                // 크기 제한 (바운드 제한은 크기에서 이미 걸러지므로 생략)
+                if (nextXPos <= humanBoxLeft + BOX_MIN_WIDTH) {
+                    nextXPos = humanBoxLeft + BOX_MIN_WIDTH;
+                }
+                const xMoved = nextXPos - prevX;
+                setWidth(humanBoxWidth + xMoved);
+                prevX = nextXPos;
+
+
+                /*** y 처리 ***/
+
+                let nextYPos = yPos;
+
+                // (1) 바텀 제한 :
+                // 1) 바운드 제한
+                if (nextYPos >= boundBottomEnd) {
+                    console.log('아래로 삐져나감')
+                    nextYPos = boundBottomEnd;
+                }
+
+                // 2) 크기 Max 제한
+                if (nextYPos >= humanBoxTop + BOX_MAX_HEIGHT) {
+                    console.log('더 못 커짐')
+                    nextYPos = humanBoxTop + BOX_MAX_HEIGHT;
+                }
+
+
+                // 크기 Min 제한
+                if (nextYPos <= humanBoxTop + BOX_MIN_HEIGHT) {
+                    console.log('더 못 작아짐')
+                    nextYPos = humanBoxTop + BOX_MIN_HEIGHT;
+                }
+
+                const yMoved = nextYPos - prevY;
+                setHeight(humanBoxHeight + yMoved)
+
+                prevY = nextYPos; // 최대, 최소 적용
 
             } else if (currentResizer.classList.contains("sw")) {
-                setWidth(humanBoxWidth - xMoveDist);
-                setHeight(humanBoxHeight + yMoveDist);
-                setLeft(humanBoxLeft + xMoveDist); //ok
+                // setWidth(getRangeValue(humanBoxWidth - xMoveDist, MIN_WIDTH, MAX_WIDTH));
+                // setHeight(getRangeValue(humanBoxHeight + yMoveDist, MIN_HEIGHT, MAX_HEIGHT));
+                // setLeft(getRangeValue(humanBoxLeft + xMoveDist, MIN_X, MAX_X)); //ok
+                // prevX = xPos; // 최대, 최소 적용
+                // prevY = yPos; // 최대, 최소 적용
             } else if (currentResizer.classList.contains("ne")) {
-                setWidth(humanBoxWidth + xMoveDist);
-                setHeight(humanBoxHeight - yMoveDist);
-                setTop(humanBoxTop + yMoveDist);
+                // setWidth(getRangeValue(humanBoxWidth + xMoveDist, MIN_WIDTH, MAX_WIDTH));
+                // setHeight(getRangeValue(humanBoxHeight - yMoveDist, MIN_HEIGHT, MAX_HEIGHT));
+                // setTop(getRangeValue(humanBoxTop + yMoveDist, MIN_Y, MAX_Y));
+                // prevX = xPos; // 최대, 최소 적용
+                // prevY = yPos; // 최대, 최소 적용
             } else {
-                setWidth(humanBoxWidth - xMoveDist)
-                setHeight(humanBoxHeight - yMoveDist)
-                setTop(humanBoxTop + yMoveDist)
-                setLeft(humanBoxLeft + xMoveDist);
+                // setWidth(getRangeValue(humanBoxWidth - xMoveDist, MIN_WIDTH, MAX_WIDTH))
+                // setHeight(getRangeValue(humanBoxHeight - yMoveDist, MIN_HEIGHT, MAX_HEIGHT))
+                // setTop(getRangeValue(humanBoxTop + yMoveDist, MIN_Y, MAX_Y))
+                // setLeft(getRangeValue(humanBoxLeft + xMoveDist, MIN_X, MAX_X));
+                // prevX = xPos; // 최대, 최소 적용
+                // prevY = yPos; // 최대, 최소 적용
             }
 
-
-            prevX = xPos;
-            prevY = yPos;
 
             // prevX = getRangeValue(xPos, MIN_X, MAX_X);
             // prevY = getRangeValue(yPos, MIN_Y, MAX_Y);
