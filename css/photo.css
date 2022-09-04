@@ -96,7 +96,7 @@ main {
 .resizer.se {
     bottom: -1vw;
     right: -1vw;
-    background: url("../img/photo/_arrow.png") no-repeat;
+    background: url("../img/photo/arrow.png") no-repeat;
     background-size: contain;
 }
 
