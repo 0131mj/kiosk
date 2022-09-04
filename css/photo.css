@@ -70,7 +70,7 @@ main {
 .resizer {
     width: 2vw;
     height: 2vw;
-    background-color: #fff;
+    /*background-color: #fff;*/
     z-index: 2;
     position: absolute;
 }
@@ -78,21 +78,26 @@ main {
 .resizer.nw {
     top: -1vw;
     left: -1vw;
+    visibility: hidden;
 }
 
 .resizer.ne {
     top: -1vw;
     right: -1vw;
+    visibility: hidden;
 }
 
 .resizer.sw {
     bottom: -1vw;
     left: -1vw;
+    visibility: hidden;
 }
 
 .resizer.se {
     bottom: -1vw;
     right: -1vw;
+    background: url("../img/photo/_arrow.png") no-repeat;
+    background-size: contain;
 }
 
 #photo-countdown {
