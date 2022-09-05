@@ -2,6 +2,7 @@ const setOffice = () => {
     const data = [
         {
             name: "경남본부 직할",
+            area: "창원시 성산구, 창원시 의창구 전역",
             address: " (51439) 경남 창원시 성산구 중앙대로210번길 13",
             coordinate: {
                 x: 61,
@@ -12,6 +13,7 @@ const setOffice = () => {
         },
         {
             name: "진주지사",
+            area: "진주시 전역",
             address: "(52782) 경남 진주시 동진로 279",
             coordinate: {
                 x: 20,
@@ -22,6 +24,7 @@ const setOffice = () => {
         },
         {
             name: "마산지사",
+            area: "창원시 마산합포구, 마산회원구 전역",
             address: "(51350) 경남 창원시 마산회원구3.15대로 966",
             coordinate: {
                 x: 49,
@@ -32,6 +35,7 @@ const setOffice = () => {
         },
         {
             name: "거제지사",
+            area: "거제시 전역",
             address: "(53252) 경남 거제시 서문로3길 21",
             coordinate: {
                 x: 52,
@@ -42,6 +46,7 @@ const setOffice = () => {
         },
         {
             name: "밀양지사",
+            area: "밀양시 전역",
             address: "(50444) 경남 밀양시 가곡7길 30",
             coordinate: {
                 x: 65,
@@ -52,6 +57,7 @@ const setOffice = () => {
         },
         {
             name: "사천지사",
+            area: "사천시 전역, 고성군 하이면",
             address: "(52566) 경남 사천시 동금6길 28",
             coordinate: {
                 x: 17,
@@ -62,6 +68,7 @@ const setOffice = () => {
         },
         {
             name: "통영지사",
+            area: "통영시전역, 거제 술역리 일부",
             address: "(53019) 경남 통영시 광도면 죽림2로 25-40",
             coordinate: {
                 x: 43,
@@ -72,6 +79,7 @@ const setOffice = () => {
         },
         {
             name: "거창지사",
+            area: "거창군 전역",
             address: "(50146) 경남 거창군 거창읍 강남로 246",
             coordinate: {
                 x: 16,
@@ -82,6 +90,7 @@ const setOffice = () => {
         },
         {
             name: "함안지사",
+            area: "함안군 전역",
             address: "(52044) 경남 함안군 가야읍 함마대로 1490",
             coordinate: {
                 x: 43,
@@ -92,6 +101,7 @@ const setOffice = () => {
         },
         {
             name: "창녕지사",
+            area: "창녕군 전역",
             address: "(50332) 경남 창녕군 창녕읍 남창녕로 71",
             coordinate: {
                 x: 50,
@@ -102,6 +112,7 @@ const setOffice = () => {
         },
         {
             name: "합천지사",
+            area: "합천읍 전역",
             address: "(50232) 경남 합천군 합천읍 대야로 921",
             coordinate: {
                 x: 25,
@@ -112,6 +123,7 @@ const setOffice = () => {
         },
         {
             name: "진해지사",
+            area: "창원시 진해구, 부산 강서구 가덕도",
             address: "(51689) 경남 창원시 진해구 여좌천로 122",
             coordinate: {
                 x: 61,
@@ -122,6 +134,7 @@ const setOffice = () => {
         },
         {
             name: "하동지사",
+            area: "하동군 전역",
             address: "(52331) 경남 하동군 하동읍 경서대로 83",
             coordinate: {
                 x: 4,
@@ -132,6 +145,7 @@ const setOffice = () => {
         },
         {
             name: "고성지사",
+            area: "고성군 전역, 하이면 제외",
             address: "(52944) 경남 고성군 고성읍 성내로 162",
             coordinate: {
                 x: 33,
@@ -142,6 +156,7 @@ const setOffice = () => {
         },
         {
             name: "산청지사",
+            area: "산청군 전역",
             address: "(52223) 경남 산청군 산청읍 웅석봉로 45",
             coordinate: {
                 x: 9,
@@ -152,6 +167,7 @@ const setOffice = () => {
         },
         {
             name: "남해지사",
+            area: "남해군 전역",
             address: "(52412) 경남 남해군 남해읍 남해대로 2962",
             coordinate: {
                 x: 11,
@@ -162,6 +178,7 @@ const setOffice = () => {
         },
         {
             name: "함양지사",
+            area: "함양군 전역",
             address: "(50031) 경남 함양군 함양읍 함양로 1207",
             coordinate: {
                 x: 4,
@@ -172,6 +189,7 @@ const setOffice = () => {
         },
         {
             name: "의령지사",
+            area: "의령군 전역",
             address: "(52139) 경남 의령군 의령읍 의병로 181",
             coordinate: {
                 x: 36,
@@ -184,6 +202,7 @@ const setOffice = () => {
     const officeMap = document.getElementById("office-map");
     const nameEl = document.getElementById("office-name");
     const nameEl2 = document.getElementById("office-name-2");
+    const officeAreaEl = document.getElementById("office-area");
     const addressEl = document.getElementById("office-address");
     const orgEl = document.getElementById("office-org");
     const officeImg = document.getElementById("office-img");
@@ -207,10 +226,11 @@ const setOffice = () => {
         return acc;
     }, "")
     const selectOffice = (idx) => {
-        const {name, address} = data[Number(idx)];
+        const {name, address, area} = data[Number(idx)];
         nameEl.innerText = name;
         nameEl2.innerText = name;
         addressEl.innerText = address;
+        officeAreaEl.innerText = area;
         officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.png")`;
         orgEl.style.backgroundImage = `url(./img/hq_org/${idx}.jpg)`;
         officeImg.setAttribute("src", `./img/office/${idx}.gif`);
@@ -228,7 +248,7 @@ const setOffice = () => {
 
     const openPopup = (e) => {
         const code = e.currentTarget.dataset.code;
-        const type = e.currentTarget.id.replace("-btn","");
+        const type = e.currentTarget.id.replace("-btn", "");
         const prefix = type === "tel" ? "업무별 전화번호" : "찾아오시는 길";
         popupImg.setAttribute("src", `./img/office_${type}/${code}.png`);
         popupImg.setAttribute("data-type", type);
@@ -261,3 +281,22 @@ const setOffice = () => {
 }
 
 setOffice();
+
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
