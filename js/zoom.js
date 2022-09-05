@@ -2,17 +2,17 @@ const boundRect = previewEl.getBoundingClientRect();
 const photoTargetEl = document.getElementById("photo-target");
 
 /** Preview (boundary) 사이즈 및 위치  **/
-const PADDING = 20;
+const PADDING = window.innerWidth / 100;
 const boundLeftEnd = boundRect.x + PADDING;
 const boundRightEnd = boundRect.x + boundRect.width - PADDING;
 const boundTopEnd = boundRect.top + PADDING;
 const boundBottomEnd = boundRect.top + boundRect.height - PADDING;
 
 /** 사람모양 박스 최소,최대 사이즈 **/
-const BOX_MIN_WIDTH = 200;
-const BOX_MIN_HEIGHT = 200;
-const BOX_MAX_WIDTH = 600;
-const BOX_MAX_HEIGHT = 600;
+const BOX_MIN_WIDTH = window.innerWidth / 10;
+const BOX_MIN_HEIGHT = BOX_MIN_WIDTH * 2;
+const BOX_MAX_WIDTH = BOX_MIN_WIDTH * 3;
+const BOX_MAX_HEIGHT = BOX_MAX_WIDTH * 2;
 
 
 /** 크기 및 위치 변화 적용 **/
