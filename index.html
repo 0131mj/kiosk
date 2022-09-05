@@ -97,7 +97,7 @@
                 opacity: 0
             }
 
-            100%{
+            100% {
                 opacity: 0;
             }
         }
@@ -117,6 +117,17 @@
             transition: opacity 0.5s;
             border-radius: 20vw;
             animation: blink 7s infinite;
+        }
+
+        .swiper-pagination-bullet {
+            width: 1.5vw;
+            height: 1.5vw;
+            margin: 1vw !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: transparent;
+            border: 0.3vw rgba(0, 0, 0, 0.5) solid;
         }
     </style>
 </head>
@@ -163,7 +174,7 @@
         spaceBetween: 30,
         loop: true,
         autoplay: {
-            delay: 2500,
+            delay: 10000,
             disableOnInteraction: false,
         },
         pagination: {
@@ -192,6 +203,8 @@
             e.stopPropagation();
         })
     })
+
+    document.querySelector(".swiper-pagination").addEventListener("click",(e)=>{e.stopPropagation()})
 
 
 </script>
