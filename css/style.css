@@ -268,10 +268,13 @@ main {
     color: #fff;
 }
 
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
 a, button {
     background: transparent;
     border: none;
-    -webkit-tap-highlight-color: transparent;
 }
 
 a {

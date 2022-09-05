@@ -199,7 +199,6 @@ const setOffice = () => {
             },
         }
     ]
-    const officeMap = document.getElementById("office-map");
     const nameEl = document.getElementById("office-name");
     const nameEl2 = document.getElementById("office-name-2");
     const officeAreaEl = document.getElementById("office-area");
@@ -214,24 +213,13 @@ const setOffice = () => {
     const modalTitle = document.getElementById("modal-title");
     const modal = document.querySelector("#popup > .modal");
 
-    officeMap.addEventListener("click", (e) => {
-        e.stopPropagation();
-    })
-
-    /** 버튼 그룹 생성 **/
-    officeMap.innerHTML = data.reduce((acc, cur, idx) => {
-        const {x, y, w, h} = cur.coordinate;
-        const style = `left: ${x}%; top:${y}%; width:${w}vw; height: ${h}vw`
-        acc += `<button class="office-btn" data-code="${idx}" style="${style}">${cur.name}</button>`;
-        return acc;
-    }, "")
     const selectOffice = (idx) => {
         const {name, address, area} = data[Number(idx)];
         nameEl.innerText = name;
         nameEl2.innerText = name;
         addressEl.innerText = address;
         officeAreaEl.innerText = area;
-        officeMap.style.backgroundImage = `url("./img/hq_map/${idx}.png")`;
+        document.getElementById("area-map").setAttribute("src", `./img/hq_map/${idx}.png`);
         orgEl.style.backgroundImage = `url(./img/hq_org/${idx}.jpg)`;
         officeImg.setAttribute("src", `./img/office/${idx}.gif`);
         officeImg.setAttribute("alt", name);
@@ -277,7 +265,22 @@ const setOffice = () => {
         closePopup();
     })
 
+    document.body.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closePopup();
+    });
+
+    document.querySelectorAll("area").forEach(area =>{
+        area.addEventListener("click", (e)=>{
+            e.stopPropagation();
+            const code = e.currentTarget.dataset.code;
+            selectOffice(code);
+
+        })
+    })
+
     selectOffice(0);
+
 }
 
 setOffice();
