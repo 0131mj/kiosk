@@ -56,10 +56,8 @@ html {
 }
 
 body {
-    /*background: #444;*/
-    /*background: #113B63;*/
-    /*background: #0D3563;*/
     background: linear-gradient(rgb(10, 22, 46), #0D3563);
+    overflow: hidden;
     color: white;
     display: flex;
 }

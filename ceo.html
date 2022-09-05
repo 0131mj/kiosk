@@ -8,24 +8,93 @@
     <title>CEO 인사말</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/company.css">
+    <style>
+
+        .content-area{
+            padding: 5vw 8vw;
+        }
+        #ho-introduce {
+            word-break: keep-all;
+            font-family: 'S-CoreLight', sans-serif;
+            padding-top: 5vw;
+        }
+
+        #ho-introduce span {
+            color: var(--point-color);
+        }
+
+        .ho-introduce-content {
+            font-size: 1.4rem;
+            line-height: 2.6rem;
+        }
+
+        .ceo-signature {
+            text-align: right;
+            margin-top: 8vw;
+        }
+
+        .ceo-signature span {
+            font-family: 'S-CoreMedium', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 1rem;
+            margin-left: 1rem;
+            color: white !important;
+        }
+
+        .ceo-main-msg{
+            display: flex;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+        }
+
+        .ceo-pic {
+            width: 19vw;
+            max-width: 19vw;
+            margin-right: 3vw;
+        }
+
+        .ceo-title {
+            font-size: 3rem;
+            line-height: 4.2rem;
+            font-family: 'S-CoreExtraBold', sans-serif;
+            margin-bottom: -.5rem;
+            letter-spacing: -0.08rem;
+        }
+
+    </style>
 </head>
 <body>
 <main>
     <header class="title-header"></header>
     <template id="content-nav"></template>
-    <section id="content" class="content-area"></section>
+    <section id="content" class="content-area">
+        <div id="ho-introduce">
+            <section class="ceo-main-msg">
+                <img src="./img/ceo.png" alt="CEO 인사말" class="ceo-pic">
+                <h3 class="ceo-title"><em class="point-color">세계 최고의<br/> 에너지플랫폼 기업</em>으로 <br/>한 단계 도약하겠습니다.</h3>
+            </section>
+            <div class="ho-introduce-content">
+                <p>한국전력을 찾아주셔서 반갑습니다.</p>
+                <p>한국전력은 <span>지난 120여 년</span> 동안 <span>안정적 전력공급</span>으로 우리나라의 <span>산업발전을 뒷받침</span>하며 꾸준히
+                    성장해 왔습니다. <br><span>국민과 고객 여러분의 따뜻한 응원</span> 덕분입니다.
+                </p>
+                <p><span>탄소중립(Carbon Neutral)</span> 시대를 맞아 한국전력은 <span>에너지 패러다임 변화를 선도</span>하기 위해 한층 더 노력하고
+                    있습니다. 전력산업의 <span>탈탄소화,</span> 전력생산과 소비의 <span>분산화,</span> 전력 생태계 전반의 <span>지능화</span>를 이끌어 가겠습니다.
+                </p>
+                <p>또한 <span>시대의 흐름과 요구</span>를 조금 먼저 호흡하고,
+                    <span>연대와 협력의 구심점</span>이 되어 <span>지역사회와의 동반성장</span>을 추진해 가겠습니다. <br> <span>소외된 이웃</span>을 살피며, <span>고객과 대화하고 소통</span>하기
+                    위해서도 최선을 다할 것입니다.
+                </p>
+                <p><span>‘세계 최고의 에너지플랫폼 기업’</span>으로 한 단계 도약하는 한국전력의 모습을 계속 지켜봐 주십시오. <br><span>유능한 KEPCO, 믿을 수 있는 KEPCO, 존경받는 KEPCO</span>로
+                    발전해 나가겠습니다. 고맙습니다.
+                </p>
+            </div>
+            <p class="ceo-signature">한국전력공사 대표이사 / 사장 <span>정승일</span></p>
+        </div>
+    </section>
 </main>
 <template id="global-menu-panel"></template>
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
-<script>
-    function loadHTML() {
-        fetch(`./content_company/introduce.html`)
-            .then(response => response.text())
-            .then(text => document.getElementById('content').innerHTML = text);
-    }
-
-    loadHTML();
-</script>
 </body>
 </html>
