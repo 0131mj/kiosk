@@ -9,9 +9,9 @@ const boundTopEnd = boundRect.top + PADDING;
 const boundBottomEnd = boundRect.top + boundRect.height - PADDING;
 
 /** 사람모양 박스 최소,최대 사이즈 **/
-const BOX_MIN_WIDTH = window.innerWidth / 10;
+const BOX_MIN_WIDTH = window.innerWidth / 20;
 const BOX_MIN_HEIGHT = BOX_MIN_WIDTH * 2;
-const BOX_MAX_WIDTH = BOX_MIN_WIDTH * 3;
+const BOX_MAX_WIDTH = BOX_MIN_WIDTH * 5;
 const BOX_MAX_HEIGHT = BOX_MAX_WIDTH * 2;
 
 
