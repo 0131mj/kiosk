@@ -168,6 +168,23 @@
                 background: url("./img/hq_map/0.png"), url("./img/hq_map/1.png"), url("./img/hq_map/2.png"), url("./img/hq_map/3.png"), url("./img/hq_map/4.png"), url("./img/hq_map/5.png"), url("./img/hq_map/6.png"), url("./img/hq_map/7.png"), url("./img/hq_map/8.png"), url("./img/hq_map/9.png"), url("./img/hq_map/10.png"), url("./img/hq_map/11.png"), url("./img/hq_map/12.png"), url("./img/hq_map/13.png"), url("./img/hq_map/14.png"), url("./img/hq_map/15.png"), url("./img/hq_map/16.png"), url("./img/hq_map/17.png"), url("./img/hq_map/bg.png");
             }
 
+            #area-box {
+                position: relative;
+            }
+
+            #area-box::after {
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: url("./img/hq_map/bg.png");
+                background-size: contain;
+                left: 0;
+                top: 0;
+                z-index: -1;
+                opacity: 0;
+            }
+
         </style>
         <div class="office-introduce">
             <p style="font-size: 1rem">지도에서 사업소를 선택하세요.</p>
