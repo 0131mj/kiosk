@@ -45,17 +45,31 @@ const renderControlMenu = () => {
 
 window.addEventListener("DOMContentLoaded", renderControlMenu);
 
+const SUPPORT_MENUS = ["visitor", "support", "tech"];
+
 const globalMenuObj = {
     ceo: {text: "CEO 인사말", submenu: {}},
-    vision: {text: "회사 Vision", submenu: {}},
-    history: {text: "회사 연혁", submenu: {}},
-    office: {text: "관할 사업소", submenu: {}},
-    photo: {text: "방문기념 사진촬영", submenu: {}},
-    manager: {text: "담당자 찾기", submenu: {}},
-    discuss: {text: "회의 안내", submenu: {}},
-    beauty: {text: "아름다운 경남사진", submenu: {}},
-    counter: {text: '고객창구 업무소개', submenu: {}},
-    visitor: {
+    vision: {
+        text: "회사 Vision",
+        submenu: {
+            hq: "본부 비전",
+            ho: "본사 비전",
+        }
+    },
+    history: {
+        text: "회사 연혁",
+        submenu: {
+            hq: "본부 연혁",
+            ho: "본사 연혁",
+        }
+    },
+    office: {text: "관할 사업소"},
+    photo: {text: "방문기념 사진촬영"},
+    manager: {text: "담당자 찾기"},
+    discuss: {text: "회의 안내"},
+    beauty: {text: "아름다운 경남사진"},
+    counter: {text: '고객창구 업무소개'},
+    [SUPPORT_MENUS[0]]: {
         text: "방문고객 안내",
         submenu: {
             trans: "송변전설비 인근주민지원",
@@ -63,7 +77,7 @@ const globalMenuObj = {
             sunpower: "태양광 접수"
         }
     },
-    support: {
+    [SUPPORT_MENUS[1]]: {
         text: "한전 지원사업",
         submenu: {
             root: "뿌리기업 지원",
@@ -72,7 +86,7 @@ const globalMenuObj = {
             power: "파워체크",
         }
     },
-    tech: {
+    [SUPPORT_MENUS[2]]: {
         text: "전력 신기술",
         submenu: {
             car: "전기차 충전사업",
@@ -81,6 +95,7 @@ const globalMenuObj = {
         }
     },
 }
+
 
 const globalMenus = `
 <div class="global-menu-bg dimmed hide">
@@ -96,7 +111,7 @@ const globalMenus = `
 }
         </div>
         <div id="tree-area">
-        ${["visitor", "support", "tech"].reduce((acc, page) => {
+        ${SUPPORT_MENUS.reduce((acc, page) => {
     acc += Object.entries(globalMenuObj[page].submenu).reduce((_acc, [key, val]) => {
         _acc += `<a class="tree-fruit color-${page}" href="./${page}.html?menu=${key}" data-menu="${key}">${val}</a>`
         return _acc;
@@ -153,8 +168,9 @@ if (titleHeader && path) {
 }
 
 
-if (path === "visitor" || path === "support" || path === "tech") {
-    document.body.classList.add("support-page");
+/** MENU **/
+
+if (globalMenuObj[path].submenu) {
     const contentNav = document.getElementById("content-nav");
     const contentMenu = globalMenuObj[path].submenu;
 
@@ -175,8 +191,69 @@ if (path === "visitor" || path === "support" || path === "tech") {
         </div>
     `;
 
-    /** 현재 내용 표시 **/
-    document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="max-height: 80vh; max-width: 90vw" />`
+    /** 현재 페이지 내용 표시 **/
+
+    if (SUPPORT_MENUS.includes(path)) {
+        document.body.classList.add("support-page");
+        document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="max-height: 80vh; max-width: 90vw" />`
+    } else if (path === "vision") {
+        function loadHTML() {
+            fetch(`./content_${path}/${curMenu}.html`)
+                .then(response => response.text())
+                .then(text => document.getElementById('company-content').innerHTML = text)
+        }
+
+        loadHTML();
+    } else if (path === "history") {
+        const historyData = {
+            ho: [
+                ["1887.03", "우리나라 최초의 전기점등(경복궁 건청궁)", ""],
+                ["1898.01", "한성전기 설립", ""],
+                ["1908.09", "일한와사(주) 설립", ""],
+                ["1917.04", "개성전기(주) 설립", ""],
+                ["1943.02", "조선전업㈜ 설립", ""],
+                ["1961.07", "한국전력주식회사 발족(3사 통합 : 조선전업, 경성전기, 남선전기)", ""],
+                ["1982.01", "한국전력공사 발족", ""],
+                ["2001.04", "발전부문 6개 자회사로 분리", ""],
+                ["2014.12", "본사 나주 혁신도시 이전", ""],
+            ],
+            hq: [
+                ["1910.6.9", "한일와사㈜ 마산지점", ""],
+                ["1947.10.1", "남선전기㈜ 마산지점", "01"],
+                ["1961.7.1", "한국전력㈜ 경남지점 마산영업소", "02"],
+                ["1982.1.1", "한국전력공사 경남지사", "03"],
+                ["1988.11.2", "한국전력공사 창원전력관리처 분리발족", "04"],
+                ["1988.11.2", "한국전력공사 경남사업본부", "05"],
+                ["2009.1.12", "판매 및 송변전 통합 경남지역본부", "06"],
+                ["2018.12.27~", "한국전력공사 경남본부"],
+            ]
+        }
+
+        const showHistory = (target) => {
+            const historyEl = document.getElementById('history');
+            historyEl.innerHTML = `<ol class="hq-history">${
+                historyData[target].reduce((acc, [date, text, file]) => {
+                    acc += `<li>
+                        <div class="hq-history-date">${date}</div>
+                        <div class="hq-history-content">
+                            <duv class="hq-history-text">${text}</duv>
+                            ${file ? `<img src="./img/hq_history_${file}.png" alt="${text}">` : ""}                            
+                        </div>
+                    </li>`;
+                    return acc;
+                }, "")
+            }</ol>`;
+            if (target === "ho") {
+                const img = document.createElement("img");
+                img.src = "./img/kepco.jpg";
+                img.alt = "본사 사진";
+                img.classList.add("ho-img");
+                historyEl.append(img);
+            }
+        }
+
+        showHistory(curMenu);
+    }
 }
 
 document.querySelectorAll('a').forEach(a => {
