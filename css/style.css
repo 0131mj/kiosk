@@ -172,11 +172,11 @@ main {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    width: 80vw;
+    width: 84vw;
     border-radius: 1vw;
     overflow: hidden;
     font-size: 1.1rem;
-    margin-bottom: 10vw;
+    margin-bottom: 20vw;
 }
 
 .visitor-introduce {
@@ -413,6 +413,7 @@ a {
 
 /** **/
 #tree-area {
+    width: 80vw;
     height: 65vw;
     position: relative;
     background: url("../img/menu/tree.png") no-repeat;
