@@ -14,6 +14,7 @@ const controlMenus = `
 `;
 
 const showGlobalMenu = (e) => {
+    e.stopPropagation();
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.remove("hide");
     document.getElementById("home-btn").innerHTML = CLOSE_ICON;
@@ -26,12 +27,12 @@ const hideGlobalMenu = (e) => {
     document.getElementById("home-btn").innerHTML = HOME_ICON;
 };
 
-const toggleGlobalMenu = () => {
+const toggleGlobalMenu = (e) => {
     const globalMenuEl = document.querySelector(".global-menu-bg");
     if (globalMenuEl.classList.contains("hide")) {
-        showGlobalMenu();
+        showGlobalMenu(e);
     } else {
-        hideGlobalMenu();
+        hideGlobalMenu(e);
     }
 }
 
