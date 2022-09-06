@@ -182,7 +182,7 @@ if (titleHeader && path) {
 
 /** MENU **/
 
-if (globalMenuObj[path].submenu) {
+if (globalMenuObj[path]?.submenu) {
     const contentNav = document.getElementById("content-nav");
     const contentMenu = globalMenuObj[path].submenu;
 

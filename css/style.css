@@ -162,6 +162,12 @@ main {
 .global-menu-bg {
     margin: auto;
     z-index: 1;
+    transition: left 0.5s;
+}
+
+.global-menu-bg.hide {
+    left: 100vw;
+    display: flex !important;
 }
 
 .global-menu-panel {
