@@ -19,7 +19,8 @@ const showGlobalMenu = (e) => {
     document.getElementById("home-btn").innerHTML = CLOSE_ICON;
 };
 
-const hideGlobalMenu = () => {
+const hideGlobalMenu = (e) => {
+    e.stopPropagation();
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.add("hide");
     document.getElementById("home-btn").innerHTML = HOME_ICON;
