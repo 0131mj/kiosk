@@ -154,6 +154,7 @@ if (titleHeader && path) {
 
 
 if (path === "visitor" || path === "support" || path === "tech") {
+    document.body.classList.add("support-page");
     const contentNav = document.getElementById("content-nav");
     const contentMenu = globalMenuObj[path].submenu;
 
