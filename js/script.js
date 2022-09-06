@@ -146,7 +146,12 @@ const renderGlobalMenu = () => {
     if (globalMenusEl) {
         globalMenusEl.outerHTML = globalMenus;
         const globalMenuEl = document.querySelector(".global-menu-bg");
-        globalMenuEl.addEventListener("click", hideGlobalMenu)
+        globalMenuEl.addEventListener("click", hideGlobalMenu);
+        document.querySelectorAll('a').forEach(a => {
+            a.addEventListener("click", (e) => {
+                e.stopPropagation()
+            })
+        })
     }
 }
 
