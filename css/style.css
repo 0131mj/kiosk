@@ -416,8 +416,7 @@ a {
     width: 80vw;
     height: 65vw;
     position: relative;
-    background: url("../img/menu/tree.png") no-repeat;
-    background-position: center;
+    background: url("../img/menu/tree.png") no-repeat center;
     background-size: contain;
     display: flex;
     justify-content: center;

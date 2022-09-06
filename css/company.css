@@ -8,7 +8,7 @@
 .vision-main-text {
     word-break: keep-all;
     text-align: center;
-    line-height: 5vw;
+    font-size: 1.3rem;
 }
 
 .hq-vision-concept-list {
@@ -57,6 +57,11 @@
 
 img.hq-slogan {
     max-width: 100%;
+    background: #fff;
+    border-radius: 1vw;
+    padding: 3vw;
+    background: rgba(255, 255, 255);
+    margin-bottom: 3rem;
 }
 
 /** 본부 연혁 */
