@@ -55,7 +55,7 @@ const globalMenuObj = {
     discuss: {text: "회의 안내", submenu: {}},
     beauty: {text: "아름다운 경남사진", submenu: {}},
     counter: {text: '고객창구 업무소개', submenu: {}},
-    guest: {
+    visitor: {
         text: "방문고객 안내",
         submenu: {
             trans: "송변전설비 인근주민지원",
@@ -96,7 +96,7 @@ const globalMenus = `
 }
         </div>
         <div id="tree-area">
-        ${["guest", "support", "tech"].reduce((acc, page) => {
+        ${["visitor", "support", "tech"].reduce((acc, page) => {
     acc += Object.entries(globalMenuObj[page].submenu).reduce((_acc, [key, val]) => {
         _acc += `<a class="tree-fruit color-${page}" href="./${page}.html?menu=${key}" data-menu="${key}">${val}</a>`
         return _acc;
@@ -153,7 +153,7 @@ if (titleHeader && path) {
 }
 
 
-if (path === "guest" || path === "support" || path === "tech") {
+if (path === "visitor" || path === "support" || path === "tech") {
     const contentNav = document.getElementById("content-nav");
     const contentMenu = globalMenuObj[path].submenu;
 
