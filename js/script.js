@@ -78,16 +78,8 @@ const globalMenuObj = {
             car: "전기차 충전사업",
             sun: "태양광 발전사업",
             green: "그린수소 사업",
-            // city: "스마트시티사업",
-            // ocean: "해상풍력사업",
-            // carbon: "탄소중립사업",
         }
     },
-    // department: "부서소개",
-    // complain_etc: '기타 민원',
-    // complains: "민원안내",
-    // quiz: "퀴즈",
-    // index: "홈",
 }
 
 const globalMenus = `
@@ -183,17 +175,7 @@ if (path === "guest" || path === "support" || path === "tech") {
     `;
 
     /** 현재 내용 표시 **/
-    if (path === "guest" || path === "support") {
-        document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="height: 80vh; max-width: 100%" />`
-    } else if (path === "tech") {
-        function loadHTML() {
-            fetch(`./content_${path}/${curMenu}.html`)
-                .then(response => response.text())
-                .then(text => document.getElementById('content').innerHTML = text);
-        }
-
-        loadHTML();
-    }
+    document.getElementById('content').innerHTML = `<img src="./img/${path}/${curMenu}.jpg" style="max-height: 80vh; max-width: 90vw" />`
 }
 
 document.querySelectorAll('a').forEach(a => {
