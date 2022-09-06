@@ -1,9 +1,14 @@
+const HOME_ICON = `<svg height="4vw" width="4vw" id="Layer_1" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path fill="white" d="M15.45,7L14,5.551V2c0-0.55-0.45-1-1-1h-1c-0.55,0-1,0.45-1,1v0.553L9,0.555C8.727,0.297,8.477,0,8,0S7.273,0.297,7,0.555  L0.55,7C0.238,7.325,0,7.562,0,8c0,0.563,0.432,1,1,1h1v6c0,0.55,0.45,1,1,1h3v-5c0-0.55,0.45-1,1-1h2c0.55,0,1,0.45,1,1v5h3  c0.55,0,1-0.45,1-1V9h1c0.568,0,1-0.437,1-1C16,7.562,15.762,7.325,15.45,7z"/>
+        </svg>`
+const CLOSE_ICON = `<svg height="6vw" width="6vw" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path fill="transparent" d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10.011,10.011,0,0,1,12,22Z"/>
+                <path fill="#fff" d="M16.707,7.293a1,1,0,0,0-1.414,0L12,10.586,8.707,7.293A1,1,0,1,0,7.293,8.707L10.586,12,7.293,15.293a1,1,0,1,0,1.414,1.414L12,13.414l3.293,3.293a1,1,0,0,0,1.414-1.414L13.414,12l3.293-3.293A1,1,0,0,0,16.707,7.293Z"/>
+                </svg>`
 const controlMenus = `
 <div class="control-menus">    
-    <button class="control-menu global-menu-open-btn">
-        <svg height="4vw" width="4vw" id="Layer_1" style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <path fill="white" d="M15.45,7L14,5.551V2c0-0.55-0.45-1-1-1h-1c-0.55,0-1,0.45-1,1v0.553L9,0.555C8.727,0.297,8.477,0,8,0S7.273,0.297,7,0.555  L0.55,7C0.238,7.325,0,7.562,0,8c0,0.563,0.432,1,1,1h1v6c0,0.55,0.45,1,1,1h3v-5c0-0.55,0.45-1,1-1h2c0.55,0,1,0.45,1,1v5h3  c0.55,0,1-0.45,1-1V9h1c0.568,0,1-0.437,1-1C16,7.562,15.762,7.325,15.45,7z"/>
-        </svg>
+    <button class="control-menu global-menu-open-btn" id="home-btn">
+        ${HOME_ICON}
     </button>
 </div>
 `;
@@ -11,13 +16,23 @@ const controlMenus = `
 const showGlobalMenu = (e) => {
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.remove("hide");
+    document.getElementById("home-btn").innerHTML = CLOSE_ICON;
 };
 
-const hideGlobalMenu = (e) => {
-    e.stopPropagation();
+const hideGlobalMenu = () => {
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.add("hide");
+    document.getElementById("home-btn").innerHTML = HOME_ICON;
 };
+
+const toggleGlobalMenu = () => {
+    const globalMenuEl = document.querySelector(".global-menu-bg");
+    if (globalMenuEl.classList.contains("hide")) {
+        showGlobalMenu();
+    } else {
+        hideGlobalMenu();
+    }
+}
 
 const moveBack = (e) => {
     e.stopPropagation();
@@ -38,8 +53,8 @@ const renderControlMenu = () => {
                 e.stopPropagation()
             })
         })
-        const globalMenuOpenBtnEl = document.querySelector(".global-menu-open-btn");
-        globalMenuOpenBtnEl.addEventListener("click", showGlobalMenu);
+        const homeBtn = document.getElementById("home-btn");
+        homeBtn.addEventListener("click", toggleGlobalMenu);
     }
 }
 
@@ -120,8 +135,7 @@ const globalMenus = `
 }, "")
 }
         </div>
-        <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/><span class="bold">← 좌측 고객지원실</span> 을 이용 바랍니다.</div>
-        <footer class="global-menu-close-btn">닫기</footer>    
+        <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/><span class="bold">← 좌측 고객지원실</span> 을 이용 바랍니다.</div>    
     </div>
 </div>
 `
@@ -130,9 +144,7 @@ const renderGlobalMenu = () => {
     if (globalMenusEl) {
         globalMenusEl.outerHTML = globalMenus;
         const globalMenuEl = document.querySelector(".global-menu-bg");
-        const globalMenuCloseBtn = document.querySelector(".global-menu-close-btn");
         globalMenuEl.addEventListener("click", hideGlobalMenu)
-        globalMenuCloseBtn.addEventListener("click", hideGlobalMenu);
     }
 }
 

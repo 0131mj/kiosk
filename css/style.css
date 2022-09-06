@@ -167,16 +167,17 @@ main {
 .global-menu-panel {
     color: black;
     background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 30%, rgb(228 246 255) 100%);
-    /*background: white;*/
-
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    width: 84vw;
-    border-radius: 1vw;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
     font-size: 1.1rem;
-    margin-bottom: 20vw;
+    justify-content: center;
+}
+
+.global-menu-panel > div {
+    transform: scale(1.2);
 }
 
 .visitor-introduce {
@@ -198,7 +199,7 @@ main {
     color: #4e5f7e;
     font-size: 2.2rem;
     text-align: center;
-    padding-top: 8vw;
+    padding-bottom: 6vw;
     font-family: 'S-CoreExtraBold', sans-serif;
 }
 
@@ -433,6 +434,7 @@ a {
 /** **/
 #tree-area {
     width: 80vw;
+    margin: 10vw auto;
     height: 65vw;
     position: relative;
     background: url("../img/menu/tree.png") no-repeat center;
