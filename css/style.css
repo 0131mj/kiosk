@@ -453,11 +453,11 @@ a {
 
 /** **/
 #tree-area {
-    width: 80vw;
+    width: 90vw;
+    height: 70vw;
     margin: 10vw auto;
-    height: 65vw;
     position: relative;
-    background: url("../img/menu/tree.png") no-repeat center;
+    background: url("../img/menu/support_tree.png") no-repeat center;
     background-size: contain;
     display: flex;
     justify-content: center;
@@ -483,28 +483,28 @@ a {
 /** support **/
 [data-menu="high"] {
     left: 29.5%;
-    top: 15%;
+    top: 14%;
     font-size: 0.85rem;
 }
 
 [data-menu="efficiency"] {
     left: 33.5%;
-    top: 33%;
+    top: 32%;
 }
 
 [data-menu="power"] {
-    left: 51.5%;
-    top: 23%;
+    left: 53.5%;
+    top: 21%;
 }
 
 [data-menu="root"] {
     left: 42.5%;
-    top: 5%;
+    top: 4%;
 }
 
 [data-menu="trans"] {
     left: 17%;
-    top: 31%;
+    top: 29%;
     font-size: 0.85rem;
 }
 
@@ -526,8 +526,8 @@ a {
 }
 
 [data-menu="sun"] {
-    left: 51%;
-    top: 45%;
+    left: 52%;
+    top: 41%;
 }
 
 [data-menu="green"] {
