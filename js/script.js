@@ -137,7 +137,7 @@ const globalMenus = `
 }, "")
 }
         </div>
-        <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/><span class="bold">← 좌측 고객지원실</span> 을 이용 바랍니다.</div>    
+        <div class="visitor-introduce">전기사용신청, 전기요금, 계약변경, 전력량계 업무<br/><span>← 좌측 고객지원실</span> 을 이용 바랍니다.</div>    
     </div>
 </div>
 `

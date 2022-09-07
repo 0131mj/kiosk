@@ -197,8 +197,10 @@ main {
     width: 60vw;
 }
 
-.visitor-introduce .bold {
+.visitor-introduce span {
     color: red;
+    font-size: 1.2em;
+    font-family: 'S-CoreBold', sans-serif;
 }
 
 .global-menu-panel-title {
