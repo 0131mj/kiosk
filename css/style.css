@@ -183,7 +183,7 @@ main {
 }
 
 .global-menu-panel > div {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .visitor-introduce {
@@ -193,7 +193,7 @@ main {
     border-radius: 8vw;
     text-align: center;
     background-color: #d7eafd;
-    margin: 2vw auto 5vw;
+    margin: 2vw auto 15vw;
     width: 60vw;
 }
 
@@ -207,7 +207,7 @@ main {
     color: #4e5f7e;
     font-size: 2.2rem;
     text-align: center;
-    padding-bottom: 6vw;
+    padding-bottom: 2vw;
     font-family: 'S-CoreExtraBold', sans-serif;
 }
 
@@ -455,7 +455,7 @@ a {
 #tree-area {
     width: 90vw;
     height: 70vw;
-    margin: 10vw auto;
+    margin: 5vw auto;
     position: relative;
     background: url("../img/menu/support_tree.png") no-repeat center;
     background-size: contain;
