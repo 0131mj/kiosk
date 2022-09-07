@@ -238,6 +238,18 @@ main {
     border-radius: 1vw;
     font-family: 'S-CoreMedium', sans-serif;
     box-shadow: 0 0.3vw 0 rgba(255, 255, 255, 0.34) inset;
+    position: relative;
+}
+
+.global-menu.color-photo::before{
+    content: "";
+    background: url("../img/photo/camera.svg") no-repeat center;
+    background-size: auto 100%;
+    width: 25%;
+    height: 23%;
+    position: absolute;
+    bottom: 5%;
+    right: -2%;
 }
 
 .color-visitor {

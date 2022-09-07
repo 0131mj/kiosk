@@ -29,6 +29,17 @@ main {
     text-align: center;
     font-size: 1rem;
     margin: 2rem;
+    padding-left: 3vw;
+    position: relative;
+}
+
+.photo-description::before {
+    content: "";
+    width: 2.5vw;
+    height: 2.5vw;
+    background: url("../img/photo/camera.svg") no-repeat center;
+    position: absolute;
+    left: 0;
 }
 
 .photo-preview {
@@ -329,6 +340,6 @@ main {
     line-height: 2em;
 }
 
-.sample-human{
+.sample-human {
     width: 50%;
 }
