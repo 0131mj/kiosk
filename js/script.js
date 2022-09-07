@@ -288,42 +288,42 @@ document.querySelectorAll('a').forEach(a => {
 
 const isHome = window.location.href.includes("index.html");
 
-if (!isHome) {
-
-    /** 프로그레스바 (테스트 시연용) **/
-    const progressBar = document.createElement("div");
-    const progressBarStyles = {
-        position: "fixed",
-        bottom: "0",
-        zIndex: "3",
-        background: "red",
-        width: "100vw",
-        height: "0.5vw",
-        transition: "all 0.5s linear"
-    }
-    for (let style in progressBarStyles) {
-        progressBar.style[style] = progressBarStyles[style];
-    }
-    document.body.appendChild(progressBar);
-    const showProgress = () => progressBar.style.width = `${cnt / TIMING * 100}vw`;
-
-
-    /** ----- 일정시간 이상 터치 없을시 홈으로 이동 ----- **/
-    const TIMING = 30;
-    let cnt;
-    const countReset = () => cnt = TIMING;
-    countReset();
-    const countDown = window.setInterval(() => {
-        showProgress(); // 테스트 시연용
-        cnt--;
-        if (cnt < 1) {
-            clearInterval(countDown);
-            const isDevMode = window.location.href.startsWith("http://192.168.1.16:8080");
-            if (!isDevMode) {
-                window.location.href = "./index.html";
-            }
-        }
-    }, 1000);
-    window.addEventListener("mousedown", countReset);
-    window.addEventListener("touchstart", countReset);
+/** 프로그레스바 (테스트 시연용) **/
+const progressBar = document.createElement("div");
+const progressBarStyles = {
+    position: "fixed",
+    bottom: "0",
+    zIndex: "3",
+    background: "red",
+    width: "100vw",
+    height: "0.5vw",
+    transition: "all 0.5s linear"
 }
+for (let style in progressBarStyles) {
+    progressBar.style[style] = progressBarStyles[style];
+}
+document.body.appendChild(progressBar);
+
+
+/** ----- 일정시간 이상 터치 없을시 홈으로 이동 ----- **/
+const TIMING = 60; // 대기기간 (초)
+let cnt;
+const showProgress = () => progressBar.style.width = `${cnt / TIMING * 100}vw`;
+const countReset = () => cnt = TIMING;
+countReset();
+const countDown = window.setInterval(() => {
+    showProgress(); // 테스트 시연용
+    cnt--;
+    if (isHome) {
+        const globalMenuEl = document.querySelector(".global-menu-bg");
+        if (globalMenuEl.classList.contains("hide")) {
+            countReset();
+        }
+    }
+    if (cnt < 1) {
+        clearInterval(countDown);
+        window.location.href = "./index.html";
+    }
+}, 1000);
+window.addEventListener("mousedown", countReset);
+window.addEventListener("touchstart", countReset);
