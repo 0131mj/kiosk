@@ -243,10 +243,10 @@ main {
 
 .global-menu.color-photo::before{
     content: "";
-    background: url("../img/photo/camera.svg") no-repeat center;
+    background: url("../img/photo/_camera.svg") no-repeat center;
     background-size: auto 100%;
     width: 25%;
-    height: 23%;
+    height: 20%;
     position: absolute;
     bottom: 5%;
     right: -2%;

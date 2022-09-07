@@ -37,7 +37,7 @@ main {
     content: "";
     width: 2.5vw;
     height: 2.5vw;
-    background: url("../img/photo/camera.svg") no-repeat center;
+    background: url("../img/photo/_camera.svg") no-repeat center;
     position: absolute;
     left: 0;
 }
@@ -183,7 +183,7 @@ main {
     font-size: 3rem;
     background: #eaeaea;
     border-radius: 50%;
-    color: black;
+    color: #333b44;
     width: 15vw;
     height: 15vw;
     margin-top: 5vw;
