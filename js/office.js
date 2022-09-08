@@ -265,10 +265,9 @@ const setOffice = () => {
         closePopup();
     })
 
-    document.body.addEventListener("click", (e) => {
+    document.getElementById("map-wrapper").addEventListener("click", (e)=>{
         e.stopPropagation();
-        closePopup();
-    });
+    })
 
     document.querySelectorAll("area").forEach(area =>{
         area.addEventListener("click", (e)=>{
