@@ -162,7 +162,7 @@ main {
 .global-menu-bg {
     margin: auto;
     z-index: 1;
-    transition: left 0.5s;
+    transition: left 0.3s;
 }
 
 .global-menu-bg.hide {
