@@ -162,12 +162,13 @@ main {
 .global-menu-bg {
     margin: auto;
     z-index: 1;
-    transition: left 0.3s;
+    transition: left 0.3s, opacity 0.1s;
 }
 
 .global-menu-bg.hide {
     left: 100vw;
     display: flex !important;
+    opacity: 0.5;
 }
 
 .global-menu-panel {
@@ -180,6 +181,7 @@ main {
     overflow: hidden;
     font-size: 1.1rem;
     justify-content: center;
+    opacity: 1;
 }
 
 .global-menu-panel > div {
