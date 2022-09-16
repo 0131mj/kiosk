@@ -20,7 +20,7 @@
 
         .progress-cell {
             background-color: #333;
-            width: 1.5vw;
+            width: .5vw;
             height: 3vw;
             margin: 0.2vw
         }
@@ -63,7 +63,8 @@
                 </div>
             </div>
             <button id="shutter-btn" class="shutter">
-                <svg width="8vw" height="8vw" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                <svg width="8vw" height="8vw" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                      viewBox="0 0 198.9 198.9" style="enable-background:new 0 0 198.9 198.9;" xml:space="preserve">
 <g fill="currentColor">
 	<path d="M99.9,83.1c-16,0-28.8,12.9-28.8,28.8s12.9,28.8,28.8,28.8s28.8-12.9,28.8-28.8S115.9,83.1,99.9,83.1z"/>
@@ -102,21 +103,7 @@
         <div id="result-title"></div>
         <div id="result-msg"></div>
         <div class="auto-close"><span id="remain_sec">5</span>초 후에 자동으로 창이 닫힙니다.</div>
-        <div id="progress-bar">
-            <div class="progress-cell"></div>
-            <div class="progress-cell"></div>
-
-            <div class="progress-cell"></div>
-            <div class="progress-cell"></div>
-
-            <div class="progress-cell"></div>
-            <div class="progress-cell"></div>
-
-            <div class="progress-cell"></div>
-            <div class="progress-cell"></div>
-
-            <div class="progress-cell"></div>
-        </div>
+        <div id="progress-bar"></div>
     </div>
 </div>
 <template id="global-menu-panel"></template>
@@ -136,8 +123,6 @@
     const photoTakeBox = document.getElementById("photo-take-box");
 
     const photoCountdown = document.getElementById("photo-countdown");
-
-    const progressCells = document.querySelectorAll(".progress-cell");
 
     const openPhotoConfirmModal = () => {
         photoConfirmModal.classList.remove("hide");
@@ -205,14 +190,27 @@
         })
     });
 
+    const PRINT_SECONDS = 60; // 출력까지 걸리는 시간
+    const CELLS_PER_PROGRESS = 1; // 초당 프로그레스 바 개수
+
+    const setRemainSeconds = (sec) => {
+        document.getElementById("remain_sec").innerText = `${sec}`;
+    }
+
+    const initializeRemainSeconds = () => {
+        setRemainSeconds(PRINT_SECONDS);
+    }
+
     const autoClose = () => {
-        let cnt = 10;
+        let cnt = PRINT_SECONDS * CELLS_PER_PROGRESS;
+        const progressCells = document.querySelectorAll(".progress-cell");
+        const cellCnt = progressCells.length;
         const countDown = setInterval(() => {
-            if (progressCells[10 - cnt]) {
-                progressCells[10 - cnt].classList.add("on");
-            }
             cnt -= 1;
-            document.getElementById("remain_sec").innerText = `${Math.ceil(cnt / 2)}`;
+            if (progressCells[cellCnt - cnt]) {
+                progressCells[cellCnt - cnt].classList.add("on");
+            }
+            setRemainSeconds(Math.ceil(cnt / CELLS_PER_PROGRESS));
 
             if (cnt === 0) {
                 progressCells.forEach((cell) => {
@@ -220,9 +218,9 @@
                 })
                 clearInterval(countDown);
                 closeResultModal();
-                document.getElementById("remain_sec").innerText = "5";
+                initializeRemainSeconds();
             }
-        }, 500)
+        }, 1000 / CELLS_PER_PROGRESS)
     }
 
     const showResult = () => {
@@ -231,7 +229,7 @@
         document.getElementById("result-title").innerText = title;
         document.getElementById("result-msg").innerHTML = msg;
         photoSendResultModal.classList.remove("hide");
-        autoClose(); // 5초후 자동으로 닫히도록 처리
+        autoClose(); // REMAIN_SECONDS 후 자동으로 닫히도록 처리
     }
 
     photoCancelBtn.addEventListener("click", closePhotoConfirmModal)
@@ -242,7 +240,16 @@
         closePhotoConfirmModal();
     });
 
-    photoTakeBox.addEventListener("click", e => e.stopPropagation())
+    photoTakeBox.addEventListener("click", e => e.stopPropagation());
+    initializeRemainSeconds();
+
+    const photoProgressBar = document.getElementById("progress-bar");
+
+    for (let i = PRINT_SECONDS * CELLS_PER_PROGRESS - 1; i > 0; i--) {
+        const progressCell = document.createElement("div");
+        progressCell.classList.add("progress-cell");
+        photoProgressBar.appendChild(progressCell);
+    }
 
 </script>
 <script src="./js/zoom.js"></script>
