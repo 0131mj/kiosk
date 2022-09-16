@@ -212,14 +212,20 @@
             }
             setRemainSeconds(Math.ceil(cnt / CELLS_PER_PROGRESS));
 
-            if (cnt === 0) {
-                progressCells.forEach((cell) => {
-                    cell.classList.remove("on")
-                })
+            const resetAutoClose = () => {
                 clearInterval(countDown);
                 closeResultModal();
                 initializeRemainSeconds();
             }
+
+            if (cnt === 0) {
+                progressCells.forEach((cell) => {
+                    cell.classList.remove("on")
+                })
+                resetAutoClose();
+            }
+
+            window.addEventListener("beforeunload", resetAutoClose);
         }, 1000 / CELLS_PER_PROGRESS)
     }
 
@@ -232,13 +238,10 @@
         autoClose(); // REMAIN_SECONDS 후 자동으로 닫히도록 처리
     }
 
-    photoCancelBtn.addEventListener("click", closePhotoConfirmModal)
-
     sendBtn.addEventListener("click", showResult)
 
-    window.addEventListener("beforeunload", () => {
-        closePhotoConfirmModal();
-    });
+    photoCancelBtn.addEventListener("click", closePhotoConfirmModal)
+    window.addEventListener("beforeunload", closePhotoConfirmModal);
 
     photoTakeBox.addEventListener("click", e => e.stopPropagation());
     initializeRemainSeconds();
