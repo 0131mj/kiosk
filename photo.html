@@ -40,7 +40,7 @@
         가능합니다.
     </p>
     <div class="photo-take-box" id="photo-take-box">
-        <div class="photo-preview bg-01">
+        <div class="photo-preview">
             <div class="sample-human" id="photo-target">
                 <div class="resizer nw"></div>
                 <div class="resizer ne"></div>
@@ -51,16 +51,7 @@
         <section class="photo-setting-box">
             <div class="bg-select-box">
                 <div style="font-size: 1.3rem; padding: 1rem">배경 선택</div>
-                <div class="photo-bg-btns">
-                    <button data-bg="01" class="photo-bg-btn on">
-                        <div class="photo-bg bg-01"></div>
-                        한전본사
-                    </button>
-                    <button data-bg="02" class="photo-bg-btn">
-                        <div class="photo-bg bg-02"></div>
-                        로망스 다리
-                    </button>
-                </div>
+                <div class="photo-bg-btns"></div>
             </div>
             <button id="shutter-btn" class="shutter">
                 <svg width="8vw" height="8vw" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
@@ -84,12 +75,30 @@
     <div id="photo-countdown"></div>
     <div class="photo-confirm-modal hide">
         <div class="photo-confirm-title">촬영 완료</div>
-        <div class="photo bg-01">
-            <img src="img/photo/user.png" alt="샘플" class="sample-human" style="position: absolute; bottom: 0">
+        <div id="photo-frame">
+            <div class="photo">
+                <img src="img/photo/human.png" alt="샘플" class="sample-human" style="position: absolute; bottom: 0"
+                     id="figure">
+            </div>
+        </div>
+        <div id="figure-setting-box">
+            <div id="figure-position-setting-box">
+                인물 위치 이동
+                <div id="figure-position-box">
+                    <button data-posidx="0" class="position">1</button>
+                    <button data-posidx="1" class="position">2</button>
+                    <button data-posidx="2" class="position">3</button>
+                </div>
+            </div>
+            <div id="figure-scale-setting-box">
+                <label for="figure-scale">인물 크기 조정</label>
+                <input type="range" class="range" id="figure-scale" value="1"/>
+            </div>
         </div>
         <div class="photo-confirm-description">
-            촬영이 완료되었습니다.<br/>
-            확인 후 사진 출력 버튼을 눌러주세요.
+            사진촬영이 완료 되었습니다.<br/>
+            버튼을 이용해 사진을 편집해보세요.<br/>
+            편집 후 사진 출력 버튼을 눌러주세요.
         </div>
         <button id="send-btn">사진 출력</button>
         <button id="photo-cancel-btn">취소</button>
@@ -110,6 +119,87 @@
 <template id="control-menus"></template>
 <script src="./js/script.js"></script>
 <script>
+
+    let currBg = 0;
+
+    /**
+     * 값 설정 가이드
+     * figurePos x, y 퍼센트 값 설정시,
+     * x의 값이 낮은 순 => 높은 순으로 배치해야 인터페이스를 직관적으로 유지할 수 있습니다.
+     * */
+    const BG_INFO = [
+        {
+            title: "한전 본사",
+            imgUrl: '../img/photo/bg/1.jpg',
+            figurePos: [
+                [10, 20],
+                [40, 40],
+                [80, 60],
+            ],
+            defaultPosIdx: 1,
+        },
+        {
+            title: "로망스 다리",
+            imgUrl: '../img/photo/bg/2.jpg',
+            figurePos: [
+                [0, 40],
+                [10, 20],
+                [80, 60],
+            ],
+            defaultPosIdx: 2,
+        }
+    ];
+
+    const FIGURE_SCALE_FEATURE = {
+        min : 0.25,
+        max : 3,
+        step : 0.25
+    }
+
+    /** Figure Setting **/
+
+    const figure = document.getElementById("figure");
+    const figureScale = document.getElementById("figure-scale");
+    const figureSettingBox = document.getElementById("figure-setting-box");
+    const positionBtns = document.querySelectorAll("button.position");
+
+    const setFigurePosition = (idx) => {
+        const [x, y] = BG_INFO[Number(currBg)].figurePos[idx];
+        figure.style.left = `${x}%`;
+        figure.style.top = `${y}%`;
+    }
+
+    const selectFigurePosition = (posidx) => {
+        for (const btn of positionBtns) {
+            if(btn.dataset.posidx === String(posidx)){
+                btn.classList.add("on");
+            }else{
+                btn.classList.remove("on")
+            }
+        }
+        setFigurePosition(posidx);
+    }
+
+    for (const btn of positionBtns) {
+        btn.addEventListener("click", (e) => {
+            const {posidx} = btn.dataset;
+            selectFigurePosition(posidx);
+        })
+    }
+
+    Object.entries(FIGURE_SCALE_FEATURE).forEach(([k,v])=>{
+        figureScale.setAttribute(k, String(v))
+    });
+
+    figureScale.addEventListener("touchmove", (e) => {
+        figureScale.classList.add('on')
+        figure.style.transform = `scale(${e.currentTarget.value})`
+    })
+    figureScale.addEventListener("touchend", (e) => {
+        figureScale.classList.remove('on')
+    })
+
+    const photoBgBtns = document.querySelector(".photo-bg-btns");
     const photoBgBtn = document.querySelectorAll(".photo-bg-btn");
     const shutterBtn = document.getElementById("shutter-btn");
     const photoConfirmModal = document.querySelector(".photo-confirm-modal");
@@ -170,25 +260,49 @@
     }
     shutterBtn.addEventListener("click", takePhoto)
 
-    const selectBg = (target) => {
+    const selectBg = (index) => {
+        currBg = index;
+        const buttons = document.querySelectorAll(".photo-bg-btn");
         /** 버튼 변화 **/
-        photoBgBtn.forEach(btn => {
-            btn.classList.remove("on");
-        });
-        target.classList.add("on");
-
+        for (const btn of buttons) {
+            if (btn.dataset.bg === `${index}`) {
+                btn.classList.add("on");
+            } else {
+                btn.classList.remove("on");
+            }
+        }
         /** 미리보기 변화 **/
-        const photoNum = target.dataset.bg;
-        previewEl.classList.remove(`bg-01`);
-        previewEl.classList.remove(`bg-02`);
-        previewEl.classList.add(`bg-${photoNum}`);
+        previewEl.style.backgroundImage = `url(${BG_INFO[Number(index)].imgUrl})`;
+
+        /** 사진 변화 **/
+        document.querySelector('.photo').style.backgroundImage = `url(${BG_INFO[Number(index)].imgUrl})`;
+
+        /** 인물 위치 선택 **/
+        selectFigurePosition(BG_INFO[currBg].defaultPosIdx);
     }
+
+    setTimeout(()=>{
+        selectBg(0);
+    },0)
 
     photoBgBtn.forEach(btn => {
         btn.addEventListener("click", () => {
             selectBg(btn);
         })
     });
+
+    BG_INFO.forEach((info, index) => {
+        const {title, imgUrl} = info;
+        const btnEl = document.createElement("button");
+        btnEl.setAttribute("data-bg", `${index}`);
+        btnEl.classList.add('photo-bg-btn');
+        btnEl.innerHTML = `<div class="photo-bg" style="background-image: url(${imgUrl})"></div>${title}`;
+        btnEl.addEventListener("click", () => {
+            selectBg(index);
+        })
+        photoBgBtns.appendChild(btnEl);
+    })
+
 
     const PRINT_SECONDS = 60; // 출력까지 걸리는 시간
     const CELLS_PER_PROGRESS = 1; // 초당 프로그레스 바 개수
@@ -244,6 +358,7 @@
     window.addEventListener("beforeunload", closePhotoConfirmModal);
 
     photoTakeBox.addEventListener("click", e => e.stopPropagation());
+    figureSettingBox.addEventListener("click", e => e.stopPropagation());
     initializeRemainSeconds();
 
     const photoProgressBar = document.getElementById("progress-bar");

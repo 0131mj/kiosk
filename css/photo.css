@@ -49,6 +49,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .photo-preview.shut::after {
@@ -142,12 +144,12 @@ main {
     align-items: center;
     width: 15vw;
     height: 10vw;
-    background: darkgrey;
     margin: 0.5rem;
     border: 0.5vw solid transparent;
-    background-size: contain;
+    background-size: cover;
     word-break: keep-all;
     opacity: 0.8;
+    background-repeat: no-repeat;
 }
 
 .photo-bg-btn.on .photo-bg {
@@ -236,16 +238,23 @@ main {
     align-items: center;
     border: 5vw solid #fff;
     position: relative;
+    overflow: hidden;
+    background-size: cover;
 }
 
-.photo::after {
+#photo-frame {
+    position: relative;
+}
+
+#photo-frame::after {
     content: '';
     height: 5vw;
     background: url(../img/photo/frame_text.png) bottom no-repeat;
-    bottom: -5vw;
     background-size: contain;
     width: 100%;
     position: absolute;
+    left: 0;
+    bottom: 0;
 }
 
 
@@ -341,5 +350,82 @@ main {
 }
 
 .sample-human {
-    width: 50%;
+    width: 10vw;
+}
+
+#figure-setting-box {
+    background: #333;
+    color: #fff;
+    width: 98%;
+    padding: 2vw;
+    justify-content: space-around;
+    display: flex;
+    font-size: 1rem;
+    margin-top: 2vw;
+    border-radius: 5vw;
+    /*flex-direction: column;*/
+    /*align-items: center;*/
+}
+
+button.position {
+    background-color: #000;
+    width: 3.5vw;
+    height: 3.5vw;
+    border-radius: 50%;
+    margin: 0 .2vw;
+    color: #888;
+    font-family: 'S-CoreBold', sans-serif;
+}
+
+button.position.on {
+    background-color: #fff;
+    color: #000;
+}
+
+#figure-position-setting-box,
+#figure-scale-setting-box {
+    display: flex;
+    align-items: center;
+    /*width: 20vw;*/
+}
+
+#figure-position-box {
+    margin-left: 2vw;
+}
+
+/* range */
+#rangeValue {
+    position: relative;
+    display: block;
+    text-align: center;
+    font-size: 6em;
+    color: #999;
+    font-weight: 400;
+}
+
+.range {
+    margin-left: 2vw;
+    width: 15vw;
+    height: 3vw;
+    -webkit-appearance: none;
+    background: #111;
+    outline: none;
+    border-radius: 5vw;
+    overflow: hidden;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 1);
+}
+
+.range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    border: .5vw solid #666;
+    /*box-shadow: -407px 0 0 400px #00fd0a;*/
+}
+
+.range.on::-webkit-slider-thumb {
+    background-color: palegoldenrod;
 }
