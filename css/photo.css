@@ -349,7 +349,9 @@ main {
     line-height: 2em;
 }
 
-.sample-human {
+#figure {
+    position: absolute;
+    transition: all 0.1s;
     width: 10vw;
 }
 
