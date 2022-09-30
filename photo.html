@@ -102,7 +102,7 @@
         <button id="send-btn">사진 출력</button>
         <button id="photo-cancel-btn">취소</button>
         <div class="auto-cancel-description">
-            일정 시간 동안 입력이 없으면 HOME 화면으로 돌아갑니다.
+            일정 시간 동안 입력이 없으면 사진촬영 초기 화면으로 돌아갑니다.
         </div>
     </div>
 </main>
@@ -331,11 +331,16 @@
                 initializeRemainSeconds();
             }
 
+            const goHome = () => {
+                window.location.href = "./index.html";
+            }
+
             if (cnt === 0) {
                 progressCells.forEach((cell) => {
                     cell.classList.remove("on")
                 })
                 resetAutoClose();
+                goHome();
             }
 
             window.addEventListener("beforeunload", resetAutoClose);

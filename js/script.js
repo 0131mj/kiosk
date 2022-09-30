@@ -278,10 +278,11 @@ document.querySelectorAll('a').forEach(a => {
 
 
 /**
- * @description : 일정시간 동안 터치 없을시 홈으로 이동하는 기능
+ * @description : 일정시간 동안 터치 없을시 기념촬영 페이지로 이동하는 기능
  */
-
-const isHome = window.location.href.includes("index.html");
+const HOME_PAGE = "index.html";
+const PHOTO_PAGE = "photo.html";
+const isHomePage = window.location.href.endsWith(HOME_PAGE) || window.location.pathname === "/";
 
 /** 프로그레스바 (테스트 시연용) **/
 const progressBar = document.createElement("div");
@@ -300,8 +301,8 @@ for (let style in progressBarStyles) {
 document.body.appendChild(progressBar);
 
 
-/** ----- 일정시간 이상 터치 없을시 홈으로 이동 ----- **/
-const TIMING = 60; // 대기기간 (초)
+/** ----- 일정시간 이상 터치 없을시 페이지 이동 ----- **/
+const TIMING = 120; // 대기기간 (초)
 let cnt;
 const showProgress = () => progressBar.style.width = `${cnt / TIMING * 100}vw`;
 const countReset = () => cnt = TIMING;
@@ -309,15 +310,16 @@ countReset();
 const countDown = window.setInterval(() => {
     showProgress(); // 테스트 시연용
     cnt--;
-    if (isHome) {
-        const globalMenuEl = document.querySelector(".global-menu-bg");
-        if (globalMenuEl.classList.contains("hide")) {
-            countReset();
-        }
-    }
+
     if (cnt < 1) {
-        clearInterval(countDown);
-        window.location.href = "./index.html";
+        const globalMenuEl = document.querySelector(".global-menu-bg");
+        globalMenuEl.classList.add("hide");
+        if (isHomePage) {
+            countReset();
+        } else {
+            clearInterval(countDown);
+            window.location.href = `./${PHOTO_PAGE}`;
+        }
     }
 }, 1000);
 window.addEventListener("mousedown", countReset);
