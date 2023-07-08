@@ -310,7 +310,13 @@ main {
     color: #777;
 }
 
-#send-btn {
+.btn-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#send-btn, #email-form-btn {
     background: #151515;
     padding: 2vw 4vw;
     margin: 2vw;

@@ -98,20 +98,17 @@
             <div class="photo-confirm-description">
                 사진촬영이 완료 되었습니다.<br />
                 버튼을 이용해 사진을 편집해보세요.<br />
-                편집 후 사진 출력 버튼을 눌러주세요.
+                편집 후 사진 출력 또는 이메일로 전송 버튼을 눌러주세요.
             </div>
-            <button id="send-btn">사진 출력</button>
-            <button id="email-form-btn">사진 출력</button>
+            <div class="btn-group">
+                <button id="send-btn">사진 출력</button>
+                <button id="email-form-btn">이메일로 전송</button>
+            </div>
             <button id="photo-cancel-btn">취소</button>
             <div class="auto-cancel-description">
                 일정 시간 동안 입력이 없으면 사진촬영 초기 화면으로 돌아갑니다.
             </div>
-
-        </div>
-        <div id="email-input">
-            <textarea class="js-kioskboard-input" data-kioskboard-type="all" data-kioskboard-placement="top"
-                data-kioskboard-specialcharacters="true" placeholder="Your Address"></textarea>
-        </div>
+        </div>        
     </main>
 
     <div class="photo-send-result-modal-bg dimmed hide">
@@ -120,6 +117,12 @@
             <div id="result-msg"></div>
             <div class="auto-close"><span id="remain_sec">5</span>초 후에 자동으로 창이 닫힙니다.</div>
             <div id="progress-bar"></div>
+        </div>
+    </div>
+    <div class="dimmed hide">
+        <div id="email-input">
+            <textarea class="js-kioskboard-input" data-kioskboard-type="all" data-kioskboard-placement="top"
+                data-kioskboard-specialcharacters="true" placeholder="Your Address"></textarea>
         </div>
     </div>
     <template id="global-menu-panel"></template>
