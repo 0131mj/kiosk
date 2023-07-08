@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <title>사진촬영</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/photo.css">
@@ -28,352 +29,460 @@
         .progress-cell.on {
             background-color: yellow;
         }
-
-
     </style>
 </head>
-<body>
-<main>
-    <header class="title-header"></header>
-    <p class="photo-explanation">배경과 촬영 위치를 선택해 주세요.<br/>
-        사람 아이콘을 터치하여 화면 크기 및 위치 조절이
-        가능합니다.
-    </p>
-    <div class="photo-take-box" id="photo-take-box">
-        <div class="photo-preview">
-            <div class="sample-human" id="photo-target">
-                <div class="resizer nw"></div>
-                <div class="resizer ne"></div>
-                <div class="resizer sw"></div>
-                <div class="resizer se"></div>
-            </div>
-        </div>
-        <section class="photo-setting-box">
-            <div class="bg-select-box">
-                <div style="font-size: 1.3rem; padding: 1rem">배경 선택</div>
-                <div class="photo-bg-btns"></div>
-            </div>
-            <button id="shutter-btn" class="shutter">
-                <svg width="8vw" height="8vw" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 198.9 198.9" style="enable-background:new 0 0 198.9 198.9;" xml:space="preserve">
-<g fill="currentColor">
-	<path d="M99.9,83.1c-16,0-28.8,12.9-28.8,28.8s12.9,28.8,28.8,28.8s28.8-12.9,28.8-28.8S115.9,83.1,99.9,83.1z"/>
-    <path d="M171.9,42.1h-24.3l-6.2-14.8c-2.9-6.9-9.8-11.4-17.2-11.4H75.8c-7.4,0-14.3,4.5-17.2,11.4l-6.2,14.8H27.9
-		C15,42.1,4.8,52.4,4.8,65.2v93.7C4.8,171.8,15,182,27.9,182h144c12.9,0,23.1-10.2,23.1-23.1V65.2C195,52.6,184.5,42.1,171.9,42.1z
-		 M99.9,157.7c-25.3,0-45.5-20.5-45.5-45.5c0-25.3,20.5-45.5,45.5-45.5s45.5,20.5,45.5,45.5S125.2,157.7,99.9,157.7z"/>
-</g>
-</svg>
 
-                <span>사진찍기</span>
-            </button>
-            <div class="photo-description">
-                사진찍기 버튼을 누르면 촬영을 시작합니다.
-            </div>
-        </section>
-    </div>
-    <div id="photo-countdown"></div>
-    <div class="photo-confirm-modal hide">
-        <div class="photo-confirm-title">촬영 완료</div>
-        <div id="photo-frame">
-            <div class="photo">
-                <img src="img/photo/human.png" alt="촬영완료 인물" id="figure">
-            </div>
-        </div>
-        <div id="figure-setting-box">
-            <div id="figure-position-setting-box">
-                인물 위치 이동
-                <div id="figure-position-box">
-                    <button data-posidx="0" class="position">1</button>
-                    <button data-posidx="1" class="position">2</button>
-                    <button data-posidx="2" class="position">3</button>
+<body>
+    <main>
+        <header class="title-header"></header>
+        <p class="photo-explanation">배경과 촬영 위치를 선택해 주세요.<br />
+            사람 아이콘을 터치하여 화면 크기 및 위치 조절이
+            가능합니다.
+        </p>
+        <div class="photo-take-box" id="photo-take-box">
+            <div class="photo-preview">
+                <div class="sample-human" id="photo-target">
+                    <div class="resizer nw"></div>
+                    <div class="resizer ne"></div>
+                    <div class="resizer sw"></div>
+                    <div class="resizer se"></div>
                 </div>
             </div>
-            <div id="figure-scale-setting-box">
-                <label for="figure-scale">인물 크기 조정</label>
-                <input type="range" class="range" id="figure-scale" value="1"/>
+            <section class="photo-setting-box">
+                <div class="bg-select-box">
+                    <div style="font-size: 1.3rem; padding: 1rem">배경 선택</div>
+                    <div class="photo-bg-btns"></div>
+                </div>
+                <button id="shutter-btn" class="shutter">
+                    <svg width="8vw" height="8vw" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 198.9 198.9"
+                        style="enable-background:new 0 0 198.9 198.9;" xml:space="preserve">
+                        <g fill="currentColor">
+                            <path
+                                d="M99.9,83.1c-16,0-28.8,12.9-28.8,28.8s12.9,28.8,28.8,28.8s28.8-12.9,28.8-28.8S115.9,83.1,99.9,83.1z" />
+                            <path d="M171.9,42.1h-24.3l-6.2-14.8c-2.9-6.9-9.8-11.4-17.2-11.4H75.8c-7.4,0-14.3,4.5-17.2,11.4l-6.2,14.8H27.9
+		C15,42.1,4.8,52.4,4.8,65.2v93.7C4.8,171.8,15,182,27.9,182h144c12.9,0,23.1-10.2,23.1-23.1V65.2C195,52.6,184.5,42.1,171.9,42.1z
+		 M99.9,157.7c-25.3,0-45.5-20.5-45.5-45.5c0-25.3,20.5-45.5,45.5-45.5s45.5,20.5,45.5,45.5S125.2,157.7,99.9,157.7z" />
+                        </g>
+                    </svg>
+
+                    <span>사진찍기</span>
+                </button>
+                <div class="photo-description">
+                    사진찍기 버튼을 누르면 촬영을 시작합니다.
+                </div>
+            </section>
+        </div>
+        <div id="photo-countdown"></div>
+        <div class="photo-confirm-modal hide">
+            <div class="photo-confirm-title">촬영 완료</div>
+            <div id="photo-frame">
+                <div class="photo">
+                    <img src="img/photo/human.png" alt="촬영완료 인물" id="figure">
+                </div>
             </div>
+            <div id="figure-setting-box">
+                <div id="figure-position-setting-box">
+                    인물 위치 이동
+                    <div id="figure-position-box">
+                        <button data-posidx="0" class="position">1</button>
+                        <button data-posidx="1" class="position">2</button>
+                        <button data-posidx="2" class="position">3</button>
+                    </div>
+                </div>
+                <div id="figure-scale-setting-box">
+                    <label for="figure-scale">인물 크기 조정</label>
+                    <input type="range" class="range" id="figure-scale" value="1" />
+                </div>
+            </div>
+            <div class="photo-confirm-description">
+                사진촬영이 완료 되었습니다.<br />
+                버튼을 이용해 사진을 편집해보세요.<br />
+                편집 후 사진 출력 버튼을 눌러주세요.
+            </div>
+            <button id="send-btn">사진 출력</button>
+            <button id="email-form-btn">사진 출력</button>
+            <button id="photo-cancel-btn">취소</button>
+            <div class="auto-cancel-description">
+                일정 시간 동안 입력이 없으면 사진촬영 초기 화면으로 돌아갑니다.
+            </div>
+
         </div>
-        <div class="photo-confirm-description">
-            사진촬영이 완료 되었습니다.<br/>
-            버튼을 이용해 사진을 편집해보세요.<br/>
-            편집 후 사진 출력 버튼을 눌러주세요.
+        <div id="email-input">
+            <textarea class="js-kioskboard-input" data-kioskboard-type="all" data-kioskboard-placement="top"
+                data-kioskboard-specialcharacters="true" placeholder="Your Address"></textarea>
         </div>
-        <button id="send-btn">사진 출력</button>
-        <button id="photo-cancel-btn">취소</button>
-        <div class="auto-cancel-description">
-            일정 시간 동안 입력이 없으면 사진촬영 초기 화면으로 돌아갑니다.
+    </main>
+
+    <div class="photo-send-result-modal-bg dimmed hide">
+        <div class="photo-send-result-modal">
+            <div id="result-title"></div>
+            <div id="result-msg"></div>
+            <div class="auto-close"><span id="remain_sec">5</span>초 후에 자동으로 창이 닫힙니다.</div>
+            <div id="progress-bar"></div>
         </div>
     </div>
-</main>
-<div class="photo-send-result-modal-bg dimmed hide">
-    <div class="photo-send-result-modal">
-        <div id="result-title"></div>
-        <div id="result-msg"></div>
-        <div class="auto-close"><span id="remain_sec">5</span>초 후에 자동으로 창이 닫힙니다.</div>
-        <div id="progress-bar"></div>
-    </div>
-</div>
-<template id="global-menu-panel"></template>
-<template id="control-menus"></template>
-<script src="./js/script.js"></script>
-<script>
+    <template id="global-menu-panel"></template>
+    <template id="control-menus"></template>
+    <script src="./js/script.js"></script>
+    <script src="./lib/KioskBoard-main/dist/kioskboard-aio-2.3.0.min.js"></script>
+    <script>
 
-    let currBg = 0;
+        KioskBoard.init({
 
-    /**
-     * 값 설정 가이드
-     * figurePos x, y 퍼센트 값 설정시,
-     * x의 값이 낮은 순 => 높은 순으로 배치해야 인터페이스를 직관적으로 유지할 수 있습니다.
-     * */
-    const BG_INFO = [
-        {
-            title: "한전 본사",
-            imgUrl: './img/photo/bg/1.jpg',
-            figurePos: [
-                [10, 20],
-                [40, 40],
-                [80, 60],
-            ],
-            defaultPosIdx: 1,
-        },
-        {
-            title: "로망스 다리",
-            imgUrl: './img/photo/bg/2.jpg',
-            figurePos: [
-                [0, 40],
-                [10, 20],
-                [80, 60],
-            ],
-            defaultPosIdx: 2,
-        }
-    ];
+            /*!
+            * Required
+            * An Array of Objects has to be defined for the custom keys. Hint: Each object creates a row element (HTML) on the keyboard.
+            * e.g. [{"key":"value"}, {"key":"value"}] => [{"0":"A","1":"B","2":"C"}, {"0":"D","1":"E","2":"F"}]
+            */
+            keysArrayOfObjects: null,
 
-    const FIGURE_SCALE_FEATURE = {
-        min : 0.25,
-        max : 3,
-        step : 0.25
-    }
+            /*!
+            * Required only if "keysArrayOfObjects" is "null".
+            * The path of the "kioskboard-keys-${langugage}.json" file must be set to the "keysJsonUrl" option. (XMLHttpRequest to get the keys from JSON file.)
+            * e.g. '/Content/Plugins/KioskBoard/dist/kioskboard-keys-english.json'
+            */
+            keysJsonUrl: './lib/KioskBoard-main/dist/kioskboard-keys-english.json',
 
-    /** Figure Setting **/
+            /*
+            * Optional: An Array of Strings can be set to override the built-in special characters.
+            * e.g. ["#", "€", "%", "+", "-", "*"]
+            */
+            keysSpecialCharsArrayOfStrings: null,
 
-    const figure = document.getElementById("figure");
-    const figureScale = document.getElementById("figure-scale");
-    const figureSettingBox = document.getElementById("figure-setting-box");
-    const positionBtns = document.querySelectorAll("button.position");
+            /*
+            * Optional: An Array of Numbers can be set to override the built-in numpad keys. (From 0 to 9, in any order.)
+            * e.g. [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+            */
+            keysNumpadArrayOfNumbers: null,
 
-    const setFigurePosition = (idx) => {
-        const [x, y] = BG_INFO[Number(currBg)].figurePos[idx];
-        figure.style.left = `${x}%`;
-        figure.style.top = `${y}%`;
-    }
+            // Optional: (Other Options)
 
-    const selectFigurePosition = (posidx) => {
-        for (const btn of positionBtns) {
-            if(btn.dataset.posidx === String(posidx)){
-                btn.classList.add("on");
-            }else{
-                btn.classList.remove("on")
+            // Language Code (ISO 639-1) for custom keys (for language support) => e.g. "de" || "en" || "fr" || "hu" || "tr" etc...
+            language: 'en',
+
+            // The theme of keyboard => "light" || "dark" || "flat" || "material" || "oldschool"
+            theme: 'light',
+
+            // Scrolls the document to the top or bottom(by the placement option) of the input/textarea element. Prevented when "false"
+            autoScroll: true,
+
+            // Uppercase or lowercase to start. Uppercased when "true"
+            capsLockActive: true,
+
+            /*
+            * Allow or prevent real/physical keyboard usage. Prevented when "false"
+            * In addition, the "allowMobileKeyboard" option must be "true" as well, if the real/physical keyboard has wanted to be used.
+            */
+            allowRealKeyboard: false,
+
+            // Allow or prevent mobile keyboard usage. Prevented when "false"
+            allowMobileKeyboard: false,
+
+            // CSS animations for opening or closing the keyboard
+            cssAnimations: true,
+
+            // CSS animations duration as millisecond
+            cssAnimationsDuration: 360,
+
+            // CSS animations style for opening or closing the keyboard => "slide" || "fade"
+            cssAnimationsStyle: 'slide',
+
+            // Enable or Disable Spacebar functionality on the keyboard. The Spacebar will be passive when "false"
+            keysAllowSpacebar: true,
+
+            // Text of the space key (Spacebar). Without text => " "
+            keysSpacebarText: 'Space',
+
+            // Font family of the keys
+            keysFontFamily: 'sans-serif',
+
+            // Font size of the keys
+            keysFontSize: '22px',
+
+            // Font weight of the keys
+            keysFontWeight: 'normal',
+
+            // Size of the icon keys
+            keysIconSize: '25px',
+
+            // Text of the Enter key (Enter/Return). Without text => " "
+            keysEnterText: 'Enter',
+
+            // The callback function of the Enter key. This function will be called when the enter key has been clicked.
+            keysEnterCallback: undefined,
+
+            // The Enter key can close and remove the keyboard. Prevented when "false"
+            keysEnterCanClose: true,
+        });
+
+        // Select the input or the textarea element(s) to run the KioskBoard
+
+
+        KioskBoard.run('.js-kioskboard-input');
+
+        let currBg = 0;
+
+        /**
+         * 값 설정 가이드
+         * figurePos x, y 퍼센트 값 설정시,
+         * x의 값이 낮은 순 => 높은 순으로 배치해야 인터페이스를 직관적으로 유지할 수 있습니다.
+         * */
+        const BG_INFO = [
+            {
+                title: "한전 본사",
+                imgUrl: './img/photo/bg/1.jpg',
+                figurePos: [
+                    [10, 20],
+                    [40, 40],
+                    [80, 60],
+                ],
+                defaultPosIdx: 1,
+            },
+            {
+                title: "로망스 다리",
+                imgUrl: './img/photo/bg/2.jpg',
+                figurePos: [
+                    [0, 40],
+                    [10, 20],
+                    [80, 60],
+                ],
+                defaultPosIdx: 2,
             }
+        ];
+
+        const FIGURE_SCALE_FEATURE = {
+            min: 0.25,
+            max: 3,
+            step: 0.25
         }
-        setFigurePosition(posidx);
-    }
 
-    for (const btn of positionBtns) {
-        btn.addEventListener("click", (e) => {
-            const {posidx} = btn.dataset;
-            selectFigurePosition(posidx);
+        /** Figure Setting **/
+
+        const figure = document.getElementById("figure");
+        const figureScale = document.getElementById("figure-scale");
+        const figureSettingBox = document.getElementById("figure-setting-box");
+        const emailInput = document.getElementById("email-input");
+        const positionBtns = document.querySelectorAll("button.position");
+
+        const setFigurePosition = (idx) => {
+            const [x, y] = BG_INFO[Number(currBg)].figurePos[idx];
+            figure.style.left = `${x}%`;
+            figure.style.top = `${y}%`;
+        }
+
+        const selectFigurePosition = (posidx) => {
+            for (const btn of positionBtns) {
+                if (btn.dataset.posidx === String(posidx)) {
+                    btn.classList.add("on");
+                } else {
+                    btn.classList.remove("on")
+                }
+            }
+            setFigurePosition(posidx);
+        }
+
+        for (const btn of positionBtns) {
+            btn.addEventListener("click", (e) => {
+                const { posidx } = btn.dataset;
+                selectFigurePosition(posidx);
+            })
+        }
+
+        Object.entries(FIGURE_SCALE_FEATURE).forEach(([k, v]) => {
+            figureScale.setAttribute(k, String(v))
+        });
+
+        figureScale.addEventListener("touchmove", (e) => {
+            figureScale.classList.add('on')
+            figure.style.transform = `scale(${e.currentTarget.value})`
         })
-    }
+        figureScale.addEventListener("touchend", (e) => {
+            figureScale.classList.remove('on')
+        })
 
-    Object.entries(FIGURE_SCALE_FEATURE).forEach(([k,v])=>{
-        figureScale.setAttribute(k, String(v))
-    });
+        const photoBgBtns = document.querySelector(".photo-bg-btns");
+        const photoBgBtn = document.querySelectorAll(".photo-bg-btn");
+        const shutterBtn = document.getElementById("shutter-btn");
+        const photoConfirmModal = document.querySelector(".photo-confirm-modal");
+        const photoSendResultModal = document.querySelector(".photo-send-result-modal-bg");
+        const photoCancelBtn = document.getElementById("photo-cancel-btn");
+        const previewEl = document.querySelector(".photo-preview");
 
-    figureScale.addEventListener("touchmove", (e) => {
-        figureScale.classList.add('on')
-        figure.style.transform = `scale(${e.currentTarget.value})`
-    })
-    figureScale.addEventListener("touchend", (e) => {
-        figureScale.classList.remove('on')
-    })
+        const sendBtn = document.getElementById("send-btn");
 
-    const photoBgBtns = document.querySelector(".photo-bg-btns");
-    const photoBgBtn = document.querySelectorAll(".photo-bg-btn");
-    const shutterBtn = document.getElementById("shutter-btn");
-    const photoConfirmModal = document.querySelector(".photo-confirm-modal");
-    const photoSendResultModal = document.querySelector(".photo-send-result-modal-bg");
-    const photoCancelBtn = document.getElementById("photo-cancel-btn");
-    const previewEl = document.querySelector(".photo-preview");
+        const photoSettingBox = document.querySelector(".photo-setting-box");
+        const photoTakeBox = document.getElementById("photo-take-box");
 
-    const sendBtn = document.getElementById("send-btn");
+        const photoCountdown = document.getElementById("photo-countdown");
 
-    const photoSettingBox = document.querySelector(".photo-setting-box");
-    const photoTakeBox = document.getElementById("photo-take-box");
+        const openPhotoConfirmModal = () => {
+            photoConfirmModal.classList.remove("hide");
+        }
 
-    const photoCountdown = document.getElementById("photo-countdown");
+        const closePhotoConfirmModal = () => {
+            photoConfirmModal.classList.add("hide");
+            photoCountdown.classList.remove("hide");
+            photoTakeBox.classList.remove("hide");
+        }
 
-    const openPhotoConfirmModal = () => {
-        photoConfirmModal.classList.remove("hide");
-    }
+        const closeResultModal = () => {
+            photoSendResultModal.classList.add("hide");
+        }
 
-    const closePhotoConfirmModal = () => {
-        photoConfirmModal.classList.add("hide");
-        photoCountdown.classList.remove("hide");
-        photoTakeBox.classList.remove("hide");
-    }
+        const takePhoto = () => {
+            photoSettingBox.classList.add("hide");
+            document.body.classList.add("on");
+            document.querySelector(".photo-explanation").classList.add("hide");
+            const shut = setTimeout(() => {
+                let cnt = 7;
+                photoCountdown.innerText = `${cnt}`;
+                const countDown = setInterval(() => {
+                    cnt -= 1;
+                    photoCountdown.innerText = `${cnt}`;
+                    if (cnt === 0) {
+                        previewEl.classList.add("shut");
+                        photoCountdown.innerText = "";
+                        setTimeout(() => {
+                            previewEl.classList.remove("shut");
+                            setTimeout(() => {
+                                openPhotoConfirmModal();
+                                clearInterval(countDown);
+                                clearTimeout(shut);
+                                document.querySelector(".photo-explanation").classList.remove("hide");
+                                photoSettingBox.classList.remove("hide");
+                                document.body.classList.remove("on");
+                                photoTakeBox.classList.add("hide");
+                                photoCountdown.classList.add("hide");
+                            }, 100)
+                        }, 100)
+                    }
+                }, 1000)
+            }, 400)
+        }
+        shutterBtn.addEventListener("click", takePhoto)
 
-    const closeResultModal = () => {
-        photoSendResultModal.classList.add("hide");
-    }
+        const selectBg = (index) => {
+            currBg = index;
+            const buttons = document.querySelectorAll(".photo-bg-btn");
+            /** 버튼 변화 **/
+            for (const btn of buttons) {
+                if (btn.dataset.bg === `${index}`) {
+                    btn.classList.add("on");
+                } else {
+                    btn.classList.remove("on");
+                }
+            }
+            /** 미리보기 변화 **/
+            previewEl.style.backgroundImage = `url(${BG_INFO[Number(index)].imgUrl})`;
 
-    const takePhoto = () => {
-        photoSettingBox.classList.add("hide");
-        document.body.classList.add("on");
-        document.querySelector(".photo-explanation").classList.add("hide");
-        const shut = setTimeout(() => {
-            let cnt = 7;
-            photoCountdown.innerText = `${cnt}`;
+            /** 사진 변화 **/
+            document.querySelector('.photo').style.backgroundImage = `url(${BG_INFO[Number(index)].imgUrl})`;
+
+            /** 인물 위치 선택 **/
+            selectFigurePosition(BG_INFO[currBg].defaultPosIdx);
+        }
+
+        setTimeout(() => {
+            selectBg(0);
+        }, 0)
+
+        photoBgBtn.forEach(btn => {
+            btn.addEventListener("click", () => {
+                selectBg(btn);
+            })
+        });
+
+        BG_INFO.forEach((info, index) => {
+            const { title, imgUrl } = info;
+            const btnEl = document.createElement("button");
+            btnEl.setAttribute("data-bg", `${index}`);
+            btnEl.classList.add('photo-bg-btn');
+            btnEl.innerHTML = `<div class="photo-bg" style="background-image: url(${imgUrl})"></div>${title}`;
+            btnEl.addEventListener("click", () => {
+                selectBg(index);
+            })
+            photoBgBtns.appendChild(btnEl);
+        })
+
+
+        const PRINT_SECONDS = 60; // 출력까지 걸리는 시간
+        const CELLS_PER_PROGRESS = 1; // 초당 프로그레스 바 개수
+
+        const setRemainSeconds = (sec) => {
+            document.getElementById("remain_sec").innerText = `${sec}`;
+        }
+
+        const initializeRemainSeconds = () => {
+            setRemainSeconds(PRINT_SECONDS);
+        }
+
+        const autoClose = () => {
+            let cnt = PRINT_SECONDS * CELLS_PER_PROGRESS;
+            const progressCells = document.querySelectorAll(".progress-cell");
+            const cellCnt = progressCells.length;
             const countDown = setInterval(() => {
                 cnt -= 1;
-                photoCountdown.innerText = `${cnt}`;
-                if (cnt === 0) {
-                    previewEl.classList.add("shut");
-                    photoCountdown.innerText = "";
-                    setTimeout(() => {
-                        previewEl.classList.remove("shut");
-                        setTimeout(() => {
-                            openPhotoConfirmModal();
-                            clearInterval(countDown);
-                            clearTimeout(shut);
-                            document.querySelector(".photo-explanation").classList.remove("hide");
-                            photoSettingBox.classList.remove("hide");
-                            document.body.classList.remove("on");
-                            photoTakeBox.classList.add("hide");
-                            photoCountdown.classList.add("hide");
-                        }, 100)
-                    }, 100)
+                if (progressCells[cellCnt - cnt]) {
+                    progressCells[cellCnt - cnt].classList.add("on");
                 }
-            }, 1000)
-        }, 400)
-    }
-    shutterBtn.addEventListener("click", takePhoto)
+                setRemainSeconds(Math.ceil(cnt / CELLS_PER_PROGRESS));
 
-    const selectBg = (index) => {
-        currBg = index;
-        const buttons = document.querySelectorAll(".photo-bg-btn");
-        /** 버튼 변화 **/
-        for (const btn of buttons) {
-            if (btn.dataset.bg === `${index}`) {
-                btn.classList.add("on");
-            } else {
-                btn.classList.remove("on");
-            }
+                const resetAutoClose = () => {
+                    clearInterval(countDown);
+                    closeResultModal();
+                    initializeRemainSeconds();
+                }
+
+                const goHome = () => {
+                    window.location.href = "./index.html";
+                }
+
+                if (cnt === 0) {
+                    progressCells.forEach((cell) => {
+                        cell.classList.remove("on")
+                    })
+                    resetAutoClose();
+                    goHome();
+                }
+
+                window.addEventListener("beforeunload", resetAutoClose);
+            }, 1000 / CELLS_PER_PROGRESS)
         }
-        /** 미리보기 변화 **/
-        previewEl.style.backgroundImage = `url(${BG_INFO[Number(index)].imgUrl})`;
 
-        /** 사진 변화 **/
-        document.querySelector('.photo').style.backgroundImage = `url(${BG_INFO[Number(index)].imgUrl})`;
+        const showResult = () => {
+            const title = "사진 출력 완료";
+            const msg = `포토프린터에서 사진을 수령해 주시기 바랍니다.<br/>이용해 주셔서 감사합니다.`
+            document.getElementById("result-title").innerText = title;
+            document.getElementById("result-msg").innerHTML = msg;
+            photoSendResultModal.classList.remove("hide");
+            autoClose(); // REMAIN_SECONDS 후 자동으로 닫히도록 처리
+        }
 
-        /** 인물 위치 선택 **/
-        selectFigurePosition(BG_INFO[currBg].defaultPosIdx);
-    }
+        sendBtn.addEventListener("click", showResult)
 
-    setTimeout(()=>{
-        selectBg(0);
-    },0)
+        photoCancelBtn.addEventListener("click", closePhotoConfirmModal)
+        window.addEventListener("beforeunload", closePhotoConfirmModal);
 
-    photoBgBtn.forEach(btn => {
-        btn.addEventListener("click", () => {
-            selectBg(btn);
-        })
-    });
+        photoTakeBox.addEventListener("click", e => e.stopPropagation());
+        figureSettingBox.addEventListener("click", e => e.stopPropagation());
+        emailInput.addEventListener("click", e => e.stopPropagation());
+        emailInput.addEventListener("touchmove", e => {
+            console.log('event', e.currentTarget, e);
+            e.stopPropagation();
+        });
+        initializeRemainSeconds();
 
-    BG_INFO.forEach((info, index) => {
-        const {title, imgUrl} = info;
-        const btnEl = document.createElement("button");
-        btnEl.setAttribute("data-bg", `${index}`);
-        btnEl.classList.add('photo-bg-btn');
-        btnEl.innerHTML = `<div class="photo-bg" style="background-image: url(${imgUrl})"></div>${title}`;
-        btnEl.addEventListener("click", () => {
-            selectBg(index);
-        })
-        photoBgBtns.appendChild(btnEl);
-    })
+        const photoProgressBar = document.getElementById("progress-bar");
 
+        for (let i = PRINT_SECONDS * CELLS_PER_PROGRESS - 1; i > 0; i--) {
+            const progressCell = document.createElement("div");
+            progressCell.classList.add("progress-cell");
+            photoProgressBar.appendChild(progressCell);
+        }
 
-    const PRINT_SECONDS = 60; // 출력까지 걸리는 시간
-    const CELLS_PER_PROGRESS = 1; // 초당 프로그레스 바 개수
-
-    const setRemainSeconds = (sec) => {
-        document.getElementById("remain_sec").innerText = `${sec}`;
-    }
-
-    const initializeRemainSeconds = () => {
-        setRemainSeconds(PRINT_SECONDS);
-    }
-
-    const autoClose = () => {
-        let cnt = PRINT_SECONDS * CELLS_PER_PROGRESS;
-        const progressCells = document.querySelectorAll(".progress-cell");
-        const cellCnt = progressCells.length;
-        const countDown = setInterval(() => {
-            cnt -= 1;
-            if (progressCells[cellCnt - cnt]) {
-                progressCells[cellCnt - cnt].classList.add("on");
-            }
-            setRemainSeconds(Math.ceil(cnt / CELLS_PER_PROGRESS));
-
-            const resetAutoClose = () => {
-                clearInterval(countDown);
-                closeResultModal();
-                initializeRemainSeconds();
-            }
-
-            const goHome = () => {
-                window.location.href = "./index.html";
-            }
-
-            if (cnt === 0) {
-                progressCells.forEach((cell) => {
-                    cell.classList.remove("on")
-                })
-                resetAutoClose();
-                goHome();
-            }
-
-            window.addEventListener("beforeunload", resetAutoClose);
-        }, 1000 / CELLS_PER_PROGRESS)
-    }
-
-    const showResult = () => {
-        const title = "사진 출력 완료";
-        const msg = `포토프린터에서 사진을 수령해 주시기 바랍니다.<br/>이용해 주셔서 감사합니다.`
-        document.getElementById("result-title").innerText = title;
-        document.getElementById("result-msg").innerHTML = msg;
-        photoSendResultModal.classList.remove("hide");
-        autoClose(); // REMAIN_SECONDS 후 자동으로 닫히도록 처리
-    }
-
-    sendBtn.addEventListener("click", showResult)
-
-    photoCancelBtn.addEventListener("click", closePhotoConfirmModal)
-    window.addEventListener("beforeunload", closePhotoConfirmModal);
-
-    photoTakeBox.addEventListener("click", e => e.stopPropagation());
-    figureSettingBox.addEventListener("click", e => e.stopPropagation());
-    initializeRemainSeconds();
-
-    const photoProgressBar = document.getElementById("progress-bar");
-
-    for (let i = PRINT_SECONDS * CELLS_PER_PROGRESS - 1; i > 0; i--) {
-        const progressCell = document.createElement("div");
-        progressCell.classList.add("progress-cell");
-        photoProgressBar.appendChild(progressCell);
-    }
-
-</script>
-<script src="./js/zoom.js"></script>
+    </script>
+    <script src="./js/zoom.js"></script>
 </body>
+
 </html>

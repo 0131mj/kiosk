@@ -15,6 +15,7 @@ const controlMenus = `
 
 const showGlobalMenu = (e) => {
     e.stopPropagation();
+    console.log(e.currentTarget)
     const globalMenuEl = document.querySelector(".global-menu-bg");
     globalMenuEl.classList.remove("hide");
     document.getElementById("home-btn").innerHTML = CLOSE_ICON;
