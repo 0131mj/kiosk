@@ -310,13 +310,14 @@ main {
     color: #777;
 }
 
-.btn-group{
+.btn-group {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#send-btn, #email-form-btn {
+#send-btn,
+#email-form-btn {
     background: #151515;
     padding: 2vw 4vw;
     margin: 2vw;
@@ -436,4 +437,11 @@ button.position.on {
 
 .range.on::-webkit-slider-thumb {
     background-color: palegoldenrod;
+}
+
+
+/* 이메일로 전송 */
+.email-input-modal{
+    background-color: white;
+    
 }

@@ -108,7 +108,7 @@
             <div class="auto-cancel-description">
                 일정 시간 동안 입력이 없으면 사진촬영 초기 화면으로 돌아갑니다.
             </div>
-        </div>        
+        </div>
     </main>
 
     <div class="photo-send-result-modal-bg dimmed hide">
@@ -119,10 +119,10 @@
             <div id="progress-bar"></div>
         </div>
     </div>
-    <div class="dimmed hide">
-        <div id="email-input">
-            <textarea class="js-kioskboard-input" data-kioskboard-type="all" data-kioskboard-placement="top"
-                data-kioskboard-specialcharacters="true" placeholder="Your Address"></textarea>
+    <div class="dimmed hide" id="email-input-modal-wrapper">
+        <div class="email-input-modal">
+            <textarea class="js-kioskboard-input" data-kioskboard-type="all" data-kioskboard-placement="bottom"
+                data-kioskboard-specialcharacters="true" placeholder="이메일 주소를 입력하세요."></textarea>
         </div>
     </div>
     <template id="global-menu-panel"></template>
@@ -130,6 +130,19 @@
     <script src="./js/script.js"></script>
     <script src="./lib/KioskBoard-main/dist/kioskboard-aio-2.3.0.min.js"></script>
     <script>
+        /* 이메일로 전송 */
+        const emailFormBtn = document.getElementById("email-form-btn");
+        const emailInputModalWrapper = document.getElementById("email-input-modal-wrapper");
+        emailFormBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            emailInputModalWrapper.classList.remove('hide');
+        })
+
+        emailInputModalWrapper.addEventListener("click", e => e.stopPropagation());
+        emailInputModalWrapper.addEventListener("touchmove", e => {
+            console.log('event', e.currentTarget, e);
+            e.stopPropagation();
+        });
 
         KioskBoard.init({
 
@@ -201,13 +214,13 @@
             keysFontFamily: 'sans-serif',
 
             // Font size of the keys
-            keysFontSize: '22px',
+            keysFontSize: '2rem',
 
             // Font weight of the keys
             keysFontWeight: 'normal',
 
             // Size of the icon keys
-            keysIconSize: '25px',
+            keysIconSize: '2.2rem',
 
             // Text of the Enter key (Enter/Return). Without text => " "
             keysEnterText: 'Enter',
@@ -223,6 +236,11 @@
 
 
         KioskBoard.run('.js-kioskboard-input');
+
+
+
+
+
 
         let currBg = 0;
 
@@ -265,7 +283,6 @@
         const figure = document.getElementById("figure");
         const figureScale = document.getElementById("figure-scale");
         const figureSettingBox = document.getElementById("figure-setting-box");
-        const emailInput = document.getElementById("email-input");
         const positionBtns = document.querySelectorAll("button.position");
 
         const setFigurePosition = (idx) => {
@@ -469,11 +486,7 @@
 
         photoTakeBox.addEventListener("click", e => e.stopPropagation());
         figureSettingBox.addEventListener("click", e => e.stopPropagation());
-        emailInput.addEventListener("click", e => e.stopPropagation());
-        emailInput.addEventListener("touchmove", e => {
-            console.log('event', e.currentTarget, e);
-            e.stopPropagation();
-        });
+
         initializeRemainSeconds();
 
         const photoProgressBar = document.getElementById("progress-bar");
