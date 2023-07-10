@@ -154,7 +154,10 @@ const renderGlobalMenu = () => {
 window.addEventListener("DOMContentLoaded", renderGlobalMenu);
 // window.addEventListener("click", showGlobalMenu);
 window.onclick = (ev) => {
-    console.log(ev.target)
+    const isKeyBoard = Array.from(ev.target.classList).some(className => className.startsWith('kioskboard')) || ev.target.id === 'KioskBoard-VirtualKeyboard';
+    if (!isKeyBoard) {
+        showGlobalMenu(ev);
+    }
 }
 
 /* 헤더 버튼 추가 */

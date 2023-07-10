@@ -171,6 +171,7 @@
     })
     document.getElementById('email-input-modal-close-btn').addEventListener('click', () => {
         emailInputModalWrapper.classList.add('hide');
+        emailInput.value = '';
         removeKeyboard();
     })
     emailFormBtn.addEventListener('click', (e) => {
@@ -200,7 +201,7 @@
             emailResultModalWrapper.classList.remove('hide');
             setTimeout(() => {
                 emailResultModalWrapper.classList.add('hide');
-            }, 2000)
+            }, 1500)
         })();
     })
 
@@ -290,7 +291,7 @@
         keysEnterCallback: undefined,
 
         // The Enter key can close and remove the keyboard. Prevented when "false"
-        keysEnterCanClose: true,
+        keysEnterCanClose: false,
     });
 
     // Select the input or the textarea element(s) to run the KioskBoard
