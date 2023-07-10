@@ -152,7 +152,10 @@ const renderGlobalMenu = () => {
 }
 
 window.addEventListener("DOMContentLoaded", renderGlobalMenu);
-window.addEventListener("click", showGlobalMenu);
+// window.addEventListener("click", showGlobalMenu);
+window.onclick = (ev) => {
+    console.log(ev.target)
+}
 
 /* 헤더 버튼 추가 */
 const titleHeader = document.querySelector(".title-header");
