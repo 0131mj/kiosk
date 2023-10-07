@@ -156,7 +156,8 @@
 <script src="./lib/KioskBoard-main/dist/kioskboard-aio-2.3.0.min.js"></script>
 <script>
 
-    let telNumVal = '';
+    let telNumVal = '010';
+
 
     /* 이메일로 전송 */
 
@@ -172,18 +173,27 @@
     const telNumButtons = document.querySelectorAll('.tel-btn');
     const telRemoveBtn = document.getElementById('tel-remove-btn');
 
-    const displayTelNum = ()=> {
+    telNumInput.value = telNumVal;
+    const displayTelNum = () => {
         console.log(telNumVal);
-        telNumInput.value = `!!${telNumVal}!!`
+        emailSendBtn.toggleAttribute('disabled', telNumVal.length < 11);
+
+        const first = telNumVal.slice(0, 3);
+        const second = telNumVal.length > 3 ? `-${telNumVal.slice(3, 7)}` : '';
+        const third = telNumVal.length > 7 ? `-${telNumVal.slice(7, 11)}` : '';
+
+        telNumInput.value = `${first}${second}${third}`
     }
 
     const addTelNum = (numStr) => {
-        telNumVal += numStr;
-        displayTelNum();
+        if (telNumVal.length < 11) {
+            telNumVal += numStr;
+            displayTelNum();
+        }
     }
 
     const delTelNum = (numStr) => {
-        telNumVal = telNumVal.slice(0, telNumVal.length-1);
+        telNumVal = telNumVal.slice(0, telNumVal.length - 1);
         displayTelNum();
     }
 
@@ -194,7 +204,7 @@
         })
     }
 
-    telRemoveBtn.addEventListener('click', ()=>{
+    telRemoveBtn.addEventListener('click', () => {
         delTelNum();
     })
 

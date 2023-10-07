@@ -516,10 +516,13 @@ button.position.on {
 
 #email-send-btn {
     font-size: 1.2vw;
+    background: #0D3563;
+    color: #fff;
 }
 
 #email-send-btn:disabled {
-    background-color: #cccccc;
+    background-color: #eeee;
+    color: #ccc;
 }
 
 #email-result-modal {
@@ -529,6 +532,10 @@ button.position.on {
     border-radius: 1vw;
     text-align: center;
     line-height: 2rem;
+}
+
+.tel-num-input{
+    width: 16vw;
 }
 
 .tel-buttons {
