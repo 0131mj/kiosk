@@ -111,8 +111,8 @@
     </div>
 </main>
 
-<div class="photo-send-result-modal-bg dimmed hide">
-    <div class="photo-send-result-modal">
+<div class="photo-print-result-modal-bg dimmed hide">
+    <div class="photo-print-result-modal">
         <div id="result-title"></div>
         <div id="result-msg"></div>
         <div class="auto-close"><span id="remain_sec">5</span>초 후에 자동으로 창이 닫힙니다.</div>
@@ -167,12 +167,14 @@
     const telNumButtons = document.querySelectorAll('.tel-btn');
     const telRemoveBtn = document.getElementById('tel-remove-btn');
 
-    let _telNumVal = '';
+
+    let _telNumVal = ''; /** 내부적으로 갖고 있는 전화번호 값**/
+
     /* 전화번호 초기화 */
     const initializeTelNum = () => {
         const DEFAULT_TEL_NUM = '010';
-        _telNumVal = DEFAULT_TEL_NUM;
-        telNumInput.value = DEFAULT_TEL_NUM;
+        _telNumVal = DEFAULT_TEL_NUM; /** 내부적으로 갖고 있는 전화번호 값**/
+        telNumInput.value = DEFAULT_TEL_NUM; /** 표시하기 위한 전화번호 값**/
     }
 
     const closeTelInputModal = () => {
@@ -331,7 +333,7 @@
     const photoBgBtn = document.querySelectorAll(".photo-bg-btn");
     const shutterBtn = document.getElementById("shutter-btn");
     const photoConfirmModal = document.querySelector(".photo-confirm-modal");
-    const photoSendResultModal = document.querySelector(".photo-send-result-modal-bg");
+    const photoPrintResultModal = document.querySelector(".photo-print-result-modal-bg");
     const photoCancelBtn = document.getElementById("photo-cancel-btn");
     const previewEl = document.querySelector(".photo-preview");
 
@@ -353,7 +355,7 @@
     }
 
     const closeResultModal = () => {
-        photoSendResultModal.classList.add("hide");
+        photoPrintResultModal.classList.add("hide");
     }
 
     const takePhoto = () => {
@@ -481,7 +483,7 @@
         const msg = `포토프린터에서 사진을 수령해 주시기 바랍니다.<br/>이용해 주셔서 감사합니다.`
         document.getElementById("result-title").innerText = title;
         document.getElementById("result-msg").innerHTML = msg;
-        photoSendResultModal.classList.remove("hide");
+        photoPrintResultModal.classList.remove("hide");
         autoClose(); // REMAIN_SECONDS 후 자동으로 닫히도록 처리
     }
 

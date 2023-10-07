@@ -332,7 +332,7 @@ main {
 
 /* 전송 결과 */
 
-.photo-send-result-modal {
+.photo-print-result-modal {
     background: #000;
     padding: 8vw;
     display: flex;
