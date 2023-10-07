@@ -156,44 +156,47 @@
 <script src="./lib/KioskBoard-main/dist/kioskboard-aio-2.3.0.min.js"></script>
 <script>
 
-    let telNumVal = '010';
 
 
     /* 이메일로 전송 */
-
 
     const emailFormBtn = document.getElementById("email-form-btn");
     const emailInputModalWrapper = document.getElementById("email-input-modal-wrapper");
     const emailSendBtn = document.getElementById("email-send-btn");
     const telNumInput = document.querySelector('.tel-num-input');
-    const emailDomain = document.getElementById('email-domain');
     const emailResultModalWrapper = document.getElementById('email-result-modal-wrapper');
     const emailResultModal = document.getElementById('email-result-modal');
 
     const telNumButtons = document.querySelectorAll('.tel-btn');
     const telRemoveBtn = document.getElementById('tel-remove-btn');
 
-    telNumInput.value = telNumVal;
-    const displayTelNum = () => {
-        console.log(telNumVal);
-        emailSendBtn.toggleAttribute('disabled', telNumVal.length < 11);
+    /* 전화번호 초기화 */
+    const DEFAULT_TEL_NUM = '010';
+    let _telNumVal = DEFAULT_TEL_NUM;
+    telNumInput.value = _telNumVal;
 
-        const first = telNumVal.slice(0, 3);
-        const second = telNumVal.length > 3 ? `-${telNumVal.slice(3, 7)}` : '';
-        const third = telNumVal.length > 7 ? `-${telNumVal.slice(7, 11)}` : '';
+    const displayTelNum = () => {
+        console.log(_telNumVal);
+        emailSendBtn.toggleAttribute('disabled', _telNumVal.length < 11);
+
+        const first = _telNumVal.slice(0, 3);
+        const second = _telNumVal.length > 3 ? `-${_telNumVal.slice(3, 7)}` : '';
+        const third = _telNumVal.length > 7 ? `-${_telNumVal.slice(7, 11)}` : '';
 
         telNumInput.value = `${first}${second}${third}`
     }
 
     const addTelNum = (numStr) => {
-        if (telNumVal.length < 11) {
-            telNumVal += numStr;
+        if (_telNumVal.length < 11) {
+            _telNumVal += numStr;
             displayTelNum();
+        }else{
+            console.log("자리 초과")
         }
     }
 
     const delTelNum = (numStr) => {
-        telNumVal = telNumVal.slice(0, telNumVal.length - 1);
+        _telNumVal = _telNumVal.slice(0, _telNumVal.length - 1);
         displayTelNum();
     }
 
@@ -213,7 +216,8 @@
     })
     document.getElementById('email-input-modal-close-btn').addEventListener('click', () => {
         emailInputModalWrapper.classList.add('hide');
-        telNumInput.value = '';
+        telNumInput.value = DEFAULT_TEL_NUM;
+        _telNumVal = DEFAULT_TEL_NUM;
     })
     emailFormBtn.addEventListener('click', (e) => {
         emailInputModalWrapper.classList.remove('hide');
@@ -227,16 +231,15 @@
     });
 
     emailSendBtn.addEventListener('click', () => {
-        const emailAddr = `${telNumInput.value}@${emailDomain.value}`;
-        console.log({emailAddr});
-        telNumInput.value = '';
+        telNumInput.value = DEFAULT_TEL_NUM;
+        _telNumVal = DEFAULT_TEL_NUM;
         emailInputModalWrapper.classList.add('hide');
         (async () => {
             const result = await new Promise((resolve, reject) => resolve('202'));
             if (result === '202') {
-                emailResultModal.innerHTML = '이메일 전송이 완료되었습니다.'
+                emailResultModal.innerHTML = '전송이 완료되었습니다.'
             } else {
-                emailResultModal.innerHTML = '이메일 전송에 실패했습니다.<br/> 관리자에게 문의하세요'
+                emailResultModal.innerHTML = '전송에 실패했습니다.<br/> 관리자에게 문의하세요'
             }
             emailResultModalWrapper.classList.remove('hide');
             setTimeout(() => {
