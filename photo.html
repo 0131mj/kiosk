@@ -101,8 +101,8 @@
             편집 후 사진 출력 또는 이메일로 전송 버튼을 눌러주세요.
         </div>
         <div class="btn-group">
-            <button id="email-form-btn">휴대전화로 전송</button>
-            <button id="send-btn">사진 출력</button>
+            <button id="tel-form-btn">휴대전화로 전송</button>
+            <button id="print-btn">사진 출력</button>
         </div>
         <button id="photo-cancel-btn">취소</button>
         <div class="auto-cancel-description">
@@ -119,11 +119,11 @@
         <div id="progress-bar"></div>
     </div>
 </div>
-<div class="dimmed hide" id="email-input-modal-wrapper">
-    <div class="email-input-modal">
+<div class="dimmed hide" id="tel-input-modal-wrapper">
+    <div class="tel-input-modal">
         <h3>휴대전화로 사진 보내기</h3>
-        <button id="email-input-modal-close-btn">닫기</button>
-        <div class="email-input-form">
+        <button id="tel-input-modal-close-btn">닫기</button>
+        <div class="tel-input-form">
             <label>
                 <input class="tel-num-input" type="text" readonly/>
             </label>
@@ -140,14 +140,14 @@
             <button class="tel-btn">9</button>
             <button id="tel-remove-btn"><-</button>
             <button class="tel-btn">0</button>
-            <button id="email-send-btn" disabled>
+            <button id="tel-send-btn" disabled>
                 보내기
             </button>
         </div>
     </div>
 </div>
-<div class="dimmed hide" id="email-result-modal-wrapper">
-    <div id="email-result-modal"></div>
+<div class="dimmed hide" id="tel-result-modal-wrapper">
+    <div id="tel-result-modal"></div>
 </div>
 
 <template id="global-menu-panel"></template>
@@ -156,28 +156,38 @@
 <script src="./lib/KioskBoard-main/dist/kioskboard-aio-2.3.0.min.js"></script>
 <script>
 
-
-
-    /* 이메일로 전송 */
-
-    const emailFormBtn = document.getElementById("email-form-btn");
-    const emailInputModalWrapper = document.getElementById("email-input-modal-wrapper");
-    const emailSendBtn = document.getElementById("email-send-btn");
+    /* 휴대전화로 전송 */
+    const telFormBtn = document.getElementById("tel-form-btn");
+    const telInputModalWrapper = document.getElementById("tel-input-modal-wrapper");
+    const telSendBtn = document.getElementById("tel-send-btn");
     const telNumInput = document.querySelector('.tel-num-input');
-    const emailResultModalWrapper = document.getElementById('email-result-modal-wrapper');
-    const emailResultModal = document.getElementById('email-result-modal');
+    const telResultModalWrapper = document.getElementById('tel-result-modal-wrapper');
+    const telResultModal = document.getElementById('tel-result-modal');
 
     const telNumButtons = document.querySelectorAll('.tel-btn');
     const telRemoveBtn = document.getElementById('tel-remove-btn');
 
+    let _telNumVal = '';
     /* 전화번호 초기화 */
-    const DEFAULT_TEL_NUM = '010';
-    let _telNumVal = DEFAULT_TEL_NUM;
-    telNumInput.value = _telNumVal;
+    const initializeTelNum = () => {
+        const DEFAULT_TEL_NUM = '010';
+        _telNumVal = DEFAULT_TEL_NUM;
+        telNumInput.value = DEFAULT_TEL_NUM;
+    }
+
+    const closeTelInputModal = () => {
+        telInputModalWrapper.classList.add('hide');
+        initializeTelNum();
+    }
+
+    const openTelInputModal = () => {
+        initializeTelNum();
+        telInputModalWrapper.classList.remove('hide');
+    }
 
     const displayTelNum = () => {
         console.log(_telNumVal);
-        emailSendBtn.toggleAttribute('disabled', _telNumVal.length < 11);
+        telSendBtn.toggleAttribute('disabled', _telNumVal.length < 11);
 
         const first = _telNumVal.slice(0, 3);
         const second = _telNumVal.length > 3 ? `-${_telNumVal.slice(3, 7)}` : '';
@@ -190,8 +200,8 @@
         if (_telNumVal.length < 11) {
             _telNumVal += numStr;
             displayTelNum();
-        }else{
-            console.log("자리 초과")
+        } else {
+            console.warn("자리 초과")
         }
     }
 
@@ -199,7 +209,6 @@
         _telNumVal = _telNumVal.slice(0, _telNumVal.length - 1);
         displayTelNum();
     }
-
 
     for (const telNum of telNumButtons) {
         telNum.addEventListener('click', () => {
@@ -212,38 +221,29 @@
     })
 
     telNumInput.addEventListener('change', () => {
-        emailSendBtn.toggleAttribute('disabled', telNumInput.value.length <= 0)
-    })
-    document.getElementById('email-input-modal-close-btn').addEventListener('click', () => {
-        emailInputModalWrapper.classList.add('hide');
-        telNumInput.value = DEFAULT_TEL_NUM;
-        _telNumVal = DEFAULT_TEL_NUM;
-    })
-    emailFormBtn.addEventListener('click', (e) => {
-        emailInputModalWrapper.classList.remove('hide');
-        telNumInput.focus();
+        telSendBtn.toggleAttribute('disabled', telNumInput.value.length <= 0)
     })
 
-    emailInputModalWrapper.addEventListener("click", e => e.stopPropagation());
-    emailInputModalWrapper.addEventListener("touchmove", e => {
-        console.log('event', e.currentTarget, e);
+    document.getElementById('tel-input-modal-close-btn').addEventListener('click',closeTelInputModal);
+    telFormBtn.addEventListener('click', openTelInputModal);
+
+    telInputModalWrapper.addEventListener("click", e => e.stopPropagation());
+    telInputModalWrapper.addEventListener("touchmove", e => {
         e.stopPropagation();
     });
 
-    emailSendBtn.addEventListener('click', () => {
-        telNumInput.value = DEFAULT_TEL_NUM;
-        _telNumVal = DEFAULT_TEL_NUM;
-        emailInputModalWrapper.classList.add('hide');
+    telSendBtn.addEventListener('click', () => {
+        closeTelInputModal();
         (async () => {
             const result = await new Promise((resolve, reject) => resolve('202'));
             if (result === '202') {
-                emailResultModal.innerHTML = '전송이 완료되었습니다.'
+                telResultModal.innerHTML = '전송이 완료되었습니다.'
             } else {
-                emailResultModal.innerHTML = '전송에 실패했습니다.<br/> 관리자에게 문의하세요'
+                telResultModal.innerHTML = '전송에 실패했습니다.<br/> 관리자에게 문의하세요'
             }
-            emailResultModalWrapper.classList.remove('hide');
+            telResultModalWrapper.classList.remove('hide');
             setTimeout(() => {
-                emailResultModalWrapper.classList.add('hide');
+                telResultModalWrapper.classList.add('hide');
             }, 1500)
         })();
     })
@@ -335,7 +335,7 @@
     const photoCancelBtn = document.getElementById("photo-cancel-btn");
     const previewEl = document.querySelector(".photo-preview");
 
-    const sendBtn = document.getElementById("send-btn");
+    const printBtn = document.getElementById("print-btn");
 
     const photoSettingBox = document.querySelector(".photo-setting-box");
     const photoTakeBox = document.getElementById("photo-take-box");
@@ -485,7 +485,7 @@
         autoClose(); // REMAIN_SECONDS 후 자동으로 닫히도록 처리
     }
 
-    sendBtn.addEventListener("click", showResult)
+    printBtn.addEventListener("click", showResult)
 
     photoCancelBtn.addEventListener("click", closePhotoConfirmModal)
     window.addEventListener("beforeunload", closePhotoConfirmModal);
